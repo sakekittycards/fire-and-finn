@@ -22,9 +22,8 @@ python -m http.server 8788
 ```
 Then open http://localhost:8788/.
 
-## Going live (not done yet)
-1. Create the GitHub repo (for example `sakekittycards/fire-and-finn`), push `main`.
-2. Repo Settings → Pages → Source: Deploy from a branch, `main`, `/ (root)`. The `CNAME` file sets the domain.
-3. DNS for fireandfinn.com (at GoDaddy, or in Cloudflare if the zone moves there): four A records on `@` → 185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153, and a CNAME on `www` → `sakekittycards.github.io`.
-4. Wait for the Pages certificate, then turn on Enforce HTTPS.
-5. Point island-panda.com at the new site once Fire & Finn opens.
+## Hosting
+- Repo: `github.com/sakekittycards/fire-and-finn`. Every push to `main` publishes the site through GitHub Pages (Settings → Pages: deploy from `main`, root). The `CNAME` file sets the domain to fireandfinn.com.
+- DNS for fireandfinn.com lives at GoDaddy (GoDaddy nameservers). Records: four A records on `@` → 185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153, and a CNAME on `www` → `sakekittycards.github.io`.
+- After DNS resolves and GitHub issues the certificate, turn on Enforce HTTPS (repo Settings → Pages).
+- Later: point island-panda.com at the new site once Fire & Finn opens.
