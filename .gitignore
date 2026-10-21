@@ -1,0 +1,20 @@
+# Old menu versions and working notes (kept locally, not published)
+/menu-source/archive/
+/menu-design/
+/Fire & Finn Menu *
+/Fire_Finn Menu *
+/HANDOFF*
+_*.py
+_*.md
+
+# Local tooling
+.claude/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
+__pycache__/
+*.pyc

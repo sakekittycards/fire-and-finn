@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Fire &amp; Finn Menu v8</title>
+<!--
+  Fire & Finn menu, v8 (v7 + owner answers of Oct 21: Crazy roll, katsu under Hibachi, appetizer lines, allergen note).
+  Open menu-v8.html            -> 8.5 x 11 preview pages
+  Open menu-v8.html?bleed      -> 8.75 x 11.25 print pages (1/8" bleed each side)
+  Within each list, items run from highest to lowest price (Suk, Lee & Lichtenstein 2012).
+-->
+<style>
+  @font-face { font-family: "Tenor Sans"; src: url("assets/TenorSans-Regular.ttf") format("truetype"); }
+  @font-face { font-family: "Jost"; font-weight: 400; src: url("assets/Jost-400.ttf") format("truetype"); }
+  @font-face { font-family: "Jost"; font-weight: 500; src: url("assets/Jost-500.ttf") format("truetype"); }
+  @font-face { font-family: "Jost"; font-weight: 600; src: url("assets/Jost-600.ttf") format("truetype"); }
+  @page { size: 8.5in 11in; margin: 0; }
+
+  :root {
+    --bg:    #080808;   /* background, runs through the bleed */
+    --text:  #F2F0EB;   /* dish names, labels */
+    --muted: #C8C8C8;   /* descriptions: lightened from #BABABA for light-on-dark legibility */
+    --fire:  #F07840;   /* section headings, prices, featured dish */
+    --water: #36A9CF;   /* raw-item markers and small details only */
+    --rule:  #216175;   /* water blue at ~55% on the background, as a solid color (no transparency) */
+    --panel: #141414;   /* understated shaded panels */
+  }
+
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body { margin: 0; background: var(--bg); }
+  /* Light type on dark paper reads thinner (ink spread), so body copy is one weight heavier and slightly open */
+  body { font-family: "Jost", sans-serif; font-weight: 500; color: var(--muted); font-size: 11.5pt; line-height: 1.32; letter-spacing: 0.012em; }
+  p { margin: 0; text-wrap: pretty; }
+
+  .page {
+    width: 8.5in; height: 11in; overflow: hidden;
+    padding: 0.4in 0.45in 0.34in;
+    display: flex; flex-direction: column;
+    background: var(--bg);
+    break-after: page;
+  }
+  .page:last-child { break-after: auto; }
+  .bleed .page { width: 8.75in; height: 11.25in; border: 0.125in solid var(--bg); }
+
+  .masthead img { display: block; margin: 0 auto; width: 2.9in; }
+
+  /* ---------- Shared type ---------- */
+  h2 {
+    font-family: "Tenor Sans", sans-serif; font-weight: 400;
+    font-size: 17pt; line-height: 1.1; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--fire); margin: 0 0 9pt;
+    display: flex; align-items: center; gap: 12pt;
+  }
+  h2::after { content: ""; flex: 1; height: 0; border-top: 0.75pt solid var(--rule); order: 1; }
+  h2 .aside { order: 2; font-family: "Jost", sans-serif; text-transform: none; letter-spacing: 0.01em; font-size: 12.5pt; font-weight: 400; color: var(--fire); }
+  section { margin-top: 18pt; }
+
+  .dish { break-inside: avoid; }
+  .dish + .dish { margin-top: 9pt; }
+  .dish-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12pt; }
+  .name  { font-weight: 600; font-size: 14pt; line-height: 1.18; color: var(--text); letter-spacing: 0.01em; }
+  /* Prices: still orange and right-aligned, but smaller and lighter than the dish name */
+  .price { font-weight: 400; font-size: 12.5pt; color: var(--fire); font-variant-numeric: lining-nums tabular-nums; white-space: nowrap; }
+  .desc  { margin-top: 2pt; }
+  .desc + .desc { margin-top: 1pt; }
+  .lbl   { font-weight: 600; color: var(--text); }
+  /* Raw marker follows the name, so every dish name starts on the same left edge */
+  .raw   { color: var(--water); font-weight: 600; margin-left: 1pt; }
+
+  .cols2 { display: grid; grid-template-columns: 1fr 1fr; column-gap: 0.4in; align-items: start; }
+  .cols3 { display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 0.35in; align-items: start; }
+  .cols3 .dish + .dish { margin-top: 0; }
+
+  /* ---------- Page 1 ---------- */
+  .apps .dish + .dish { margin-top: 8pt; }
+
+  .lede { font-size: 11.75pt; max-width: 6.5in; }
+  .gf { margin-top: 4pt; font-weight: 600; font-size: 11.5pt; color: var(--water); }
+
+  .hib { margin-top: 11pt; border-top: 0.75pt solid var(--rule); border-bottom: 0.75pt solid var(--rule); }
+  .hib-row { display: grid; align-items: stretch; }
+  .hib-row.single { grid-template-columns: 1.3in repeat(5, 1fr); }
+  .hib-row.combo  { grid-template-columns: 1.3in repeat(3, 1fr); background: var(--panel); border-top: 0.75pt solid var(--rule); }
+  .rowhead { display: flex; align-items: center; padding-left: 10pt; font-weight: 600; font-size: 12pt; color: var(--text); }
+  .cell { text-align: center; padding: 10pt 4pt 9pt; border-left: 0.75pt solid var(--rule); }
+  .cell .n { position: relative; display: inline-block; font-weight: 600; font-size: 14.5pt; color: var(--text); }
+  .single .cell .n { font-size: 15pt; }
+  .cell .n .raw { position: absolute; left: 100%; margin-left: 1pt; }   /* hangs outside so the word stays centered */
+  .cell .p { display: block; margin-top: 2pt; font-weight: 400; font-size: 13.5pt; color: var(--fire); font-variant-numeric: lining-nums tabular-nums; }
+
+  .katsu { margin-top: 14pt; }
+
+  /* ---------- Page 2 ---------- */
+  .p2 { padding-top: 0.28in; padding-bottom: 0.3in; }
+  /* Hot side (front) wears fire orange; cold side (back: sushi & poke) wears water blue */
+  .p2 { --fire: var(--water); }
+  .p2 section:first-of-type { margin-top: 0; }
+  .p2 section { margin-top: 10pt; }
+  .p2 h2 { margin-bottom: 6pt; }
+  .p2 .dish + .dish { margin-top: 6pt; }
+  .p2 .desc { margin-top: 1pt; line-height: 1.22; }
+
+  .feature {
+    border: 0.75pt solid var(--fire); background: var(--panel);
+    padding: 7pt 11pt 8pt; margin-bottom: 9pt;
+  }
+  .feature .name { display: flex; align-items: baseline; gap: 10pt; }
+  .kicker { font-weight: 600; font-size: 9pt; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fire); }
+  .feature .name { font-size: 18pt; }
+  .feature .price { font-size: 16pt; }
+  .parts { display: grid; grid-template-columns: auto auto auto; justify-content: space-between; column-gap: 10pt; margin-top: 4pt; line-height: 1.22; letter-spacing: 0; }
+  .parts p { white-space: nowrap; }
+  .parts .lbl { display: block; }
+
+  .poke .dish-head { margin-bottom: 4pt; }
+  .steps p { line-height: 1.22; }
+  .steps { display: grid; grid-template-columns: 1fr 1.4fr 0.95fr; }
+  .step { padding: 0 11pt; }
+  .step:first-child { padding-left: 0; }
+  .step:last-child { padding-right: 0; }
+  .step + .step { border-left: 0.75pt solid var(--rule); }
+  .step-head { display: flex; align-items: baseline; gap: 6pt; margin-bottom: 2pt; }
+  .step-head .num { font-weight: 500; font-size: 16pt; line-height: 1; color: var(--fire); }
+  .step-head .t { font-weight: 600; font-size: 12.5pt; color: var(--text); white-space: nowrap; }
+  .step .note { margin-top: 2pt; font-weight: 600; color: var(--text); }
+
+  /* ---------- Footers (bottom corners get the least attention, so keep them readable, not tiny) ---------- */
+  footer { margin-top: auto; padding-top: 10pt; text-align: center; }
+  .p2 footer { padding-top: 4pt; }
+  .advisory { font-size: 9.5pt; font-weight: 400; line-height: 1.28; color: var(--muted); max-width: 7.6in; margin: 0 auto; text-wrap: balance; }
+  .advisory .raw { margin: 0 1pt 0 0; }
+  .allergy { margin-top: 3pt; font-size: 10pt; font-weight: 600; color: var(--text); }
+  .contact { margin-top: 8pt; font-weight: 500; font-size: 11pt; color: var(--text); letter-spacing: 0.02em; }
+  .contact .sep { color: var(--water); margin: 0 0.6em; font-size: 12.5pt; line-height: 0; position: relative; top: 1pt; }
+</style>
+<script>
+  if (location.search.indexOf("bleed") !== -1) {
+    document.documentElement.classList.add("bleed");
+    document.write("<style>@page { size: 8.75in 11.25in; margin: 0; }</style>");
+  }
+</script>
+</head>
+<body>
+
+<!-- ======================= PAGE 1 (front) ======================= -->
+<div class="page p1">
+  <header class="masthead"><img src="assets/logo-flat.png" alt="Fire &amp; Finn Hibachi &amp; Sushi"></header>
+
+  <section class="apps">
+    <h2>Appetizers</h2>
+    <div class="cols2">
+      <div>
+        <div class="dish"><div class="dish-head"><span class="name">Fried Gyoza</span><span class="price">12</span></div>
+          <p class="desc">Chicken &amp; lemongrass dumplings, fried crisp</p></div>
+        <div class="dish"><div class="dish-head"><span class="name">Spring Rolls</span><span class="price">9</span></div>
+          <p class="desc">Vegetable, thin &amp; crispy</p></div>
+        <div class="dish"><div class="dish-head"><span class="name">Egg Rolls</span><span class="price">8</span></div>
+          <p class="desc">Vegetable, in a crisp golden wrapper</p></div>
+      </div>
+      <div>
+        <div class="dish"><div class="dish-head"><span class="name">Kani Salad</span><span class="price">10</span></div>
+          <p class="desc">Kani krab tossed in spicy mayo</p></div>
+        <div class="dish"><div class="dish-head"><span class="name">Seaweed Salad</span><span class="price">9</span></div></div>
+        <div class="dish"><div class="dish-head"><span class="name">Cucumber Salad</span><span class="price">9</span></div>
+          <p class="desc">Tuxedo sesame &amp; house dressing</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Hibachi</h2>
+    <p class="lede">Grilled with mushrooms, zucchini, onion &amp; bean sprouts. Served with yum yum sauce, garlic steak sauce &amp; your choice of white or fried rice</p>
+    <p class="gf">Gluten-free hibachi available</p>
+    <div class="hib">
+      <div class="hib-row single">
+        <div class="rowhead">Single protein</div>
+        <div class="cell"><span class="n">Steak<span class="raw">*</span></span><span class="p">28</span></div>
+        <div class="cell"><span class="n">Scallops</span><span class="p">27</span></div>
+        <div class="cell"><span class="n">Salmon</span><span class="p">23</span></div>
+        <div class="cell"><span class="n">Shrimp</span><span class="p">20</span></div>
+        <div class="cell"><span class="n">Chicken</span><span class="p">20</span></div>
+      </div>
+      <div class="hib-row combo">
+        <div class="rowhead">Combos</div>
+        <div class="cell"><span class="n">Steak &amp; Scallops<span class="raw">*</span></span><span class="p">35</span></div>
+        <div class="cell"><span class="n">Steak &amp; Shrimp<span class="raw">*</span></span><span class="p">33</span></div>
+        <div class="cell"><span class="n">Chicken &amp; Shrimp</span><span class="p">25</span></div>
+      </div>
+    </div>
+    <div class="dish katsu"><div class="dish-head"><span class="name">Chicken or Shrimp Katsu</span><span class="price">20</span></div>
+      <p class="desc">Chicken breast or shrimp in a crispy panko crust, served with white rice &amp; teriyaki sauce</p></div>
+  </section>
+
+  <section class="kids">
+    <h2>Kids Menu<span class="aside">15 each</span></h2>
+    <div class="cols3">
+      <div class="dish"><div class="dish-head"><span class="name">Hibachi</span></div>
+        <p class="desc">Chicken, shrimp or steak<span class="raw">*</span>, with white or fried rice</p></div>
+      <div class="dish"><div class="dish-head"><span class="name">Poke Bowl<span class="raw">*</span></span></div>
+        <p class="desc">Build your own with the same choices as our Poke Bowl</p></div>
+      <div class="dish"><div class="dish-head"><span class="name">Katsu Nuggets</span></div>
+        <p class="desc">With white or fried rice</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <p class="advisory"><span class="raw">*</span>Served raw or undercooked, or contains (or may contain) raw or undercooked ingredients. Consuming raw or undercooked meats, poultry, seafood, shellfish, or eggs may increase your risk of foodborne illness, especially if you have certain medical conditions.</p>
+    <p class="allergy">Our kitchen uses shellfish, fish, sesame, soy, wheat, egg &amp; dairy, and no peanuts or tree nuts. Please tell your server about any food allergies.</p>
+    <p class="contact">2003 Periwinkle Way, Sanibel, FL<span class="sep">•</span>(239) 579-0783<span class="sep">•</span>Open daily 11am to 8pm<span class="sep">•</span>fireandfinn.com</p>
+  </footer>
+</div>
+
+<!-- ======================= PAGE 2 (back) ======================= -->
+<div class="page p2">
+
+  <section>
+    <h2>Chef’s Specialty Rolls</h2>
+    <article class="feature">
+      <div class="dish-head"><span class="name"><span>Fire &amp; Finn<span class="raw">*</span></span><span class="kicker">Chef’s Signature</span></span><span class="price">20</span></div>
+      <div class="parts">
+        <p><span class="lbl">Inside:</span>Tempura shrimp, cucumber &amp; eel</p>
+        <p><span class="lbl">Outside:</span>Tuna, avocado &amp; tempura flakes</p>
+        <p><span class="lbl">Topped with:</span>Eel sauce &amp; spicy mayo</p>
+      </div>
+    </article>
+
+    <div class="cols2">
+      <div>
+        <div class="dish"><div class="dish-head"><span class="name">Spicy Lava Drops</span><span class="price">19</span></div>
+          <p class="desc">Spicy krab, cream cheese &amp; jalapeño, deep fried</p>
+          <p class="desc"><span class="lbl">Topped with:</span> eel sauce &amp; spicy mayo</p></div>
+        <div class="dish"><div class="dish-head"><span class="name">Three Tides<span class="raw">*</span></span><span class="price">18</span></div>
+          <p class="desc">Tuna, salmon, yellowtail &amp; cucumber</p></div>
+        <div class="dish"><div class="dish-head"><span class="name">Typhoon</span><span class="price">18</span></div>
+          <p class="desc">Tempura shrimp &amp; cream cheese</p>
+          <p class="desc"><span class="lbl">Topped with:</span> baked spicy krab</p></div>
+        <div class="dish"><div class="dish-head"><span class="name">Riptide<span class="raw">*</span></span><span class="price">17</span></div>
+          <p class="desc">Spicy tuna, eel &amp; avocado</p>
+          <p class="desc"><span class="lbl">Topped with:</span> tempura flakes, eel sauce &amp; spicy mayo</p></div>
+        <div class="dish"><div class="dish-head"><span class="name">Golden Hour<span class="raw">*</span></span><span class="price">17</span></div>
+          <p class="desc">Yellowtail, avocado, jalapeño &amp; cilantro</p>
+          <p class="desc"><span class="lbl">Topped with:</span> spicy mayo</p></div>
+      </div>
+      <div>
+        <div class="dish"><div class="dish-head"><span class="name">Sunburn</span><span class="price">19</span></div>
+          <p class="desc"><span class="lbl">Inside:</span> spicy krab &amp; cream cheese</p>
+          <p class="desc"><span class="lbl">Topped with:</span> baked salmon, eel sauce &amp; spicy mayo</p></div>
+        <div class="dish"><div class="dish-head"><span class="name">Tide Pool</span><span class="price">18</span></div>
+          <p class="desc"><span class="lbl">Inside:</span> spicy krab, cucumber &amp; cream cheese</p>
+          <p class="desc"><span class="lbl">Outside:</span> eel, avocado &amp; tempura flakes</p>
+          <p class="desc"><span class="lbl">Topped with:</span> eel sauce &amp; spicy mayo</p></div>
+        <div class="dish"><div class="dish-head"><span class="name">Kingfisher<span class="raw">*</span></span><span class="price">18</span></div>
+          <p class="desc"><span class="lbl">Inside:</span> spicy tuna, cucumber &amp; cream cheese</p>
+          <p class="desc"><span class="lbl">Outside:</span> avocado &amp; tempura yellowtail</p>
+          <p class="desc"><span class="lbl">Topped with:</span> eel sauce &amp; spicy mayo</p></div>
+        <div class="dish"><div class="dish-head"><span class="name">Tipsy Turtle<span class="raw">*</span></span><span class="price">17</span></div>
+          <p class="desc">Krab, avocado, cucumber &amp; cilantro wrapped in salmon, finished with sliced red onion &amp; a touch of lime juice</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="classic">
+    <h2>Classic Rolls</h2>
+    <div class="cols2">
+      <div>
+        <div class="dish"><div class="dish-head"><span class="name">Crazy</span><span class="price">16</span></div>
+          <p class="desc">Eel, cream cheese &amp; krab, deep fried</p>
+          <p class="desc"><span class="lbl">Topped with:</span> eel sauce &amp; spicy mayo</p></div>
+        <div class="dish"><div class="dish-head"><span class="name">Volcano</span><span class="price">16</span></div>
+          <p class="desc">Rice &amp; seaweed roll</p>
+          <p class="desc"><span class="lbl">Topped with:</span> baked spicy krab</p></div>
+        <div class="dish"><div class="dish-head"><span class="name">Shrimp Tempura</span><span class="price">15</span></div>
+          <p class="desc">Tempura shrimp, avocado &amp; cream cheese</p></div>
+        <div class="dish"><div class="dish-head"><span class="name">Spicy Tuna<span class="raw">*</span></span><span class="price">15</span></div>
+          <p class="desc">Chopped tuna &amp; special spicy sauce</p></div>
+      </div>
+      <div>
+        <div class="dish"><div class="dish-head"><span class="name">Ocean<span class="raw">*</span></span><span class="price">16</span></div>
+          <p class="desc">Chopped fresh yellowtail, green onions &amp; sesame seeds</p></div>
+        <div class="dish"><div class="dish-head"><span class="name">Japanese Bagel<span class="raw">*</span></span><span class="price">15</span></div>
+          <p class="desc">Salmon, cream cheese &amp; scallions</p>
+          <p class="desc"><span class="lbl">Topped with:</span> everything bagel seasoning</p></div>
+        <div class="dish"><div class="dish-head"><span class="name">Spicy Salmon<span class="raw">*</span></span><span class="price">15</span></div>
+          <p class="desc">Chopped salmon &amp; special spicy sauce</p></div>
+        <div class="dish"><div class="dish-head"><span class="name">California</span><span class="price">13</span></div>
+          <p class="desc">Krab, avocado &amp; cucumber</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="poke">
+    <h2>Poke Bowl</h2>
+    <div class="dish-head"><span class="name">Build your own bowl over sushi rice</span><span class="price">19</span></div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-head"><span class="num">1</span><span class="t">Choose Your Protein</span></div>
+        <p>Tuna<span class="raw">*</span>, spicy tuna<span class="raw">*</span>, salmon<span class="raw">*</span>, spicy salmon<span class="raw">*</span>, yellowtail<span class="raw">*</span>, eel or kani salad</p>
+      </div>
+      <div class="step">
+        <div class="step-head"><span class="num">2</span><span class="t">Choose Your Toppings</span></div>
+        <p>Pineapple, avocado, cucumber, seaweed salad, edamame &amp; masago<span class="raw">*</span></p>
+        <p class="note">As many as you like</p>
+      </div>
+      <div class="step">
+        <div class="step-head"><span class="num">3</span><span class="t">Choose Your Sauce</span></div>
+        <p>Eel sauce, honey soy, spicy mayo or ponzu</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p class="advisory"><span class="raw">*</span>Served raw or undercooked, or contains (or may contain) raw or undercooked ingredients. Consuming raw or undercooked meats, poultry, seafood, shellfish, or eggs may increase your risk of foodborne illness, especially if you have certain medical conditions.</p>
+  </footer>
+</div>
+
+</body>
+</html>
