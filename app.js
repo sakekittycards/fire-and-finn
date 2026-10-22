@@ -110,7 +110,11 @@ const HOURS = { open: 11, close: 20 };
     const navWrap = document.querySelector(".menu-nav .wrap");
     const menuNav = document.querySelector(".menu-nav");
     const setActive = (id) => {
-      links.forEach((a) => a.classList.toggle("active", a.getAttribute("href") === "#" + id));
+      links.forEach((a) => {
+        const on = a.getAttribute("href") === "#" + id;
+        a.classList.toggle("active", on);
+        if (on) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
+      });
       const g = document.getElementById(id);   // the pill takes the section's colour: orange for the hot side, blue for the cold
       menuNav.classList.toggle("hot", !!g && g.classList.contains("hot"));
       menuNav.classList.toggle("cold", !!g && g.classList.contains("cold"));
@@ -126,6 +130,51 @@ const HOURS = { open: 11, close: 20 };
     }, { rootMargin: "-30% 0px -55% 0px", threshold: [0, 0.2, 0.5, 1] });
     groups.forEach((g) => spy.observe(g));
   }
+
+  // Prices read as dollars to screen readers; the active category pill is marked current.
+  document.querySelectorAll(".price, .proteins .p").forEach((el) => {
+    const n = el.textContent.trim();
+    if (/^\d+$/.test(n)) el.setAttribute("aria-label", "$" + n);
+  });
+
+  // Menu structured data, built from the menu on the page so it always matches it.
+  try {
+    const sections = [];
+    document.querySelectorAll(".menu .group").forEach((g) => {
+      const name = (g.querySelector("h3") || {}).childNodes;
+      const title = name ? Array.from(name).filter((n) => n.nodeType === 3).map((n) => n.textContent).join("").trim() : "";
+      const items = [];
+      const add = (nameText, price, desc) => {
+        const item = { "@type": "MenuItem", "name": nameText.replace(/\*$/, "").trim() };
+        if (desc) item.description = desc;
+        if (price) item.offers = { "@type": "Offer", "price": price, "priceCurrency": "USD" };
+        items.push(item);
+      };
+      g.querySelectorAll(".dish, .feature").forEach((d) => {
+        const n = d.querySelector(".name"); if (!n) return;
+        const nameText = Array.from(n.childNodes).filter((x) => x.nodeType === 3 || !x.classList || (!x.classList.contains("raw") && !x.classList.contains("kicker"))).map((x) => x.textContent).join("");
+        const p = d.querySelector(".price");
+        const desc = Array.from(d.querySelectorAll(".desc, .parts p")).map((e) => e.textContent.replace(/\s+/g, " ").trim()).join(" ");
+        add(nameText, p ? p.textContent.trim() : (g.id === "kids" ? "15" : ""), desc);
+      });
+      g.querySelectorAll(".proteins li").forEach((li) => {
+        const base = li.closest(".combos") ? "Hibachi combo" : "Hibachi";
+        add(base + ": " + li.querySelector(".n").textContent.replace(/\*/g, "").trim(), li.querySelector(".p").textContent.trim(), "");
+      });
+      const poke = g.querySelector(".poke-head");
+      if (poke) add("Poke Bowl, build your own", poke.querySelector(".price").textContent.trim(),
+        Array.from(g.querySelectorAll(".step")).map((s) => {
+          const t = s.querySelector(".t"); const body = Array.from(s.querySelectorAll("p")).map((p) => p.textContent.replace(/\s+/g, " ").trim()).join(" ");
+          return (t ? t.textContent.trim() + ": " : "") + body;
+        }).join(" "));
+      if (items.length) sections.push({ "@type": "MenuSection", "name": title, "hasMenuItem": items });
+    });
+    if (sections.length) {
+      const s = document.createElement("script"); s.type = "application/ld+json";
+      s.textContent = JSON.stringify({ "@context": "https://schema.org", "@type": "Menu", "name": "Fire & Finn menu", "url": "https://fireandfinn.com/#menu", "hasMenuSection": sections });
+      document.head.appendChild(s);
+    }
+  } catch (e) { /* structured data is a bonus, never a blocker */ }
 
   // Social links, only when a URL is set.
   const social = document.getElementById("social");
