@@ -108,163 +108,97 @@ p { margin: 0 0 1em; }
   .nav .btn { margin: 0 0 0 6px; }
 }
 
-/* ---------- Hero ---------- */
+/* ---------- Hero: editorial, food first ---------- */
 .hero {
-  position: relative; overflow: hidden; text-align: center;
-  padding: clamp(36px, 6vw, 80px) 0 clamp(72px, 10vw, 128px);
-  background: linear-gradient(104deg, #140b07 0%, var(--bg) 40% 60%, #07121a 100%);
+  position: relative; overflow: hidden;
+  padding: clamp(28px, 5vw, 64px) 0 clamp(96px, 13vw, 160px);
+  background: linear-gradient(180deg, #0c0907 0%, var(--bg) 70%);
 }
 .hero-bg { position: absolute; inset: 0; pointer-events: none; }
-.hero-bg::before {   /* heat on the fire side */
-  content: ""; position: absolute; left: -12%; bottom: -24%; width: 64%; height: 78%;
-  background: radial-gradient(closest-side, rgba(240, 120, 64, .16), rgba(240, 120, 64, 0) 72%);
-  animation: heat 5s ease-in-out infinite alternate;
+.hero-bg::before {   /* warm bloom behind the words, breathing slowly */
+  content: ""; position: absolute; left: -16%; top: -30%; width: 72%; height: 110%;
+  background: radial-gradient(closest-side, rgba(240, 120, 64, .16), rgba(240, 120, 64, 0) 70%);
+  animation: bloom 12s ease-in-out infinite alternate;
 }
-.hero .mark { position: absolute; }
-.hero .mark.flame { width: min(78vw, 860px); left: -14vw; top: -5vw; opacity: .2; transform-origin: 50% 100%; animation: flicker 6s ease-in-out infinite; }
-.hero .mark.wave  { width: min(92vw, 1040px); right: -16vw; bottom: 5vw; opacity: .14; animation: drift 16s ease-in-out infinite alternate; }
-.embers { position: absolute; left: 0; bottom: 0; width: 56%; height: 100%; overflow: hidden; }
+.hero-bg::after {    /* cool light behind the food */
+  content: ""; position: absolute; right: -14%; bottom: -24%; width: 64%; height: 100%;
+  background: radial-gradient(closest-side, rgba(54, 169, 207, .13), rgba(54, 169, 207, 0) 70%);
+}
+.embers { position: absolute; left: 0; bottom: 0; width: 46%; height: 100%; overflow: hidden; }
 .embers i {
-  position: absolute; bottom: -44px; width: 2px; height: var(--h, 24px); border-radius: 2px; opacity: 0;
+  position: absolute; bottom: -30px; width: 2px; height: var(--h, 16px); border-radius: 2px; opacity: 0;
   background: linear-gradient(to top, rgba(240, 120, 64, 0), #f07840 55%, #ffd9a8);
-  box-shadow: 0 0 8px 1px rgba(240, 120, 64, .45);
-  animation: ember var(--d, 7s) linear var(--delay, 0s) infinite, flick 1.1s ease-in-out infinite;
-  will-change: transform, opacity;
+  box-shadow: 0 0 6px 1px rgba(240, 120, 64, .35);
+  animation: ember var(--d, 12s) linear var(--delay, 0s) infinite; will-change: transform, opacity;
 }
-.water {
-  position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: clamp(90px, 14vw, 170px); overflow: visible;
-  -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .55) 42%, #000 72%);
-          mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .55) 42%, #000 72%);
-}
-.water path { fill: none; stroke: var(--sea); stroke-width: 1.6; vector-effect: non-scaling-stroke; }
-.water .w1 { opacity: .5;  animation: flow 22s linear infinite; }
-.water .w2 { opacity: .32; animation: flow 31s linear infinite; }
-.water .w3 { opacity: .2;  animation: flow 44s linear infinite; }
-.hero-inner { position: relative; z-index: 1; }
-.hero .logo { width: min(440px, 78vw); margin: 0 auto 22px; }
-.hero .tagline { display: none; margin: -8px 0 26px; font: 400 .98rem/1 "Outfit", var(--body); letter-spacing: .32em; text-transform: uppercase; color: var(--ink); }
-.hero .tagline span { color: var(--sea); margin: 0 .1em; }
-.hero h1 {
-  margin: 0 0 18px; color: var(--ink);
-  font: 400 clamp(2.5rem, 7.6vw, 5.4rem)/1.04 var(--display); letter-spacing: .01em; text-wrap: balance;
-}
+.hero-grid { position: relative; z-index: 1; display: grid; gap: 44px; align-items: center; }
+.hero-copy .logo { width: min(250px, 58vw); margin: 0 0 28px; }
+.hero h1 { margin: 0 0 18px; color: var(--ink); font: 400 clamp(2.5rem, 5.4vw + .6rem, 4.6rem)/1.02 var(--display); letter-spacing: .01em; }
+.hero h1 span { display: block; }
 .hero h1 .hot  { color: var(--fire); }
 .hero h1 .cold { color: var(--sea); }
-.hero .lead { max-width: 34em; margin: 0 auto 30px; font-size: clamp(1.05rem, 1.6vw, 1.2rem); color: var(--muted); text-wrap: pretty; }
+.hero .lead { max-width: 28em; margin: 0 0 30px; font-size: clamp(1.05rem, 1.5vw, 1.18rem); color: var(--muted); text-wrap: pretty; }
 .cta { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
-.cta.left { justify-content: flex-start; }
-.status { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px 22px; margin: 30px 0 0; font-size: .95rem; color: var(--dim); }
+.cta.left, .hero .cta { justify-content: flex-start; }
+.status { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 22px; margin: 26px 0 0; font-size: .95rem; color: var(--dim); }
 .status .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #6a6a6a; margin-right: 8px; vertical-align: 1px; }
 .status.open .dot { background: #5bd38a; box-shadow: 0 0 8px rgba(91, 211, 138, .6); }
 .status.open #status-text { color: var(--muted); }
+/* The food: one large plate, a second one tucked into its corner */
+.hero-art { position: relative; max-width: 600px; }
+.art-main { margin: 0; border-radius: 10px; overflow: hidden; aspect-ratio: 5 / 4; background: var(--panel); box-shadow: 0 30px 60px rgba(0, 0, 0, .55), 0 0 0 1px rgba(255, 255, 255, .06); }
+.art-main img, .art-small img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.art-small { position: absolute; left: -12px; bottom: -12%; width: 40%; aspect-ratio: 1; margin: 0; border-radius: 8px; overflow: hidden; background: var(--panel); box-shadow: 0 24px 48px rgba(0, 0, 0, .6), 0 0 0 1px rgba(255, 255, 255, .08); }
+/* One entrance on load: the plate settles, the bowl follows */
+.js .hero-art .art-main { transform: scale(1.03); transition: transform 1.4s cubic-bezier(.2, .7, .2, 1); }   /* visible from the first paint: it is the largest thing on screen */
+.js .hero-art .art-small { opacity: 0; transform: translateY(12px); transition: opacity .8s ease .35s, transform .9s cubic-bezier(.2, .7, .2, 1) .35s; }
+.js .hero-art.in .art-main, .js .hero-art.in .art-small { opacity: 1; transform: none; }
+/* Waterline along the bottom edge: the one piece of water in the hero */
+.waterline { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: clamp(56px, 9vw, 120px); pointer-events: none; }
+.wl-1 { animation: waterline 48s linear infinite; }
+.wl-2 { animation: waterline 72s linear infinite reverse; }
+@media (min-width: 900px) {
+  .hero-grid { grid-template-columns: 1.05fr 1fr; gap: clamp(36px, 5vw, 88px); }
+  .hero-art { max-width: none; margin: 0 0 10% 6%; }
+  .art-small { left: -4%; }
+  .hero .cta .btn { min-width: 180px; }
+}
+@media (max-width: 899px) {
+  /* Phones and tablets: the food comes right after the headline, the buttons follow the photo */
+  .hero-grid { gap: 0; }
+  .hero-copy { display: contents; }
+  .hero-art { order: 3; margin: 10px 8% 15% 0; }
+  .hero .lead { order: 4; }
+  .hero .cta { order: 5; }
+  .hero .status { order: 6; }
+}
 @media (max-width: 759px) {
-  .hero .tagline { display: block; }
-  .hero .logo { margin-bottom: 18px; }
   .hero .cta .btn { flex: 1 1 100%; }
-  .hero .mark.wave { bottom: 14vw; }
 }
 
-/* ---------- Motion: fire and water ---------- */
+/* ---------- Motion: quiet ---------- */
+/* A few embers, a slow breath of warm light, one drifting waterline. Nothing pulses. */
 @keyframes ember {
-  0%   { transform: translate3d(0, 0, 0) scaleY(1); opacity: 0; }
-  8%   { opacity: 1; }
-  70%  { opacity: .7; }
-  100% { transform: translate3d(var(--sway, 0px), -76vh, 0) scaleY(.45); opacity: 0; }
+  0%   { transform: translate3d(0, 0, 0); opacity: 0; }
+  12%  { opacity: .7; }
+  70%  { opacity: .4; }
+  100% { transform: translate3d(var(--sway, 0px), -70vh, 0) scaleY(.5); opacity: 0; }
 }
-@keyframes flick { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.6); } }
-@keyframes heat  { from { opacity: .55; } to { opacity: 1; } }
-@keyframes flow  { to { transform: translateX(-1200px); } }
-@keyframes flicker {
-  0%, 100% { transform: scale(1) translateY(0); }
-  35%      { transform: scale(1.025, 1.045) translateY(-1.5%); }
-  70%      { transform: scale(.99, 1.02) translateY(-.5%); }
-}
-@keyframes drift { 0% { transform: translateX(0); } 100% { transform: translateX(-3.5%); } }
-@keyframes emberglow {
-  0%, 100% { box-shadow: 0 0 0 rgba(240, 120, 64, 0); }
-  50%      { box-shadow: 0 0 28px rgba(240, 120, 64, .42); }
-}
-.hero .btn-fire { animation: emberglow 4.5s ease-in-out infinite; }
-.hero .btn-fire:hover { animation: none; }
-.side.fire .mark { transform-origin: 50% 100%; animation: flicker 7s ease-in-out infinite; }
-.side.finn .mark { animation: drift 18s ease-in-out infinite alternate; }
+@keyframes bloom { from { opacity: .65; } to { opacity: 1; } }
+@keyframes waterline { to { transform: translateX(-1440px); } }
 
-/* Section entrances: only when JS is running, and never for reduced motion */
-.js .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s cubic-bezier(.2, .7, .2, 1), transform .7s cubic-bezier(.2, .7, .2, 1); }
+/* Section entrances: only when JS is running, never for reduced motion */
+.js .reveal { opacity: 0; transform: translateY(12px); transition: opacity .7s cubic-bezier(.2, .7, .2, 1), transform .7s cubic-bezier(.2, .7, .2, 1); }
 .js .reveal.in { opacity: 1; transform: none; }
-.cards .card:nth-child(2) { transition-delay: .08s; }
-.cards .card:nth-child(3) { transition-delay: .16s; }
-.cards .card:nth-child(4) { transition-delay: .24s; }
+.js .hero-art { opacity: 1; transform: none; transition: none; }   /* its photos carry their own entrance */
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .embers { display: none; }
-  .hero-bg::before, .hero .mark, .water .wave-line, .hero .btn-fire, .side .mark { animation: none; }
-  .btn, .card, .nav a::after { transition: none; }
+  .hero-bg::before, .wl, .exp-photo { animation: none; transition: none; }
+  .btn, .nav a::after { transition: none; }
   .btn:hover { transform: none; }
-  .js .reveal { opacity: 1; transform: none; transition: none; }
-}
-
-/* ---------- Two concepts: Fire | Finn ---------- */
-/* Two environments: the grill and the sea. Each half carries its own light, its own motion,
-   and a large brand mark as the picture; a band of steam sits where they meet. */
-.sides { position: relative; }
-.sides-grid { position: relative; display: grid; }
-.side { position: relative; overflow: hidden; display: flex; align-items: flex-end; min-height: 480px; padding: 56px var(--gutter) 48px; }
-.side.fire { --accent: var(--fire); --accent-line: var(--fire-line);
-  background: radial-gradient(120% 70% at 18% 100%, rgba(240, 120, 64, .22), rgba(240, 120, 64, 0) 62%), linear-gradient(180deg, #130a06 0%, #0a0604 100%); }
-.side.finn { --accent: var(--sea);  --accent-line: var(--water-line);
-  background: radial-gradient(120% 70% at 82% 100%, rgba(54, 169, 207, .22), rgba(54, 169, 207, 0) 62%), linear-gradient(180deg, #06111a 0%, #040b11 100%); }
-.env { position: absolute; inset: 0; pointer-events: none; transition: opacity .4s ease; opacity: .92; }
-.side:hover .env { opacity: 1; }
-.side .mark.big { position: absolute; top: 7%; opacity: .95; }
-.side.fire .mark.big { right: -4%; width: 72%; transform-origin: 50% 100%; filter: drop-shadow(0 0 34px rgba(240, 120, 64, .38)); animation: flicker 6s ease-in-out infinite; }
-.side.finn .mark.big { left: -4%; width: 80%; filter: drop-shadow(0 0 34px rgba(54, 169, 207, .32)); animation: drift 14s ease-in-out infinite alternate; }
-.horizon { position: absolute; left: 0; right: 0; bottom: 0; height: 160px; background: linear-gradient(to top, rgba(240, 120, 64, .34), rgba(240, 120, 64, 0)); animation: heat 4s ease-in-out infinite alternate; }
-.side .embers { width: 100%; }
-.caustic { position: absolute; inset: 0; background: radial-gradient(42% 34% at 66% 42%, rgba(98, 198, 236, .16), rgba(98, 198, 236, 0) 72%); animation: caustic 9s ease-in-out infinite alternate; }
-@keyframes caustic { from { transform: translate(-4%, 2%) scale(1); } to { transform: translate(5%, -3%) scale(1.12); } }
-.water-lines { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: clamp(90px, 12vw, 150px); overflow: visible; }
-.water-lines path { fill: none; stroke: var(--sea); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
-.water-lines .w1 { opacity: .55; animation: flow 20s linear infinite; }
-.water-lines .w2 { opacity: .35; animation: flow 29s linear infinite; }
-.water-lines .w3 { opacity: .22; animation: flow 41s linear infinite; }
-.side-inner { position: relative; z-index: 1; width: 100%; max-width: 520px; }
-.side h2 {
-  margin: 0 0 10px; color: var(--accent);
-  font: 400 clamp(3rem, 7vw, 6rem)/.95 var(--display); letter-spacing: .14em; text-transform: uppercase;
-  text-shadow: 0 0 40px rgba(0, 0, 0, .6);
-}
-.side .tag { color: var(--ink); font-weight: 600; font-size: 1.2rem; margin-bottom: 10px; }
-.side p { max-width: 30em; }
-.side p:last-of-type { margin-bottom: 22px; }
-.seam { position: relative; display: flex; align-items: center; justify-content: center; pointer-events: none; }
-.seam::before { content: ""; position: absolute; inset: 0; filter: blur(14px); opacity: .9; animation: steam 7s ease-in-out infinite alternate; }
-.amp {
-  position: relative; font: 400 clamp(4.5rem, 8vw, 8.5rem)/1 var(--display);
-  background: linear-gradient(100deg, var(--fire) 38%, var(--sea) 62%);
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-}
-@keyframes steam { from { opacity: .55; } to { opacity: 1; } }
-@media (max-width: 819px) {
-  .side { min-height: 400px; padding: 48px var(--gutter) 40px; }
-  .side .mark.big { top: 5%; }
-  .side.fire .mark.big { width: 86%; right: -8%; }
-  .side.finn .mark.big { width: 94%; left: -8%; }
-  .seam { height: 96px; background: linear-gradient(180deg, #0a0604, #040b11); }
-  .seam::before { background: linear-gradient(180deg, rgba(240, 120, 64, 0), rgba(240, 120, 64, .16) 40%, rgba(54, 169, 207, .16) 60%, rgba(54, 169, 207, 0)); }
-}
-@media (min-width: 820px) {
-  .sides-grid { grid-template-columns: 1fr 1fr; }
-  .side { min-height: 600px; }
-  /* content sits on the same 1120px grid as the rest of the page */
-  .side.fire .side-inner { margin-left: max(0px, calc(100% - var(--max) / 2 + var(--gutter))); margin-right: auto; padding-right: 48px; }
-  .side.finn .side-inner { margin-left: 56px; margin-right: auto; }
-  .seam { position: absolute; left: 50%; top: 0; bottom: 0; width: 160px; transform: translateX(-50%); z-index: 2; }
-  .seam::before { background: linear-gradient(90deg, rgba(240, 120, 64, 0), rgba(240, 120, 64, .14) 40%, rgba(54, 169, 207, .14) 60%, rgba(54, 169, 207, 0)); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .side .mark.big, .horizon, .caustic, .water-lines .wave-line, .seam::before { animation: none; }
+  .js .reveal, .js .hero-art .art-main, .js .hero-art .art-small { opacity: 1; transform: none; transition: none; }
 }
 
 /* ---------- Sections ---------- */
@@ -276,35 +210,34 @@ p { margin: 0 0 1em; }
 .sec-title::after, .group h3::after { content: ""; flex: 1; order: 1; border-top: 1px solid var(--accent-line); }
 .group h3 .aside { order: 2; font: 500 1rem var(--body); letter-spacing: .01em; text-transform: none; color: var(--accent); }
 .sec-lead { margin: -10px 0 26px; color: var(--dim); font-size: 1.02rem; }
-.featured .sec-title, .menu .sec-title, .visit .sec-title { --accent: var(--ink); --accent-line: var(--line); }
+.menu .sec-title, .visit .sec-title { --accent: var(--ink); --accent-line: var(--line); }
 
-/* ---------- Featured dishes ---------- */
-.cards { display: grid; gap: 18px; }
-.card {
-  display: flex; flex-direction: column; overflow: hidden;
-  background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
-  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease, opacity .7s, translate .7s;
+/* ---------- Three experiences: hibachi, sushi, poke ---------- */
+.experiences .sec-title { --accent: var(--ink); --accent-line: var(--line); }
+.experiences .sec-lead { max-width: 40em; }
+.exp { position: relative; padding: clamp(40px, 6vw, 72px) 0; --accent: var(--fire); --accent-line: var(--fire-line); }
+.exp + .exp { border-top: 1px solid var(--line); }
+.exp:last-of-type { padding-bottom: clamp(24px, 4vw, 48px); }
+.exp.fire  { background: radial-gradient(48% 70% at 14% 50%, rgba(240, 120, 64, .11), rgba(240, 120, 64, 0) 70%); }
+.exp.craft { --accent: var(--sea); --accent-line: var(--water-line); background: radial-gradient(48% 70% at 86% 50%, rgba(54, 169, 207, .11), rgba(54, 169, 207, 0) 70%); }
+.exp.fresh { --accent: var(--sea); --accent-line: var(--water-line); background: radial-gradient(48% 70% at 14% 50%, rgba(98, 198, 236, .08), rgba(98, 198, 236, 0) 70%); }
+.exp-grid { display: grid; gap: 28px; align-items: center; }
+.exp-media { position: relative; border-radius: 10px; overflow: hidden; aspect-ratio: 3 / 2; background: var(--panel); box-shadow: 0 24px 50px rgba(0, 0, 0, .45), 0 0 0 1px rgba(255, 255, 255, .06); }
+.exp-photo { width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1.04); transition: transform 1.6s cubic-bezier(.2, .7, .2, 1); }
+.exp.in .exp-photo { transform: scale(1); }
+/* Hibachi has no photo yet: a warm panel with the mark holds the slot */
+.exp-placeholder { position: relative; height: 100%; display: grid; place-items: center; background: radial-gradient(60% 55% at 50% 100%, rgba(240, 120, 64, .34), rgba(240, 120, 64, 0) 72%), linear-gradient(170deg, #1b0f09, #0c0806); }
+.exp-placeholder .mark { width: 58%; opacity: .95; filter: drop-shadow(0 0 28px rgba(240, 120, 64, .35)) drop-shadow(0 14px 26px rgba(0, 0, 0, .5)); }
+.exp h3 { margin: 0 0 4px; color: var(--ink); font: 400 clamp(2rem, 4.2vw, 3rem)/1 var(--display); letter-spacing: .12em; text-transform: uppercase; }
+.exp-kicker { margin: 0 0 14px; color: var(--accent); font-weight: 500; font-size: 1.05rem; }
+.exp-copy p { max-width: 34em; }
+.exp-picks { list-style: none; margin: 18px 0 24px; padding: 0; max-width: 28em; border-top: 1px solid var(--line); }
+.exp-picks li { display: flex; justify-content: space-between; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--line); color: var(--ink); font-weight: 500; }
+.exp-picks .price { color: var(--accent); }
+@media (min-width: 900px) {
+  .exp-grid { grid-template-columns: 1.1fr 1fr; gap: clamp(36px, 6vw, 96px); }
+  .exp.craft .exp-media { order: 2; }
 }
-.card:hover { transform: translateY(-3px); border-color: var(--accent-line); box-shadow: 0 16px 36px rgba(0, 0, 0, .45); }
-.card-media { position: relative; aspect-ratio: 4 / 3; display: grid; place-items: center; overflow: hidden; }
-.card.hot  .card-media { background: radial-gradient(120% 80% at 30% 100%, rgba(240, 120, 64, .3), rgba(240, 120, 64, 0) 62%), linear-gradient(180deg, #1a0f09, #110906); }
-.card.cold .card-media { background: radial-gradient(120% 80% at 70% 100%, rgba(54, 169, 207, .32), rgba(54, 169, 207, 0) 62%), linear-gradient(180deg, #0a1b23, #061119); }
-.card-media .mark { width: 62%; opacity: .95; filter: drop-shadow(0 8px 18px rgba(0, 0, 0, .45)); }
-/* hibachi cards without a photo yet: the flame lives a little */
-.card.hot .card-media .mark { transform-origin: 50% 100%; animation: flicker-solid 6s ease-in-out infinite; }
-.card.hot .card-media::after { content: ""; position: absolute; left: 10%; right: 10%; bottom: -30%; height: 70%; background: radial-gradient(closest-side, rgba(240, 120, 64, .28), rgba(240, 120, 64, 0) 72%); animation: heat 4s ease-in-out infinite alternate; pointer-events: none; }
-@media (prefers-reduced-motion: reduce) { .card.hot .card-media .mark, .card.hot .card-media::after { animation: none; } }
-.card-media .photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.card-body { display: flex; flex: 1; flex-direction: column; gap: 8px; padding: 18px 20px 20px; }
-.card h3 { margin: 0; color: var(--ink); font: 600 1.25rem/1.2 var(--body); }
-.card p { margin: 0; color: var(--muted); font-size: .98rem; }
-.card .kicker { color: var(--accent); font: 600 .72rem/1 var(--body); letter-spacing: .16em; text-transform: uppercase; }
-.card-foot { display: flex; justify-content: space-between; align-items: baseline; margin-top: auto !important; padding-top: 10px; }
-.card-foot .price { color: var(--accent); font-size: 1.25rem; font-weight: 500; font-variant-numeric: tabular-nums; }
-.card-foot a { display: inline-block; padding: 8px 0; color: var(--dim); font-size: .92rem; text-underline-offset: 4px; }
-.card-foot a:hover { color: var(--ink); }
-@media (min-width: 600px)  { .cards { grid-template-columns: 1fr 1fr; } }
-@media (min-width: 1024px) { .cards { grid-template-columns: repeat(4, 1fr); } }
 
 /* ---------- Menu ---------- */
 .menu-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 14px 28px; }
@@ -397,7 +330,7 @@ p { margin: 0 0 1em; }
 .visit dt { color: var(--dim); font-size: .9rem; padding-top: 4px; }
 .visit dd { margin: 0; color: var(--ink); font-size: 1.08rem; }
 .visit dd a { display: inline-block; padding: 6px 0; margin: -6px 0; text-underline-offset: 4px; text-decoration-color: #4a4a4a; }
-.visit-grid > *, .cols > *, .cards > *, .sides-grid > * { min-width: 0; }   /* grid items never widen the page */
+.visit-grid > *, .cols > *, .exp-grid > *, .hero-grid > * { min-width: 0; }   /* grid items never widen the page */
 .map { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--panel); aspect-ratio: 4 / 3; }
 .map iframe { width: 100%; height: 100%; border: 0; display: block; }
 @media (min-width: 900px) { .visit-grid { grid-template-columns: 1fr 1.2fr; align-items: stretch; } .map { aspect-ratio: auto; min-height: 320px; } }

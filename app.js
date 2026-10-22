@@ -76,15 +76,15 @@ const HOURS = { open: 11, close: 20 };
     });
   }
 
-  // Embers rising on the fire side of the hero and in the Fire panel (the water lines are SVG, animated in CSS).
+  // A few embers rising behind the hero copy (the waterline is SVG, animated in CSS).
   if (!reduce) {
     document.querySelectorAll(".embers").forEach((embers) => {
-      for (let i = 0; i < 18; i++) {
+      for (let i = 0; i < 8; i++) {   // a few, slow, small: noticed second, not first
         const s = document.createElement("i");
-        const dur = 5.5 + Math.random() * 5;
+        const dur = 10 + Math.random() * 8;
         s.style.cssText =
-          `left:${(3 + Math.random() * 90).toFixed(1)}%;--h:${(12 + Math.random() * 26).toFixed(0)}px;` +
-          `--d:${dur.toFixed(1)}s;--delay:${(-Math.random() * dur).toFixed(1)}s;--sway:${(Math.random() * 80 - 40).toFixed(0)}px`;
+          `left:${(4 + Math.random() * 88).toFixed(1)}%;--h:${(10 + Math.random() * 16).toFixed(0)}px;` +
+          `--d:${dur.toFixed(1)}s;--delay:${(-Math.random() * dur).toFixed(1)}s;--sway:${(Math.random() * 60 - 30).toFixed(0)}px`;
         embers.appendChild(s);
       }
     });

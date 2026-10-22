@@ -27,7 +27,7 @@
   <link rel="preload" href="assets/fonts/TenorSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/Jost-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/Jost-600.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=3">
   <script>document.documentElement.classList.add("js");</script>
 
   <script type="application/ld+json">
@@ -83,117 +83,96 @@
 
 <main id="top">
 
-  <!-- ===== Hero: fire on the left, water on the right, the brand in the middle ===== -->
+  <!-- ===== Hero: editorial, food first ===== -->
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero-bg" aria-hidden="true">
-      <img class="mark flame" src="assets/flame.png" alt="" width="941" height="254">
-      <img class="mark wave" src="assets/wave.png" alt="" width="1167" height="168">
       <div class="embers"></div>
-      <svg class="water" viewBox="0 0 1200 160" preserveAspectRatio="none" focusable="false">
-        <g class="wave-line w1"><path d="M0 70 C100 20 200 20 300 70 C400 120 500 120 600 70 C700 20 800 20 900 70 C1000 120 1100 120 1200 70 C1300 20 1400 20 1500 70 C1600 120 1700 120 1800 70 C1900 20 2000 20 2100 70 C2200 120 2300 120 2400 70"/></g>
-        <g class="wave-line w2"><path d="M0 100 C100 60 200 60 300 100 C400 140 500 140 600 100 C700 60 800 60 900 100 C1000 140 1100 140 1200 100 C1300 60 1400 60 1500 100 C1600 140 1700 140 1800 100 C1900 60 2000 60 2100 100 C2200 140 2300 140 2400 100"/></g>
-        <g class="wave-line w3"><path d="M0 125 C100 95 200 95 300 125 C400 155 500 155 600 125 C700 95 800 95 900 125 C1000 155 1100 155 1200 125 C1300 95 1400 95 1500 125 C1600 155 1700 155 1800 125 C1900 95 2000 95 2100 125 C2200 155 2300 155 2400 125"/></g>
-      </svg>
     </div>
-    <div class="wrap hero-inner">
-      <picture>
-        <source media="(max-width: 759px)" srcset="assets/logo-compact.svg" width="1495" height="606">
-        <img class="logo" src="assets/logo.svg" alt="Fire &amp; Finn — Hibachi · Sushi · Poke" width="1495" height="696" fetchpriority="high">
-      </picture>
-      <p class="tagline" aria-hidden="true">Hibachi <span>•</span> Sushi <span>•</span> Poke</p>
-      <h1 id="hero-title"><span class="hot">Grilled hot.</span> <span class="cold">Rolled cold.</span></h1>
-      <p class="lead">Hibachi off the flat-top, specialty rolls and build-your-own poke bowls on Sanibel Island. Order ahead and it's ready when you are.</p>
-      <div class="cta">
-        <a class="btn btn-fire lg" data-order data-live="Order Online" data-call="Call to Order" href="tel:+12395790783">Call to Order</a>
-        <a class="btn btn-water lg" href="#menu">Explore Menu</a>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <img class="logo" src="assets/logo-compact.svg" alt="Fire &amp; Finn" width="1495" height="606" fetchpriority="high">
+        <h1 id="hero-title"><span class="hot">Grilled hot.</span> <span class="cold">Rolled cold.</span></h1>
+        <p class="lead">Hibachi seared on the flat-top, sushi rolled to order and poke bowls you build yourself, on Sanibel Island.</p>
+        <div class="cta">
+          <a class="btn btn-fire lg" data-order data-live="Order Online" data-call="Call to Order" href="tel:+12395790783">Call to Order</a>
+          <a class="btn btn-water lg" href="#menu">Explore Menu</a>
+        </div>
+        <p class="status" id="status">
+          <span><span class="dot"></span><span id="status-text">Open daily 11am–8pm</span></span>
+          <span>2003 Periwinkle Way, Sanibel</span>
+        </p>
       </div>
-      <p class="status" id="status">
-        <span><span class="dot"></span><span id="status-text">Open daily 11am–8pm</span></span>
-        <span>2003 Periwinkle Way, Sanibel</span>
-      </p>
+      <div class="hero-art reveal">
+        <!-- HERO SLOT: when the hibachi hero image exists, it becomes .art-main and the roll moves to .art-small -->
+        <figure class="art-main"><img src="assets/food/fire-and-finn-roll.jpg" alt="The Fire &amp; Finn roll: tempura shrimp roll topped with tuna, avocado, tempura flakes, eel sauce and spicy mayo" width="1200" height="900" fetchpriority="high"></figure>
+        <figure class="art-small"><img src="assets/food/poke-bowl.jpg" alt="Poke bowl with tuna, avocado, cucumber, pineapple and seaweed salad" width="1200" height="900"></figure>
+      </div>
     </div>
+    <svg class="waterline" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="wl-a" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#36A9CF" stop-opacity=".22"/><stop offset="1" stop-color="#36A9CF" stop-opacity="0"/></linearGradient>
+        <linearGradient id="wl-b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#62C6EC" stop-opacity=".14"/><stop offset="1" stop-color="#62C6EC" stop-opacity="0"/></linearGradient>
+      </defs>
+      <g class="wl wl-1"><path d="M0 52 C240 20 480 20 720 52 C960 84 1200 84 1440 52 C1680 20 1920 20 2160 52 C2400 84 2640 84 2880 52 L2880 120 L0 120 Z" fill="url(#wl-a)"/></g>
+      <g class="wl wl-2"><path d="M0 70 C240 44 480 44 720 70 C960 96 1200 96 1440 70 C1680 44 1920 44 2160 70 C2400 96 2640 96 2880 70 L2880 120 L0 120 Z" fill="url(#wl-b)"/></g>
+    </svg>
   </section>
 
-  <!-- ===== Two concepts ===== -->
-  <section class="sides" id="fire-finn" aria-label="Fire, the hibachi side, and Finn, the sushi side">
-    <div class="sides-grid">
-      <article class="side fire">
-        <div class="env" aria-hidden="true">
-          <img class="mark big" src="assets/flame.png" alt="" width="941" height="254" loading="lazy">
-          <div class="horizon"></div>
-          <div class="embers"></div>
-        </div>
-        <div class="side-inner reveal">
-          <h2>Fire</h2>
-          <p class="tag">Hibachi, grilled to order on the flat-top.</p>
-          <p>Chicken, shrimp, salmon, scallops or steak with mushrooms, zucchini, onion and bean sprouts, yum yum and garlic steak sauce, and your choice of white or fried rice.</p>
-          <a class="btn btn-fire" href="#hibachi">Explore Hibachi</a>
-        </div>
-      </article>
-      <div class="seam" aria-hidden="true"><span class="amp">&amp;</span></div>
-      <article class="side finn">
-        <div class="env" aria-hidden="true">
-          <img class="mark big" src="assets/wave.png" alt="" width="1167" height="168" loading="lazy">
-          <div class="caustic"></div>
-          <svg class="water-lines" viewBox="0 0 1200 160" preserveAspectRatio="none" focusable="false">
-            <g class="wave-line w1"><path d="M0 70 C100 20 200 20 300 70 C400 120 500 120 600 70 C700 20 800 20 900 70 C1000 120 1100 120 1200 70 C1300 20 1400 20 1500 70 C1600 120 1700 120 1800 70 C1900 20 2000 20 2100 70 C2200 120 2300 120 2400 70"/></g>
-            <g class="wave-line w2"><path d="M0 100 C100 60 200 60 300 100 C400 140 500 140 600 100 C700 60 800 60 900 100 C1000 140 1100 140 1200 100 C1300 60 1400 60 1500 100 C1600 140 1700 140 1800 100 C1900 60 2000 60 2100 100 C2200 140 2300 140 2400 100"/></g>
-            <g class="wave-line w3"><path d="M0 125 C100 95 200 95 300 125 C400 155 500 155 600 125 C700 95 800 95 900 125 C1000 155 1100 155 1200 125 C1300 95 1400 95 1500 125 C1600 155 1700 155 1800 125 C1900 95 2000 95 2100 125 C2200 155 2300 155 2400 125"/></g>
-          </svg>
-        </div>
-        <div class="side-inner reveal">
-          <h2>Finn</h2>
-          <p class="tag">Sushi and poke, rolled cold.</p>
-          <p>Nine specialty rolls, eight classics and a poke bowl you build in three steps. Start with the Fire &amp; Finn roll: tempura shrimp, cucumber and eel inside, tuna and avocado outside.</p>
-          <a class="btn btn-water" href="#rolls">Explore Sushi &amp; Poke</a>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- ===== Featured dishes (real menu items; photo slots are marked) ===== -->
-  <section class="sec featured" id="featured">
+  <!-- ===== Three experiences ===== -->
+  <section class="sec experiences" id="experiences" aria-labelledby="exp-title">
     <div class="wrap">
-      <h2 class="sec-title">Chef’s Picks</h2>
-      <p class="sec-lead">Four plates to know us by. The full menu is just below.</p>
-      <div class="cards">
-        <article class="card cold reveal">
-          <div class="card-media"><img class="photo" src="assets/food/fire-and-finn-roll.jpg" alt="The Fire &amp; Finn roll: tempura shrimp roll topped with tuna, avocado, tempura flakes, eel sauce and spicy mayo" width="1200" height="900" loading="lazy"></div>
-          <div class="card-body">
-            <p class="kicker">Chef’s Signature</p>
-            <h3>Fire &amp; Finn Roll<span class="raw">*</span></h3>
-            <p>Tempura shrimp, cucumber and eel inside; tuna, avocado and tempura flakes outside; eel sauce and spicy mayo on top.</p>
-            <p class="card-foot"><span class="price">20</span><a href="#rolls">Specialty rolls</a></p>
-          </div>
-        </article>
-        <article class="card cold reveal">
-          <div class="card-media"><img class="photo" src="assets/food/poke-bowl.jpg" alt="Poke bowl with tuna, avocado, cucumber, pineapple, seaweed salad and sesame" width="1200" height="900" loading="lazy"></div>
-          <div class="card-body">
-            <h3>Build-Your-Own Poke Bowl</h3>
-            <p>Over sushi rice: pick a protein, as many toppings as you like, and a sauce.</p>
-            <p class="card-foot"><span class="price">19</span><a href="#poke">Build one</a></p>
-          </div>
-        </article>
-        <!-- PHOTO SLOT: no hibachi photo exists yet. Add <img class="photo" src="assets/food/chicken-hibachi.jpg" alt="…" width="1200" height="900" loading="lazy"> in place of the mark -->
-        <article class="card hot reveal">
-          <div class="card-media"><img class="mark" src="assets/flame.png" alt="" width="941" height="254" loading="lazy"></div>
-          <div class="card-body">
-            <h3>Chicken Hibachi</h3>
-            <p>Grilled with mushrooms, zucchini, onion &amp; bean sprouts. Yum yum and garlic steak sauce, white or fried rice.</p>
-            <p class="card-foot"><span class="price">20</span><a href="#hibachi">Hibachi menu</a></p>
-          </div>
-        </article>
-        <!-- PHOTO SLOT: assets/food/steak-scallops.jpg -->
-        <article class="card hot reveal">
-          <div class="card-media"><img class="mark" src="assets/flame.png" alt="" width="941" height="254" loading="lazy"></div>
-          <div class="card-body">
-            <h3>Steak &amp; Scallops<span class="raw">*</span></h3>
-            <p>The big combo: steak and scallops together on the flat-top, with the vegetables, both sauces and your choice of rice.</p>
-            <p class="card-foot"><span class="price">35</span><a href="#hibachi">Hibachi menu</a></p>
-          </div>
-        </article>
-      </div>
+      <h2 class="sec-title" id="exp-title">Three ways to eat here</h2>
+      <p class="sec-lead">One kitchen, two temperatures. The hibachi side runs hot; the sushi and poke side stays cold.</p>
     </div>
+
+    <article class="exp fire reveal" id="exp-hibachi">
+      <div class="wrap exp-grid">
+        <!-- PHOTO SLOT: hibachi plate, 3:2 — replace .exp-placeholder with <img class="exp-photo" src="assets/food/hibachi-plate.jpg" alt="…" width="1500" height="1000" loading="lazy"> -->
+        <div class="exp-media"><div class="exp-placeholder" aria-hidden="true"><img class="mark" src="assets/flame.png" alt="" width="941" height="254" loading="lazy"></div></div>
+        <div class="exp-copy">
+          <h3>Hibachi</h3>
+          <p class="exp-kicker">The fire</p>
+          <p>Chicken, shrimp, salmon, scallops or steak seared on the flat-top with mushrooms, zucchini, onion and bean sprouts. Yum yum and garlic steak sauce on the side, white or fried rice underneath, and combos when you can’t decide.</p>
+          <ul class="exp-picks">
+            <li><span>Chicken Hibachi</span><span class="price">20</span></li>
+            <li><span>Steak &amp; Scallops<span class="raw">*</span></span><span class="price">35</span></li>
+          </ul>
+          <a class="btn btn-fire" href="#hibachi">See the hibachi menu</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="exp craft reveal" id="exp-sushi">
+      <div class="wrap exp-grid">
+        <div class="exp-media"><img class="exp-photo" src="assets/food/fire-and-finn-roll.jpg" alt="The Fire &amp; Finn roll on a blue plate" width="1200" height="900" loading="lazy"></div>
+        <div class="exp-copy">
+          <h3>Sushi</h3>
+          <p class="exp-kicker">The craft</p>
+          <p>Nine specialty rolls and eight classics, rolled to order. The one to start with is the Fire &amp; Finn: tempura shrimp, cucumber and eel inside, tuna, avocado and tempura flakes outside, eel sauce and spicy mayo on top.</p>
+          <ul class="exp-picks">
+            <li><span>Fire &amp; Finn Roll<span class="raw">*</span></span><span class="price">20</span></li>
+            <li><span>Spicy Lava Drops</span><span class="price">19</span></li>
+          </ul>
+          <a class="btn btn-water" href="#rolls">See the rolls</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="exp fresh reveal" id="exp-poke">
+      <div class="wrap exp-grid">
+        <div class="exp-media"><img class="exp-photo" src="assets/food/poke-bowl.jpg" alt="Poke bowl with tuna, avocado, cucumber, pineapple, seaweed salad and sesame" width="1200" height="900" loading="lazy"></div>
+        <div class="exp-copy">
+          <h3>Poke</h3>
+          <p class="exp-kicker">The freshness</p>
+          <p>Build it in three steps over sushi rice: pick a protein, pile on as many toppings as you like, and finish with a sauce. Tuna, salmon, yellowtail, eel or kani; pineapple, avocado, cucumber, seaweed salad, edamame and masago.</p>
+          <ul class="exp-picks">
+            <li><span>Build-your-own bowl</span><span class="price">19</span></li>
+            <li><span>Kids bowl, same choices</span><span class="price">15</span></li>
+          </ul>
+          <a class="btn btn-water" href="#poke">Build a bowl</a>
+        </div>
+      </div>
+    </article>
   </section>
 
   <!-- ===== Menu ===== -->
@@ -441,6 +420,6 @@
   <a class="btn btn-ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=2003+Periwinkle+Way,+Sanibel,+FL+33957" target="_blank" rel="noopener">Directions</a>
 </nav>
 
-<script src="app.js"></script>
+<script src="app.js?v=3"></script>
 </body>
 </html>
