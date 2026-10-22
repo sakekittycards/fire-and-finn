@@ -118,14 +118,15 @@
   <section class="sides" id="fire-finn" aria-label="Fire, the hibachi side, and Finn, the sushi side">
     <div class="wrap sides-grid">
       <article class="side fire reveal">
-        <img class="mark" src="assets/flame.png" alt="" width="941" height="254" loading="lazy">
+        <div class="mark-box"><img class="mark" src="assets/flame.png" alt="" width="941" height="254" loading="lazy"></div>
         <h2>Fire</h2>
         <p class="tag">Hibachi, grilled to order.</p>
         <p>Chicken, shrimp, salmon, scallops or steak on the flat-top with mushrooms, zucchini, onion and bean sprouts. Yum yum and garlic steak sauce on the side, white or fried rice underneath. Combos for the hungry, gluten-free on request.</p>
         <a class="btn btn-fire" href="#hibachi">Explore Hibachi</a>
       </article>
+      <div class="amp" aria-hidden="true">&amp;</div>
       <article class="side finn reveal">
-        <img class="mark" src="assets/wave.png" alt="" width="1167" height="168" loading="lazy">
+        <div class="mark-box"><img class="mark" src="assets/wave.png" alt="" width="1167" height="168" loading="lazy"></div>
         <h2>Finn</h2>
         <p class="tag">Sushi and poke, rolled cold.</p>
         <p>Nine specialty rolls, eight classics and a poke bowl you build in three steps. Start with the Fire &amp; Finn roll: tempura shrimp, cucumber and eel inside, tuna, avocado and tempura flakes outside, eel sauce and spicy mayo on top.</p>
@@ -140,7 +141,24 @@
       <h2 class="sec-title">Chef’s Picks</h2>
       <p class="sec-lead">Four plates to know us by. The full menu is just below.</p>
       <div class="cards">
-        <!-- PHOTO SLOT: add <img class="photo" src="assets/food/chicken-hibachi.jpg" alt="Chicken hibachi with fried rice"> inside .card-media to replace the mark -->
+        <article class="card cold reveal">
+          <div class="card-media"><img class="photo" src="assets/food/fire-and-finn-roll.jpg" alt="The Fire &amp; Finn roll: tempura shrimp roll topped with tuna, avocado, tempura flakes, eel sauce and spicy mayo" width="1200" height="900" loading="lazy"></div>
+          <div class="card-body">
+            <p class="kicker">Chef’s Signature</p>
+            <h3>Fire &amp; Finn Roll<span class="raw">*</span></h3>
+            <p>Tempura shrimp, cucumber and eel inside; tuna, avocado and tempura flakes outside; eel sauce and spicy mayo on top.</p>
+            <p class="card-foot"><span class="price">20</span><a href="#rolls">Specialty rolls</a></p>
+          </div>
+        </article>
+        <article class="card cold reveal">
+          <div class="card-media"><img class="photo" src="assets/food/poke-bowl.jpg" alt="Poke bowl with tuna, avocado, cucumber, pineapple, seaweed salad and sesame" width="1200" height="900" loading="lazy"></div>
+          <div class="card-body">
+            <h3>Build-Your-Own Poke Bowl</h3>
+            <p>Over sushi rice: pick a protein, as many toppings as you like, and a sauce.</p>
+            <p class="card-foot"><span class="price">19</span><a href="#poke">Build one</a></p>
+          </div>
+        </article>
+        <!-- PHOTO SLOT: no hibachi photo exists yet. Add <img class="photo" src="assets/food/chicken-hibachi.jpg" alt="…" width="1200" height="900" loading="lazy"> in place of the mark -->
         <article class="card hot reveal">
           <div class="card-media"><img class="mark" src="assets/flame.png" alt="" width="941" height="254" loading="lazy"></div>
           <div class="card-body">
@@ -156,25 +174,6 @@
             <h3>Steak &amp; Scallops<span class="raw">*</span></h3>
             <p>The big combo: steak and scallops together on the flat-top, with the vegetables, both sauces and your choice of rice.</p>
             <p class="card-foot"><span class="price">35</span><a href="#hibachi">Hibachi menu</a></p>
-          </div>
-        </article>
-        <!-- PHOTO SLOT: assets/food/fire-and-finn-roll.jpg -->
-        <article class="card cold reveal">
-          <div class="card-media"><img class="mark" src="assets/wave.png" alt="" width="1167" height="168" loading="lazy"></div>
-          <div class="card-body">
-            <p class="kicker">Chef’s Signature</p>
-            <h3>Fire &amp; Finn Roll<span class="raw">*</span></h3>
-            <p>Tempura shrimp, cucumber and eel inside; tuna, avocado and tempura flakes outside; eel sauce and spicy mayo on top.</p>
-            <p class="card-foot"><span class="price">20</span><a href="#rolls">Specialty rolls</a></p>
-          </div>
-        </article>
-        <!-- PHOTO SLOT: assets/food/poke-bowl.jpg -->
-        <article class="card cold reveal">
-          <div class="card-media"><img class="mark" src="assets/wave.png" alt="" width="1167" height="168" loading="lazy"></div>
-          <div class="card-body">
-            <h3>Build-Your-Own Poke Bowl</h3>
-            <p>Over sushi rice: pick a protein, as many toppings as you like, and a sauce.</p>
-            <p class="card-foot"><span class="price">19</span><a href="#poke">Build one</a></p>
           </div>
         </article>
       </div>
@@ -363,6 +362,7 @@
 
   <!-- ===== Order ===== -->
   <section class="order-band" id="order" aria-labelledby="order-title">
+    <img class="band-photo" src="assets/food/sushi-boat.jpg" alt="" width="1800" height="964" loading="lazy" aria-hidden="true">
     <div class="wrap">
       <h2 id="order-title">Ready when you are.</h2>
       <p>Order ahead for pickup at 2003 Periwinkle Way, or call and we’ll get it started.</p>

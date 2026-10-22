@@ -208,28 +208,37 @@ p { margin: 0 0 1em; }
 
 /* ---------- Two concepts: Fire | Finn ---------- */
 .sides { position: relative; }
-.side { position: relative; padding: clamp(44px, 8vw, 72px) 0; }
-.side .mark { width: min(280px, 60%); margin: 0 0 22px; }
+.side { position: relative; display: flex; flex-direction: column; padding: clamp(44px, 8vw, 72px) 0; }
+.mark-box { display: flex; align-items: flex-end; height: 84px; margin-bottom: 20px; }   /* both marks share one baseline */
+.side .mark { width: min(280px, 60%); margin: 0; }
 .side h2 {
   margin: 0 0 8px; color: var(--accent);
   font: 400 clamp(2.2rem, 4.8vw, 3.2rem)/1 var(--display); letter-spacing: .2em; text-transform: uppercase;
 }
 .side .tag { color: var(--ink); font-weight: 600; font-size: 1.15rem; margin-bottom: 12px; }
 .side p { max-width: 36em; }
-.side .btn { margin-top: 4px; }
+.side .btn { margin-top: auto; align-self: flex-start; }   /* buttons line up across both panels */
+.side p:last-of-type { margin-bottom: 26px; }
 .side.fire { --accent: var(--fire); --accent-line: var(--fire-line); }
 .side.finn { --accent: var(--sea);  --accent-line: var(--water-line); }
+.amp {
+  display: none; align-self: center; padding: 0 clamp(8px, 2vw, 28px);
+  font: 400 clamp(5rem, 9vw, 9.5rem)/1 var(--display);
+  background: linear-gradient(100deg, var(--fire) 35%, var(--sea) 65%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
 @media (max-width: 819px) {
   /* stacked: each half is a full-bleed band of its own colour */
   .side { margin-inline: calc(50% - 50vw); padding-inline: var(--gutter); }
   .side.fire { background: linear-gradient(180deg, var(--fire-panel), #0e0906); }
   .side.finn { background: linear-gradient(180deg, #06111a, var(--water-panel)); }
-  .side .inner, .side > * { max-width: 36em; }
+  .mark-box { height: 72px; }
 }
 @media (min-width: 820px) {
   .sides::before { content: ""; position: absolute; inset: 0; background: linear-gradient(104deg, var(--fire-panel) 0 48.6%, var(--water-panel) 51.4% 100%); }
-  .sides-grid { position: relative; display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(48px, 8vw, 128px); padding: clamp(56px, 8vw, 104px) 0; }
+  .sides-grid { position: relative; display: grid; grid-template-columns: 1fr auto 1fr; column-gap: clamp(28px, 4vw, 64px); align-items: stretch; padding: clamp(56px, 8vw, 104px) 0; }
   .side { padding: 0; }
+  .amp { display: block; }
 }
 
 /* ---------- Sections ---------- */
@@ -338,10 +347,13 @@ p { margin: 0 0 1em; }
 
 /* ---------- Order band ---------- */
 .order-band {
-  margin-top: clamp(56px, 8vw, 96px); padding: clamp(48px, 7vw, 88px) 0; text-align: center;
+  position: relative; overflow: hidden; isolation: isolate;
+  margin-top: clamp(56px, 8vw, 96px); padding: clamp(60px, 9vw, 112px) 0; text-align: center;
   background: linear-gradient(104deg, #160d08 0%, #0c0a09 50%, #07141a 100%);
   border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
 }
+.band-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; opacity: .32; z-index: -2; filter: saturate(.85); }
+.order-band::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(104deg, rgba(22, 13, 8, .85) 0%, rgba(8, 8, 8, .7) 50%, rgba(7, 20, 26, .85) 100%); }
 .order-band h2 { margin: 0 0 10px; color: var(--ink); font: 400 clamp(1.9rem, 4.5vw, 3rem)/1.1 var(--display); letter-spacing: .02em; }
 .order-band p { max-width: 34em; margin: 0 auto 26px; color: var(--muted); }
 
