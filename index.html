@@ -24,9 +24,9 @@
   <link rel="icon" type="image/png" sizes="128x128" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
-  <link rel="preload" href="assets/fonts/TenorSans-Regular.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="preload" href="assets/fonts/Jost-400.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="preload" href="assets/fonts/Jost-600.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="assets/fonts/TenorSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/Jost-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/Jost-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
   <script>document.documentElement.classList.add("js");</script>
 
@@ -116,21 +116,37 @@
 
   <!-- ===== Two concepts ===== -->
   <section class="sides" id="fire-finn" aria-label="Fire, the hibachi side, and Finn, the sushi side">
-    <div class="wrap sides-grid">
-      <article class="side fire reveal">
-        <div class="mark-box"><img class="mark" src="assets/flame.png" alt="" width="941" height="254" loading="lazy"></div>
-        <h2>Fire</h2>
-        <p class="tag">Hibachi, grilled to order.</p>
-        <p>Chicken, shrimp, salmon, scallops or steak on the flat-top with mushrooms, zucchini, onion and bean sprouts. Yum yum and garlic steak sauce on the side, white or fried rice underneath. Combos for the hungry, gluten-free on request.</p>
-        <a class="btn btn-fire" href="#hibachi">Explore Hibachi</a>
+    <div class="sides-grid">
+      <article class="side fire">
+        <div class="env" aria-hidden="true">
+          <img class="mark big" src="assets/flame.png" alt="" width="941" height="254" loading="lazy">
+          <div class="horizon"></div>
+          <div class="embers"></div>
+        </div>
+        <div class="side-inner reveal">
+          <h2>Fire</h2>
+          <p class="tag">Hibachi, grilled to order on the flat-top.</p>
+          <p>Chicken, shrimp, salmon, scallops or steak with mushrooms, zucchini, onion and bean sprouts, yum yum and garlic steak sauce, and your choice of white or fried rice.</p>
+          <a class="btn btn-fire" href="#hibachi">Explore Hibachi</a>
+        </div>
       </article>
-      <div class="amp" aria-hidden="true">&amp;</div>
-      <article class="side finn reveal">
-        <div class="mark-box"><img class="mark" src="assets/wave.png" alt="" width="1167" height="168" loading="lazy"></div>
-        <h2>Finn</h2>
-        <p class="tag">Sushi and poke, rolled cold.</p>
-        <p>Nine specialty rolls, eight classics and a poke bowl you build in three steps. Start with the Fire &amp; Finn roll: tempura shrimp, cucumber and eel inside, tuna, avocado and tempura flakes outside, eel sauce and spicy mayo on top.</p>
-        <a class="btn btn-water" href="#rolls">Explore Sushi &amp; Poke</a>
+      <div class="seam" aria-hidden="true"><span class="amp">&amp;</span></div>
+      <article class="side finn">
+        <div class="env" aria-hidden="true">
+          <img class="mark big" src="assets/wave.png" alt="" width="1167" height="168" loading="lazy">
+          <div class="caustic"></div>
+          <svg class="water-lines" viewBox="0 0 1200 160" preserveAspectRatio="none" focusable="false">
+            <g class="wave-line w1"><path d="M0 70 C100 20 200 20 300 70 C400 120 500 120 600 70 C700 20 800 20 900 70 C1000 120 1100 120 1200 70 C1300 20 1400 20 1500 70 C1600 120 1700 120 1800 70 C1900 20 2000 20 2100 70 C2200 120 2300 120 2400 70"/></g>
+            <g class="wave-line w2"><path d="M0 100 C100 60 200 60 300 100 C400 140 500 140 600 100 C700 60 800 60 900 100 C1000 140 1100 140 1200 100 C1300 60 1400 60 1500 100 C1600 140 1700 140 1800 100 C1900 60 2000 60 2100 100 C2200 140 2300 140 2400 100"/></g>
+            <g class="wave-line w3"><path d="M0 125 C100 95 200 95 300 125 C400 155 500 155 600 125 C700 95 800 95 900 125 C1000 155 1100 155 1200 125 C1300 95 1400 95 1500 125 C1600 155 1700 155 1800 125 C1900 95 2000 95 2100 125 C2200 155 2300 155 2400 125"/></g>
+          </svg>
+        </div>
+        <div class="side-inner reveal">
+          <h2>Finn</h2>
+          <p class="tag">Sushi and poke, rolled cold.</p>
+          <p>Nine specialty rolls, eight classics and a poke bowl you build in three steps. Start with the Fire &amp; Finn roll: tempura shrimp, cucumber and eel inside, tuna and avocado outside.</p>
+          <a class="btn btn-water" href="#rolls">Explore Sushi &amp; Poke</a>
+        </div>
       </article>
     </div>
   </section>
@@ -399,10 +415,23 @@
 
 <footer>
   <div class="wrap foot">
-    <img src="assets/logo-compact.svg" alt="Fire &amp; Finn" width="1495" height="606" loading="lazy">
-    <p>2003 Periwinkle Way, Sanibel, FL 33957 · (239) 579-0783 · Open daily 11am–8pm</p>
-    <nav class="social" id="social" aria-label="Social media"></nav>
-    <p>© 2026 Fire &amp; Finn</p>
+    <div class="foot-brand">
+      <img src="assets/logo-compact.svg" alt="Fire &amp; Finn" width="1495" height="606" loading="lazy">
+      <p>Hibachi, sushi and poke on Sanibel Island.</p>
+    </div>
+    <nav class="foot-links" aria-label="Footer">
+      <a href="#menu">Menu</a>
+      <a href="#hibachi">Hibachi</a>
+      <a href="#rolls">Sushi &amp; Poke</a>
+      <a href="#visit">Visit</a>
+      <a href="menu.pdf">Menu PDF</a>
+    </nav>
+    <div class="foot-info">
+      <p><a href="https://www.google.com/maps/dir/?api=1&amp;destination=2003+Periwinkle+Way,+Sanibel,+FL+33957" target="_blank" rel="noopener">2003 Periwinkle Way, Sanibel, FL 33957</a></p>
+      <p><a href="tel:+12395790783">(239) 579-0783</a> · Open daily 11am–8pm</p>
+      <nav class="social" id="social" aria-label="Social media"></nav>
+    </div>
+    <p class="foot-copy">© 2026 Fire &amp; Finn</p>
   </div>
 </footer>
 

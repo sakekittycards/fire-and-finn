@@ -76,17 +76,18 @@ const HOURS = { open: 11, close: 20 };
     });
   }
 
-  // Embers rising on the fire side of the hero (the water lines are static SVG, animated in CSS).
-  const embers = document.querySelector(".embers");
-  if (embers && !reduce) {
-    for (let i = 0; i < 18; i++) {
-      const s = document.createElement("i");
-      const dur = 5.5 + Math.random() * 5;
-      s.style.cssText =
-        `left:${(3 + Math.random() * 90).toFixed(1)}%;--h:${(12 + Math.random() * 26).toFixed(0)}px;` +
-        `--d:${dur.toFixed(1)}s;--delay:${(-Math.random() * dur).toFixed(1)}s;--sway:${(Math.random() * 80 - 40).toFixed(0)}px`;
-      embers.appendChild(s);
-    }
+  // Embers rising on the fire side of the hero and in the Fire panel (the water lines are SVG, animated in CSS).
+  if (!reduce) {
+    document.querySelectorAll(".embers").forEach((embers) => {
+      for (let i = 0; i < 18; i++) {
+        const s = document.createElement("i");
+        const dur = 5.5 + Math.random() * 5;
+        s.style.cssText =
+          `left:${(3 + Math.random() * 90).toFixed(1)}%;--h:${(12 + Math.random() * 26).toFixed(0)}px;` +
+          `--d:${dur.toFixed(1)}s;--delay:${(-Math.random() * dur).toFixed(1)}s;--sway:${(Math.random() * 80 - 40).toFixed(0)}px`;
+        embers.appendChild(s);
+      }
+    });
   }
 
   // Gentle section entrances. Fail-safe: whatever happens, everything is visible within two seconds.
@@ -107,8 +108,12 @@ const HOURS = { open: 11, close: 20 };
   const groups = links.map((a) => document.querySelector(a.getAttribute("href"))).filter(Boolean);
   if (links.length && groups.length && "IntersectionObserver" in window) {
     const navWrap = document.querySelector(".menu-nav .wrap");
+    const menuNav = document.querySelector(".menu-nav");
     const setActive = (id) => {
       links.forEach((a) => a.classList.toggle("active", a.getAttribute("href") === "#" + id));
+      const g = document.getElementById(id);   // the pill takes the section's colour: orange for the hot side, blue for the cold
+      menuNav.classList.toggle("hot", !!g && g.classList.contains("hot"));
+      menuNav.classList.toggle("cold", !!g && g.classList.contains("cold"));
       const active = navWrap.querySelector("a.active");
       if (active) {
         const left = active.offsetLeft - (navWrap.clientWidth - active.offsetWidth) / 2;
