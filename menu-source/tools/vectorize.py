@@ -16,7 +16,7 @@ from fontTools.pens.svgPathPen import SVGPathPen
 
 ORIG, FONT, OUT = sys.argv[1], sys.argv[2], sys.argv[3]
 TAGLINE = sys.argv[4] if len(sys.argv) > 4 else "HIBACHI • SUSHI • POKE"
-UP = 3                       # trace at 3x for smoother curves
+UP = 4                       # trace at 4x on a smoothed alpha, so potrace fits clean curves
 SPAN_L, SPAN_R = 265, 1724   # outer extent of the original dashes = width of the tagline row
 TEXT_CY = 665.0              # vertical centre of the original tagline letters
 DASH_CY = 661.0              # vertical centre of the original dashes
@@ -44,28 +44,47 @@ def components(mask):
         p = np.array(pts); comps.append((p[:, 0], p[:, 1]))
     return comps
 
-def upscale_mask(mask):
-    """bool HxW -> bool (H*UP)x(W*UP) through a smooth resample of the alpha, thresholded."""
-    g = pymupdf.Pixmap(pymupdf.csGRAY, W, H, (mask.astype(np.uint8) * 255).tobytes(), False)
-    big = pymupdf.Pixmap(g, W * UP, H * UP)
-    return np.frombuffer(big.samples, dtype=np.uint8).reshape(H * UP, W * UP) > 127
+def box_blur(a, r):
+    """separable box blur, radius r, edge-replicated"""
+    for axis in (0, 1):
+        pad = [(0, 0), (0, 0)]; pad[axis] = (r, r)
+        ap = np.pad(a, pad, mode="edge"); cs = np.cumsum(ap, axis=axis, dtype=np.float32)
+        cs = np.concatenate([np.zeros_like(np.take(cs, [0], axis=axis)), cs], axis=axis)
+        n = a.shape[axis]
+        a = (np.take(cs, range(2 * r + 1, 2 * r + 1 + n), axis=axis) - np.take(cs, range(0, n), axis=axis)) / (2 * r + 1)
+    return a
 
-def trace(mask):
-    """Trace a boolean mask (original resolution) -> SVG path 'd' in original coordinates."""
-    big = upscale_mask(mask)
-    path = potrace.Bitmap(~big).trace(turdsize=6, alphamax=1.0, opticurve=1, opttolerance=0.15)   # potracer: bool, False = ink
+def smooth_upscale(alpha_f, k, blur=None):
+    """bilinear upscale of a float alpha crop by k, then a light blur: removes the pixel staircase"""
+    h, w = alpha_f.shape
+    xs = (np.arange(w * k) + 0.5) / k - 0.5; ys = (np.arange(h * k) + 0.5) / k - 0.5
+    x0 = np.clip(np.floor(xs).astype(int), 0, w - 1); x1 = np.clip(x0 + 1, 0, w - 1); fx = np.clip(xs - x0, 0, 1).astype(np.float32)
+    t = alpha_f[:, x0] * (1 - fx) + alpha_f[:, x1] * fx
+    y0 = np.clip(np.floor(ys).astype(int), 0, h - 1); y1 = np.clip(y0 + 1, 0, h - 1); fy = np.clip(ys - y0, 0, 1).astype(np.float32)[:, None]
+    big = t[y0, :] * (1 - fy) + t[y1, :] * fy
+    r = blur if blur else k // 2
+    return box_blur(box_blur(big, r), r)
+
+def trace(mask, blur=None):
+    """Trace a boolean mask (original resolution) -> SVG path 'd' in original coordinates.
+    The mask is cropped to its bounding box, upscaled smoothly and thresholded at 50%."""
+    ys, xs = np.nonzero(mask); m = 6
+    y0, y1 = max(ys.min() - m, 0), min(ys.max() + m + 1, H); x0, x1 = max(xs.min() - m, 0), min(xs.max() + m + 1, W)
+    a = (alpha[y0:y1, x0:x1].astype(np.float32) / 255.0) * mask[y0:y1, x0:x1]
+    big = smooth_upscale(a, UP, blur) > 0.5
+    path = potrace.Bitmap(~big).trace(turdsize=10, alphamax=1.0, opticurve=1, opttolerance=0.4)   # potracer: bool, False = ink
     d = []
-    f = lambda v: f"{v / UP:.2f}"
+    f = lambda v, o: f"{v / UP + o:.2f}"
     P = lambda p: (p.x, p.y)
     for curve in path:
-        sx, sy = P(curve.start_point); d.append(f"M{f(sx)} {f(sy)}")
+        sx, sy = P(curve.start_point); d.append(f"M{f(sx, x0)} {f(sy, y0)}")
         for seg in curve:
             ex, ey = P(seg.end_point)
             if seg.is_corner:
-                cx, cy = P(seg.c); d.append(f"L{f(cx)} {f(cy)}L{f(ex)} {f(ey)}")
+                cx, cy = P(seg.c); d.append(f"L{f(cx, x0)} {f(cy, y0)}L{f(ex, x0)} {f(ey, y0)}")
             else:
                 (c1x, c1y), (c2x, c2y) = P(seg.c1), P(seg.c2)
-                d.append(f"C{f(c1x)} {f(c1y)} {f(c2x)} {f(c2y)} {f(ex)} {f(ey)}")
+                d.append(f"C{f(c1x, x0)} {f(c1y, y0)} {f(c2x, x0)} {f(c2y, y0)} {f(ex, x0)} {f(ey, y0)}")
         d.append("Z")
     return "".join(d)
 
@@ -108,7 +127,7 @@ for name, (ya, yb) in (("flame", (0, 300)), ("wave", (430, 616))):
 # ---------- 2. wordmark FIRE & FINN, traced, solid ----------
 wm = np.zeros_like(full); wm[290:440, :] = full[290:440, :]
 ys, xs = np.nonzero(wm & (alpha > 200)); wm_col = hexcol(rgb[ys, xs].mean(axis=0))
-body.append(f'<path id="wordmark" fill="{wm_col}" fill-rule="evenodd" d="{trace(wm)}"/>')
+body.append(f'<path id="wordmark" fill="{wm_col}" fill-rule="evenodd" d="{trace(wm, blur=UP)}"/>')   # stronger smoothing: straight stems
 print("wordmark traced, colour", wm_col)
 
 # ---------- 3. tagline from Outfit outlines, option-B layout ----------

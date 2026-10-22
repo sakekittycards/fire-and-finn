@@ -56,6 +56,26 @@ const HOURS = { open: 11, close: 20 };
     } catch (e) { /* keep the default "Open daily 11am–8pm" text */ }
   }
 
+  // Fire and water in the hero: embers rise on the left, bubbles on the right.
+  // Skipped entirely when the visitor prefers reduced motion.
+  const hero = document.querySelector(".hero");
+  if (hero && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const box = document.createElement("div");
+    box.className = "particles"; box.setAttribute("aria-hidden", "true");
+    for (let i = 0; i < 24; i++) {
+      const ember = i < 14;
+      const p = document.createElement("i");
+      p.className = ember ? "ember" : "bubble";
+      const left = ember ? 3 + Math.random() * 44 : 56 + Math.random() * 41;
+      const size = ember ? 2 + Math.random() * 4 : 3 + Math.random() * 5;
+      const dur = (ember ? 7 : 10) + Math.random() * 8;
+      p.style.cssText = `left:${left.toFixed(1)}%;width:${size.toFixed(1)}px;height:${size.toFixed(1)}px;` +
+        `animation-duration:${dur.toFixed(1)}s;animation-delay:${(-Math.random() * dur).toFixed(1)}s;--sway:${(Math.random() * 60 - 30).toFixed(0)}px`;
+      box.appendChild(p);
+    }
+    hero.appendChild(box);
+  }
+
   // Social links, only when a URL is set.
   const social = document.getElementById("social");
   if (social) {

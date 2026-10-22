@@ -6,6 +6,7 @@
 @font-face { font-family: "Jost"; font-weight: 400; src: url("assets/fonts/Jost-400.ttf") format("truetype"); font-display: swap; }
 @font-face { font-family: "Jost"; font-weight: 500; src: url("assets/fonts/Jost-500.ttf") format("truetype"); font-display: swap; }
 @font-face { font-family: "Jost"; font-weight: 600; src: url("assets/fonts/Jost-600.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Outfit"; font-weight: 400; src: url("assets/fonts/Outfit-400.ttf") format("truetype"); font-display: swap; }
 
 :root {
   --bg: #080808;
@@ -69,11 +70,11 @@ p { margin: 0 0 1em; }
   border-bottom: 1px solid var(--line);
 }
 .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 66px; }
-.brand img { width: 118px; }
+.brand img { width: 126px; }   /* compact mark: no tagline, so the wordmark stays readable small */
 .nav { display: flex; align-items: center; gap: 24px; }
 .nav a:not(.btn) { color: var(--ink); text-decoration: none; font-weight: 500; font-size: .95rem; }
 .nav a:not(.btn):hover { color: var(--fire); }
-@media (min-width: 760px) { .brand img { width: 140px; } }
+@media (min-width: 760px) { .brand img { width: 150px; } }
 @media (max-width: 759px) { .nav a:not(.btn) { display: none; } }
 
 /* ---------- Hero ---------- */
@@ -82,7 +83,11 @@ p { margin: 0 0 1em; }
 .hero .mark.flame { width: min(72vw, 880px); left: -9vw; top: -3vw; }
 .hero .mark.wave  { width: min(84vw, 1040px); right: -12vw; bottom: -1vw; }
 .hero .wrap { position: relative; z-index: 1; }
-.hero .logo { width: min(560px, 84vw); margin: 0 auto 30px; }
+.hero .logo { width: min(560px, 88vw); margin: 0 auto 30px; }
+/* Phones get the compact mark plus the tagline as live text, large enough to read */
+.hero .tagline { display: none; margin: -14px 0 26px; font: 400 .95rem/1 "Outfit", var(--body); letter-spacing: .32em; text-transform: uppercase; color: var(--ink); }
+.hero .tagline span { color: var(--sea); margin: 0 .1em; }
+@media (max-width: 759px) { .hero .tagline { display: block; } .hero .logo { margin-bottom: 22px; } }
 .hero h1 {
   margin: 0 0 18px; color: var(--ink);
   font: 400 clamp(2.3rem, 7.2vw, 4.8rem)/1.06 var(--display); letter-spacing: .01em; text-wrap: balance;
@@ -96,6 +101,48 @@ p { margin: 0 0 1em; }
 .status .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #6a6a6a; margin-right: 8px; vertical-align: 1px; }
 .status.open .dot { background: #5bd38a; }
 .status.open #status-text { color: var(--muted); }
+
+/* ---------- Motion: fire and water ----------
+   Embers rise on the fire side of the hero, bubbles on the water side; the flame mark flickers,
+   the wave marks drift, the Order button breathes. Transform/opacity only, and all of it is off
+   for people who asked for reduced motion. */
+.particles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+.particles i { position: absolute; bottom: -12px; border-radius: 50%; opacity: 0; animation: rise linear infinite; will-change: transform, opacity; }
+.particles .ember { background: radial-gradient(circle, #ffd9b3 0%, #f07840 45%, rgba(240, 120, 64, 0) 72%); box-shadow: 0 0 6px rgba(240, 120, 64, .55); }
+.particles .bubble { background: radial-gradient(circle, rgba(255, 255, 255, .85) 0%, rgba(98, 198, 236, .65) 40%, rgba(98, 198, 236, 0) 72%); }
+@keyframes rise {
+  0%   { transform: translate3d(0, 0, 0); opacity: 0; }
+  8%   { opacity: .9; }
+  60%  { opacity: .55; }
+  100% { transform: translate3d(var(--sway, 0px), -90vh, 0); opacity: 0; }
+}
+@keyframes flicker {
+  0%, 100% { transform: scale(1) translateY(0); opacity: .13; }
+  35%      { transform: scale(1.025, 1.045) translateY(-1.5%); opacity: .19; }
+  70%      { transform: scale(.99, 1.02) translateY(-.5%); opacity: .15; }
+}
+@keyframes flicker-solid {
+  0%, 100% { transform: scale(1) translateY(0); }
+  35%      { transform: scale(1.02, 1.04) translateY(-1.2%); }
+  70%      { transform: scale(.992, 1.015) translateY(-.4%); }
+}
+@keyframes drift {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-3.5%); }
+}
+@keyframes emberglow {
+  0%, 100% { box-shadow: 0 0 0 rgba(240, 120, 64, 0); }
+  50%      { box-shadow: 0 0 26px rgba(240, 120, 64, .45); }
+}
+.hero .mark.flame { transform-origin: 50% 100%; animation: flicker 6s ease-in-out infinite; }
+.hero .mark.wave  { animation: drift 16s ease-in-out infinite alternate; }
+.hero .btn-fire   { animation: emberglow 4.5s ease-in-out infinite; }
+.side.fire .mark  { transform-origin: 50% 100%; animation: flicker-solid 7s ease-in-out infinite; }
+.side.finn .mark  { animation: drift 18s ease-in-out infinite alternate; }
+@media (prefers-reduced-motion: reduce) {
+  .particles { display: none; }
+  .hero .mark.flame, .hero .mark.wave, .hero .btn-fire, .side.fire .mark, .side.finn .mark { animation: none; }
+}
 
 /* ---------- Two sides ---------- */
 .sides { display: grid; }
@@ -193,7 +240,7 @@ p { margin: 0 0 1em; }
 /* ---------- Footer ---------- */
 footer { margin-top: clamp(56px, 8vw, 96px); border-top: 1px solid var(--line); padding: 34px 0 118px; font-size: .92rem; color: var(--dim); }
 .foot { display: flex; flex-wrap: wrap; gap: 18px 36px; justify-content: space-between; align-items: center; }
-.foot img { width: 124px; opacity: .9; }
+.foot img { width: 140px; opacity: .9; }
 .foot p { margin: 0; }
 .social { display: flex; gap: 18px; }
 .social a { color: var(--ink); text-decoration: none; font-weight: 500; }
