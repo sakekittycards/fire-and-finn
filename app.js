@@ -1,4 +1,4 @@
-/* Fire & Finn — site settings and small behaviors.
+/* Fire & Finn — site settings and behaviors.
    Everything a person is likely to change lives in the block below. */
 
 // ===================== SETTINGS =====================
@@ -20,6 +20,8 @@ const HOURS = { open: 11, close: 20 };
 // ====================================================
 
 (function () {
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   // Order buttons: live link, or call-to-order while there is no link yet.
   const live = ORDER_URL.trim().length > 0;
   document.querySelectorAll("[data-order]").forEach((a) => {
@@ -56,24 +58,68 @@ const HOURS = { open: 11, close: 20 };
     } catch (e) { /* keep the default "Open daily 11am–8pm" text */ }
   }
 
-  // Fire and water in the hero: embers rise on the left, bubbles on the right.
-  // Skipped entirely when the visitor prefers reduced motion.
-  const hero = document.querySelector(".hero");
-  if (hero && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    const box = document.createElement("div");
-    box.className = "particles"; box.setAttribute("aria-hidden", "true");
-    for (let i = 0; i < 24; i++) {
-      const ember = i < 14;
-      const p = document.createElement("i");
-      p.className = ember ? "ember" : "bubble";
-      const left = ember ? 3 + Math.random() * 44 : 56 + Math.random() * 41;
-      const size = ember ? 2 + Math.random() * 4 : 3 + Math.random() * 5;
-      const dur = (ember ? 7 : 10) + Math.random() * 8;
-      p.style.cssText = `left:${left.toFixed(1)}%;width:${size.toFixed(1)}px;height:${size.toFixed(1)}px;` +
-        `animation-duration:${dur.toFixed(1)}s;animation-delay:${(-Math.random() * dur).toFixed(1)}s;--sway:${(Math.random() * 60 - 30).toFixed(0)}px`;
-      box.appendChild(p);
+  // Mobile navigation.
+  const header = document.getElementById("site-header");
+  const toggle = document.querySelector(".nav-toggle");
+  const nav = document.getElementById("site-nav");
+  if (header && toggle && nav) {
+    const setOpen = (open) => {
+      header.classList.toggle("open", open);
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "Close the menu" : "Open the menu");
+    };
+    toggle.addEventListener("click", () => setOpen(!header.classList.contains("open")));
+    nav.addEventListener("click", (e) => { if (e.target.closest("a")) setOpen(false); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") setOpen(false); });
+    document.addEventListener("click", (e) => {
+      if (header.classList.contains("open") && !header.contains(e.target)) setOpen(false);
+    });
+  }
+
+  // Embers rising on the fire side of the hero (the water lines are static SVG, animated in CSS).
+  const embers = document.querySelector(".embers");
+  if (embers && !reduce) {
+    for (let i = 0; i < 18; i++) {
+      const s = document.createElement("i");
+      const dur = 5.5 + Math.random() * 5;
+      s.style.cssText =
+        `left:${(3 + Math.random() * 90).toFixed(1)}%;--h:${(12 + Math.random() * 26).toFixed(0)}px;` +
+        `--d:${dur.toFixed(1)}s;--delay:${(-Math.random() * dur).toFixed(1)}s;--sway:${(Math.random() * 80 - 40).toFixed(0)}px`;
+      embers.appendChild(s);
     }
-    hero.appendChild(box);
+  }
+
+  // Gentle section entrances. Fail-safe: whatever happens, everything is visible within two seconds.
+  const revealEls = document.querySelectorAll(".reveal");
+  const showAll = () => revealEls.forEach((el) => el.classList.add("in"));
+  if ("IntersectionObserver" in window && !reduce) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
+    }, { rootMargin: "0px 0px -5% 0px", threshold: 0 });
+    revealEls.forEach((el) => io.observe(el));
+    setTimeout(showAll, 1800);
+  } else {
+    showAll();
+  }
+
+  // Menu category navigation: highlight the category on screen, keep its pill in view.
+  const links = Array.from(document.querySelectorAll(".menu-nav a"));
+  const groups = links.map((a) => document.querySelector(a.getAttribute("href"))).filter(Boolean);
+  if (links.length && groups.length && "IntersectionObserver" in window) {
+    const navWrap = document.querySelector(".menu-nav .wrap");
+    const setActive = (id) => {
+      links.forEach((a) => a.classList.toggle("active", a.getAttribute("href") === "#" + id));
+      const active = navWrap.querySelector("a.active");
+      if (active) {
+        const left = active.offsetLeft - (navWrap.clientWidth - active.offsetWidth) / 2;
+        navWrap.scrollTo({ left: Math.max(0, left), behavior: reduce ? "auto" : "smooth" });
+      }
+    };
+    const spy = new IntersectionObserver((entries) => {
+      const visible = entries.filter((e) => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+      if (visible[0]) setActive(visible[0].target.id);
+    }, { rootMargin: "-30% 0px -55% 0px", threshold: [0, 0.2, 0.5, 1] });
+    groups.forEach((g) => spy.observe(g));
   }
 
   // Social links, only when a URL is set.
