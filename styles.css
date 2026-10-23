@@ -163,8 +163,9 @@ p { margin: 0 0 1em; }
 /* The food: the plate runs to the edge of the screen; a second one is tucked into its corner */
 .hero-art { order: 3; position: relative; margin: 10px 0 64px; }
 .art-main { position: relative; margin: 0; overflow: hidden; aspect-ratio: 4 / 5; max-height: 78vh; background: var(--panel); }
-.art-main img, .art-small img { width: 100%; height: 100%; object-fit: cover; object-position: 45% 50%; display: block; }
-.art-small img { transform: scale(1.5); object-position: 50% 46%; }   /* crop in to the fish and fruit */
+.art-main img, .art-small img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.art-main img { object-position: 50% 62%; }   /* the plate sits low in the frame */
+.art-small img { transform: scale(1.25); object-position: 48% 52%; }   /* crop in to the roll */
 .art-main::after {   /* the photo melts into the dark page on its open edge and along the waterline */
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background: linear-gradient(0deg, rgba(8, 8, 8, .55), rgba(8, 8, 8, 0) 32%), linear-gradient(90deg, rgba(8, 8, 8, .35), rgba(8, 8, 8, 0) 26%);
@@ -265,8 +266,11 @@ p { margin: 0 0 1em; }
 .grill-title { margin: 0 0 2px; color: var(--fire); font-weight: 500; font-size: 1rem; }
 .exp-media.heat:not(.has-photo) { aspect-ratio: auto; padding: clamp(28px, 6vw, 56px) var(--gutter); }   /* no photo yet: the panel grows with the board */
 .exp-media.heat.has-photo { display: block; }
+.exp-media.heat.has-photo::before { background: linear-gradient(0deg, rgba(8, 8, 8, .6), rgba(8, 8, 8, 0) 42%); }   /* seats the board on the picture */
+.exp.fire .exp-photo { object-position: 50% 58%; }
 .exp-media.heat.has-photo .grill { position: absolute; left: clamp(14px, 4%, 36px); right: clamp(14px, 4%, 36px); bottom: clamp(14px, 4%, 36px); width: auto; }
 .exp-media.heat.has-photo .grill-title, .exp-media.heat.has-photo .board.combos { display: none; }
+@media (max-width: 999px) { .exp-media.heat.has-photo .grill { display: none; } }   /* phones: the picture stands alone; prices are in the menu */
 .board {
   margin: 0; padding: 0; list-style: none;
   display: grid; grid-template-columns: repeat(auto-fit, minmax(88px, 1fr)); gap: 1px;
@@ -299,7 +303,7 @@ p { margin: 0 0 1em; }
   .exp { padding: clamp(48px, 6vw, 96px) 0; }
   .exp-grid { grid-template-columns: var(--edge) repeat(12, minmax(0, 1fr)) var(--edge); column-gap: 0; }
   .exp-copy { padding: 0; }
-  .exp.fire  .exp-media { grid-column: 1 / 8;  border-radius: 0 18px 18px 0; aspect-ratio: 4 / 3; }
+  .exp.fire  .exp-media { grid-column: 1 / 8;  border-radius: 0 18px 18px 0; aspect-ratio: 5 / 4; }
   .exp.fire  .exp-copy  { grid-column: 9 / 14; }
   .exp.fire  .exp-media.heat:not(.has-photo) { align-self: stretch; min-height: 500px; padding: 48px; }
   .exp.craft .exp-copy  { grid-column: 2 / 7; }
