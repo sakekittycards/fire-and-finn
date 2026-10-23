@@ -165,7 +165,7 @@ p { margin: 0 0 1em; }
 .art-main { position: relative; margin: 0; overflow: hidden; aspect-ratio: 4 / 5; max-height: 78vh; background: var(--panel); }
 .art-main img, .art-small img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .art-main img { object-position: 50% 62%; }   /* the plate sits low in the frame */
-.art-small img { transform: scale(1.25); object-position: 48% 52%; }   /* crop in to the roll */
+.art-small img { object-position: 50% 50%; }
 .art-main::after {   /* the photo melts into the dark page on its open edge and along the waterline */
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background: linear-gradient(0deg, rgba(8, 8, 8, .55), rgba(8, 8, 8, 0) 32%), linear-gradient(90deg, rgba(8, 8, 8, .35), rgba(8, 8, 8, 0) 26%);
@@ -243,8 +243,6 @@ p { margin: 0 0 1em; }
 .exp-media { position: relative; overflow: hidden; aspect-ratio: 4 / 3; background: var(--panel); box-shadow: 0 30px 60px -24px rgba(0, 0, 0, .8); }
 .exp-photo { width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1.04); transition: transform 1.6s cubic-bezier(.2, .7, .2, 1); }
 .exp.in .exp-photo { transform: scale(1); }
-.exp.fresh .exp-photo { transform: scale(1.26); }
-.exp.fresh.in .exp-photo { transform: scale(1.2); }
 .exp-copy { padding: 0 var(--gutter); }
 .exp h3 { margin: 0 0 6px; color: var(--ink); font: 400 clamp(2.4rem, 5vw, 4.2rem)/1 var(--display); letter-spacing: .1em; text-transform: uppercase; }
 .exp-kicker { margin: 0 0 16px; color: var(--accent); font-weight: 500; font-size: 1.08rem; }
@@ -406,7 +404,7 @@ p { margin: 0 0 1em; }
   margin-top: clamp(64px, 8vw, 112px); padding: clamp(64px, 9vw, 130px) 0; text-align: center;
   border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
 }
-.band-photo { position: absolute; inset: -3%; width: 106%; height: 106%; object-fit: cover; object-position: 50% 55%; opacity: .4; z-index: -2; filter: saturate(.85) blur(3px); }
+.band-photo { position: absolute; inset: -2%; width: 104%; height: 104%; object-fit: cover; object-position: 50% 50%; opacity: .5; z-index: -2; filter: saturate(.9) blur(2px); }
 .order-band::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(100deg, rgba(22, 13, 8, .9) 0%, rgba(8, 8, 8, .62) 50%, rgba(7, 20, 26, .9) 100%); }
 .order-card {
   max-width: 760px; margin: 0 auto; padding: clamp(28px, 4vw, 52px) clamp(22px, 4vw, 56px);
