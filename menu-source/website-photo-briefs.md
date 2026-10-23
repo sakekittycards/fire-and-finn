@@ -69,3 +69,29 @@ Where each file goes is noted. Replace the file at that path, keep the file name
 ---
 
 Priority order if only one or two can be shot: **1, then 2.** The hibachi half of the brand has no photograph anywhere on the site today.
+
+---
+
+## Ready-to-paste generation prompts
+
+Owner's call (2026-10-22): AI photos are fine as long as they look like the real dishes. Paste each prompt into the generator as written, keep the aspect ratio, and save the result at the path in its heading. Every prompt ends with the same negatives.
+
+**Negatives for every prompt:** no text, no logos, no labels, no hands unless stated, no extra ingredients beyond the ones named, no chopsticks with writing, photorealistic only, no illustration or painting look, no watermark.
+
+### hero-hibachi.jpg (4:5, 1600 × 2000)
+Editorial restaurant photograph of a hibachi steak and scallops plate: sliced seared steak with a pink center and four golden pan-seared scallops over fried rice, with sliced mushrooms, zucchini half-moons, onion petals and bean sprouts. Two small ramekins at the edge, one with pale pink-orange yum yum sauce, one with dark garlic steak sauce. Matte charcoal plate on black slate, folded dark napkin. Camera 40 degrees above, 50mm, shallow depth of field, plate slightly lower-right of center with quiet space upper-left. One warm key light from the upper left like the glow of a grill, soft fill, visible wisps of steam. Deep charcoal shadows, amber highlights, no blue in the scene. Premium but casual Japanese restaurant, dark atmosphere.
+
+### hibachi-plate.jpg (4:3, 1600 × 1200)
+Close photograph of chicken hibachi cooking on a steel flat-top grill: diced chicken with a seared crust, sliced mushrooms, zucchini, onion and bean sprouts being turned with two flat metal spatulas, a mound of fried rice to one side, a small lick of flame far in the background out of focus. Low camera angle just above the grill surface, steam and sizzle visible, warm light from the flame side, dark background. Steel grey grill, golden-brown chicken, green zucchini, amber highlights. Only forearms in plain dark sleeves, no faces.
+
+### fire-and-finn-roll.jpg (3:2, 1600 × 1067)
+Close photograph of a specialty sushi roll, eight pieces in a diagonal line on a long rectangular blue-glazed ceramic plate: tempura shrimp, cucumber and eel inside; thin slices of red tuna and green avocado layered along the top with golden tempura flakes; eel sauce and spicy mayo drizzled across; the tempura shrimp tail standing up at one end. A small mound of pickled ginger and wasabi at one corner. Camera 20 degrees above the plate, near end sharp, far end soft. Cool soft window light from the left, a touch of warm light on the sauce. Dark wood table, dark background, refined and fresh.
+
+### poke-bowl.jpg (1:1, 1600 × 1600)
+Top-down photograph of a poke bowl in a matte black ceramic bowl: sushi rice base, cubed raw tuna in the center, and toppings in distinct wedges around it: pineapple, avocado, cucumber, seaweed salad, edamame and orange masago. Spicy mayo drizzled over the tuna, sesame seeds, a small dish of ponzu beside the bowl. Bright, cool, even daylight, soft shadows, everything looking just cut and cold. Light grey stone surface. Vibrant, colorful, fresh.
+
+### spicy-lava-drops.jpg (3:2, 1600 × 1067)
+Close photograph of deep-fried sushi roll pieces stacked loosely on a black plate: crisp golden tempura shell, spicy krab, cream cheese and jalapeño inside, one piece turned to show the cut face, eel sauce and spicy mayo zig-zagged over the top, a few flecks of green jalapeño. Camera 30 degrees above, warm key light, dark background, crust highlights crisp.
+
+### sushi-craft.jpg (3:2, 1600 × 1067)
+Photograph of hands rolling sushi on a bamboo mat, viewed from the chef's side at 45 degrees: nori, sushi rice spread thin, a line of cucumber and tempura shrimp being rolled, a sharp knife and damp cloth beside the mat, a finished uncut roll at the top edge out of focus. Cool soft daylight, glossy rice, matte nori, dark surface. Plain dark sleeves, no faces.
