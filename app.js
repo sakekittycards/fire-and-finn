@@ -37,26 +37,21 @@ const HOURS = { open: 11, close: 20 };
   });
 
   // Open / closed line in the hero, from the Eastern-time clock.
+  // Every element that shows the status gets the same words; the Order buttons get a green dot while the kitchen is open.
   const status = document.getElementById("status");
-  const text = document.getElementById("status-text");
-  if (status && text) {
-    try {
-      const parts = new Intl.DateTimeFormat("en-US", {
-        timeZone: "America/New_York", hour: "numeric", minute: "numeric", hourCycle: "h23",
-      }).formatToParts(new Date());
-      const h = Number(parts.find((p) => p.type === "hour").value) % 24;
-      const m = Number(parts.find((p) => p.type === "minute").value);
-      const now = h + m / 60;
-      if (now >= HOURS.open && now < HOURS.close) {
-        status.classList.add("open");
-        text.textContent = "Open now, until 8pm";
-      } else if (now < HOURS.open) {
-        text.textContent = "Opens today at 11am";
-      } else {
-        text.textContent = "Closed for the night, opens 11am";
-      }
-    } catch (e) { /* keep the default "Open daily 11am–8pm" text */ }
-  }
+  try {
+    const parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/New_York", hour: "numeric", minute: "numeric", hourCycle: "h23",
+    }).formatToParts(new Date());
+    const h = Number(parts.find((p) => p.type === "hour").value) % 24;
+    const m = Number(parts.find((p) => p.type === "minute").value);
+    const now = h + m / 60;
+    const isOpen = now >= HOURS.open && now < HOURS.close;
+    const msg = isOpen ? "Open now, until 8pm" : (now < HOURS.open ? "Opens today at 11am" : "Closed for the night, opens 11am");
+    if (status) status.classList.toggle("open", isOpen);
+    document.body.classList.toggle("is-open", isOpen);
+    document.querySelectorAll("#status-text, [data-status-text]").forEach((el) => { el.textContent = msg; });
+  } catch (e) { /* keep the default "Open daily 11am–8pm" text */ }
 
   // Mobile navigation.
   const header = document.getElementById("site-header");
@@ -74,6 +69,35 @@ const HOURS = { open: 11, close: 20 };
     document.addEventListener("click", (e) => {
       if (header.classList.contains("open") && !header.contains(e.target)) setOpen(false);
     });
+  }
+
+  // The header is clear over the hero and turns solid once the page moves.
+  if (header) {
+    const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 24);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+
+  // Slow depth on the big photos: they drift a few pixels against the page as it scrolls. Wide screens only, never for reduced motion.
+  const drifting = Array.from(document.querySelectorAll("[data-parallax]"));
+  if (drifting.length && !reduce && window.matchMedia("(min-width: 1000px)").matches) {
+    document.documentElement.classList.add("parallax-on");
+    let queued = false;
+    const update = () => {
+      queued = false;
+      const vh = window.innerHeight;
+      drifting.forEach((el) => {
+        const r = el.parentElement.getBoundingClientRect();
+        if (r.bottom < -100 || r.top > vh + 100) return;
+        const p = (r.top + r.height / 2 - vh / 2) / vh;          // -0.5 above centre … 0.5 below
+        const amp = Number(el.dataset.parallax) || 18;
+        el.style.transform = `translate3d(0, ${(-p * amp).toFixed(1)}px, 0) scale(1.08)`;
+      });
+    };
+    const ask = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
+    window.addEventListener("scroll", ask, { passive: true });
+    window.addEventListener("resize", ask);
+    update();
   }
 
   // A few embers rising behind the hero copy (the waterline is SVG, animated in CSS).

@@ -7,23 +7,31 @@
   <meta name="robots" content="noindex">
   <meta name="theme-color" content="#080808">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles.css?v=7">
+  <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
-<main class="hero" style="min-height:100vh;display:flex;align-items:center">
-  <div class="hero-bg" aria-hidden="true">
-    <img class="mark flame" src="/assets/flame.png" alt="" width="941" height="254">
-    <img class="mark wave" src="/assets/wave.png" alt="" width="1167" height="168">
-  </div>
-  <div class="wrap hero-inner">
-    <a href="/"><img class="logo" src="/assets/logo-compact.svg" alt="Fire &amp; Finn" width="1495" height="606" style="width:min(320px,70vw)"></a>
-    <h1><span class="hot">That page</span> <span class="cold">drifted off.</span></h1>
-    <p class="lead">The menu, hours and ordering are all on the home page.</p>
-    <div class="cta">
-      <a class="btn btn-fire lg" href="/">Back to Fire &amp; Finn</a>
-      <a class="btn btn-water lg" href="/#menu">See the menu</a>
+<main class="hero err">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <a class="brand-home" href="/" aria-label="Fire &amp; Finn, home"><img src="/assets/logo-compact.svg" alt="Fire &amp; Finn" width="1495" height="606"></a>
+      <h1><span class="hot">That page</span> <span class="cold">drifted off.</span></h1>
+      <p class="lead">The menu, hours and ordering are all on the home page.</p>
+      <div class="cta">
+        <a class="btn btn-fire lg" href="/">Back to Fire &amp; Finn</a>
+        <a class="btn btn-water lg" href="/#menu">See the menu</a>
+      </div>
     </div>
   </div>
+  <svg class="waterline" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="wl-a" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#36A9CF" stop-opacity=".22"/><stop offset="1" stop-color="#36A9CF" stop-opacity="0"/></linearGradient>
+      <linearGradient id="wl-b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#62C6EC" stop-opacity=".14"/><stop offset="1" stop-color="#62C6EC" stop-opacity="0"/></linearGradient>
+    </defs>
+    <g class="wl wl-1"><path d="M0 52 C240 20 480 20 720 52 C960 84 1200 84 1440 52 C1680 20 1920 20 2160 52 C2400 84 2640 84 2880 52 L2880 120 L0 120 Z" fill="url(#wl-a)"/></g>
+    <g class="wl wl-2"><path d="M0 70 C240 44 480 44 720 70 C960 96 1200 96 1440 70 C1680 44 1920 44 2160 70 C2400 96 2640 96 2880 70 L2880 120 L0 120 Z" fill="url(#wl-b)"/></g>
+  </svg>
 </main>
 </body>
 </html>

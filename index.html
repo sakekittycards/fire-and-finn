@@ -13,12 +13,12 @@
   <meta property="og:title" content="Fire &amp; Finn — Hibachi · Sushi · Poke">
   <meta property="og:description" content="Grilled hot. Rolled cold. Hibachi, specialty rolls and build-your-own poke on Sanibel Island.">
   <meta property="og:url" content="https://fireandfinn.com/">
-  <meta property="og:image" content="https://fireandfinn.com/assets/og.png">
+  <meta property="og:image" content="https://fireandfinn.com/assets/og.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Fire &amp; Finn logo: flames over the name, a wave beneath, Hibachi · Sushi · Poke">
+  <meta property="og:image:alt" content="Steak and scallops hibachi plate beside the Fire &amp; Finn logo">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://fireandfinn.com/assets/og.png">
+  <meta name="twitter:image" content="https://fireandfinn.com/assets/og.jpg">
 
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
   <link rel="icon" type="image/png" sizes="128x128" href="assets/favicon.png">
@@ -27,7 +27,8 @@
   <link rel="preload" href="assets/fonts/TenorSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/Jost-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/Jost-600.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=6">
+  <link rel="preload" as="image" href="assets/food/hero-hibachi.jpg" fetchpriority="high">
+  <link rel="stylesheet" href="styles.css?v=7">
   <script>document.documentElement.classList.add("js");</script>
 
   <script type="application/ld+json">
@@ -37,7 +38,7 @@
     "name": "Fire & Finn",
     "alternateName": "Fire & Finn Hibachi · Sushi · Poke",
     "url": "https://fireandfinn.com/",
-    "image": "https://fireandfinn.com/assets/og.png",
+    "image": "https://fireandfinn.com/assets/og.jpg",
     "logo": "https://fireandfinn.com/assets/logo.png",
     "telephone": "+1-239-579-0783",
     "servesCuisine": ["Japanese", "Hibachi", "Sushi", "Poke"],
@@ -88,7 +89,6 @@
     <div class="hero-bg" aria-hidden="true"><div class="embers"></div></div>
     <div class="hero-grid">
       <div class="hero-copy">
-        <img class="logo" src="assets/logo-compact.svg" alt="Fire &amp; Finn" width="1495" height="606" fetchpriority="high">
         <h1 id="hero-title"><span class="hot">Grilled hot.</span> <span class="cold">Rolled cold.</span></h1>
         <p class="lead">Hibachi seared on the flat-top, sushi rolled to order and poke bowls you build yourself, on Sanibel Island.</p>
         <div class="cta">
@@ -125,7 +125,7 @@
     <article class="exp fire reveal" id="exp-hibachi">
       <div class="exp-grid">
         <div class="exp-media heat has-photo">
-          <img class="exp-photo" src="assets/food/hibachi-plate.jpg" alt="Steak and scallops hibachi with grilled vegetables and fried rice, steam rising, the grill glowing behind" width="1024" height="1536" loading="lazy">
+          <img class="exp-photo" data-parallax="18" src="assets/food/hibachi-plate.jpg" alt="Steak and scallops hibachi with grilled vegetables and fried rice, steam rising, the grill glowing behind" width="1024" height="1536" loading="lazy" decoding="async">
           <div class="grill">
             <p class="grill-title">On the grill</p>
             <ul class="board" aria-label="Hibachi proteins and prices">
@@ -165,7 +165,7 @@
           <a class="btn btn-water" href="#rolls">See the rolls</a>
         </div>
         <div class="exp-media">
-          <img class="exp-photo" src="assets/food/fire-and-finn-roll.jpg" alt="The Fire &amp; Finn roll: tempura shrimp, cucumber and eel inside, tuna, avocado and tempura flakes on top, eel sauce and spicy mayo" width="1536" height="1024" loading="lazy">
+          <img class="exp-photo" data-parallax="18" src="assets/food/fire-and-finn-roll.jpg" alt="The Fire &amp; Finn roll: tempura shrimp, cucumber and eel inside, tuna, avocado and tempura flakes on top, eel sauce and spicy mayo" width="1536" height="1024" loading="lazy" decoding="async">
           <div class="sig">
             <span class="sig-k">Chef’s signature</span>
             <span class="sig-n"><span>Fire &amp; Finn Roll<span class="raw">*</span></span><span class="price">20</span></span>
@@ -178,7 +178,7 @@
     <article class="exp fresh reveal" id="exp-poke">
       <div class="exp-grid">
         <div class="exp-media">
-          <img class="exp-photo" src="assets/food/poke-bowl.jpg" alt="Poke bowl over sushi rice with tuna, pineapple, cucumber, avocado, seaweed salad, edamame and masago" width="1024" height="1024" loading="lazy">
+          <img class="exp-photo" data-parallax="18" src="assets/food/poke-bowl.jpg" alt="Poke bowl over sushi rice with tuna, pineapple, cucumber, avocado, seaweed salad, edamame and masago" width="1024" height="1024" loading="lazy" decoding="async">
         </div>
         <div class="exp-copy">
           <h3>Poke</h3>
@@ -277,7 +277,7 @@
       <div class="group cold" id="rolls">
         <h3>Chef’s Specialty Rolls</h3>
         <article class="feature">
-          <img class="feature-photo" src="assets/food/fire-and-finn-roll.jpg" alt="" width="1536" height="1024" loading="lazy">
+          <img class="feature-photo" src="assets/food/fire-and-finn-roll.jpg" alt="" width="1536" height="1024" loading="lazy" decoding="async">
           <div class="feature-body">
           <div class="dish-head">
             <span class="name">Fire &amp; Finn<span class="raw">*</span><span class="kicker">Chef’s Signature</span></span>
@@ -380,7 +380,7 @@
 
   <!-- ===== Order ===== -->
   <section class="order-band" id="order" aria-labelledby="order-title">
-    <img class="band-photo" src="assets/food/spicy-lava-drops.jpg" alt="" width="1536" height="1024" loading="lazy" aria-hidden="true">
+    <img class="band-photo" data-parallax="28" src="assets/food/spicy-lava-drops.jpg" alt="" width="1536" height="1024" loading="lazy" aria-hidden="true">
     <div class="wrap">
       <div class="order-card reveal">
         <h2 id="order-title">Ready when you are.</h2>
@@ -389,7 +389,7 @@
           <a class="btn btn-fire lg" data-order data-live="Order Online" data-call="Call to Order" href="tel:+12395790783">Call to Order</a>
           <a class="btn btn-ghost lg" href="tel:+12395790783">Call (239) 579-0783</a>
         </div>
-        <p class="order-meta"><span>Open daily, 11am to 8pm</span><span>2003 Periwinkle Way, Sanibel</span></p>
+        <p class="order-meta"><span data-status-text>Open daily, 11am to 8pm</span><span>2003 Periwinkle Way, Sanibel</span></p>
       </div>
     </div>
   </section>
@@ -423,7 +423,7 @@
 <footer>
   <div class="wrap foot">
     <div class="foot-brand">
-      <img src="assets/logo-compact.svg" alt="Fire &amp; Finn" width="1495" height="606" loading="lazy">
+      <img src="assets/logo-compact.svg" alt="Fire &amp; Finn" width="1495" height="606" loading="lazy" decoding="async">
       <p class="foot-tag">Hibachi <span>•</span> Sushi <span>•</span> Poke</p>
       <p>Grilled hot and rolled cold on Sanibel Island.</p>
     </div>
@@ -450,6 +450,6 @@
   <a class="btn btn-ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=2003+Periwinkle+Way,+Sanibel,+FL+33957" target="_blank" rel="noopener">Directions</a>
 </nav>
 
-<script src="app.js?v=6"></script>
+<script src="app.js?v=7"></script>
 </body>
 </html>
