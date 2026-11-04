@@ -6,8 +6,7 @@
 <!--
   FIRE & FINN DIGITAL SIGNAGE SYSTEM  (1920 x 1080, one slide per ?slide=name)
   Master brand lives in the CSS and markup. Everything location-specific lives in
-  the LOCATION block at the bottom of this file. A new restaurant changes that
-  block only. Render with: msedge --headless=new --window-size=1920,1080
+  location.js next to this file. A new restaurant edits that file only. Render with: msedge --headless=new --window-size=1920,1080
   --screenshot=out.png "slides.html?slide=welcome"
 
   Grid: 1920 x 1080, safe margins 70px, logo always top-left at (70,44) 300px wide.
@@ -57,33 +56,41 @@
   .title .sub { font-size: 30px; margin-top: 8px; }
   .board { position: absolute; left: var(--m); right: var(--m); top: 205px; bottom: 84px; display: grid; column-gap: 70px; }
   .two .board { grid-template-columns: 1fr 1fr; }
-  .three .board { grid-template-columns: 1.05fr 1.05fr .9fr; column-gap: 56px; }
+  .three .board { grid-template-columns: 1.1fr 1.1fr .8fr; grid-template-rows: 1fr auto; column-gap: 56px; }
+  .three .item { padding: 5px 0; }
+  .strip { grid-column: 1 / -1; display: grid; grid-template-columns: 250px 1fr; align-items: center; column-gap: 28px; padding-top: 12px; }
+  .strip h3 { margin: 0; } .strip h3::after { display: none; }
+  .strip .grid { margin: 0; }
+  .grid8 { grid-template-columns: repeat(8, 1fr); }
+  .grid.cool { border-color: rgba(98,198,236,.45); background: rgba(98,198,236,.3); }
+  .grid.cool div { background: #070d10; padding: 10px 6px 8px; } .grid.cool b { font-size: 25px; } .grid.cool span { color: var(--sea); font-size: 26px; } .grid.cool i { color: var(--sea); font-style: normal; }
   .menu h3 { display: flex; align-items: center; gap: 20px; font: 600 34px/1 "Jost"; letter-spacing: .14em; text-transform: uppercase; margin: 0 0 14px; }
   .menu h3::after { content: ""; flex: 1; border-top: 2px solid currentColor; opacity: .35; }
   .menu h3 .aside { font: 500 26px/1 "Jost"; letter-spacing: .02em; text-transform: none; opacity: .9; }
   .menu .group + .group { margin-top: 30px; }
-  .item { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 14px; padding: 5px 0; }
-  .item .n { font: 500 30px/1.2 "Jost"; color: var(--ink); }
+  .item { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 14px; padding: 7px 0; }
+  .item .n { font: 500 32px/1.2 "Jost"; color: var(--ink); }
   .item .n i { font-style: normal; color: var(--sea); font-weight: 600; }
   .item .n b { font: 600 18px/1 "Jost"; letter-spacing: .14em; text-transform: uppercase; color: var(--sea); margin-left: 10px; vertical-align: 3px; }
   .item .lead { flex: 1; border-bottom: 2px dotted #4a4a4a; transform: translateY(-9px); min-width: 24px; }
-  .item .p { font: 600 30px/1.2 "Jost"; white-space: nowrap; font-variant-numeric: tabular-nums; }
-  .item .d { display: block; width: 100%; font: 400 23px/1.3 "Jost"; color: var(--muted); margin-top: 1px; }
+  .item .p { font: 600 32px/1.2 "Jost"; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .item .d { display: block; width: 100%; font: 400 26px/1.3 "Jost"; color: var(--muted); margin-top: 2px; }
   .grid { display: grid; gap: 2px; border: 2px solid rgba(240,120,64,.45); border-radius: 12px; overflow: hidden; background: rgba(240,120,64,.35); margin: 8px 0 16px; }
   .grid5 { grid-template-columns: repeat(5, 1fr); } .grid3 { grid-template-columns: repeat(3, 1fr); }
   .grid div { background: #0f0a07; padding: 14px 8px 12px; text-align: center; }
   .grid b { display: block; font: 600 28px/1.2 "Jost"; color: var(--ink); }
   .grid span { color: var(--fire); font: 600 30px/1.3 "Jost"; }
-  .lede { font: 400 24px/1.3 "Jost"; color: var(--muted); margin: 0 0 8px; }
-  .steps { display: grid; gap: 18px; margin-top: 8px; }
-  .step { display: grid; grid-template-columns: 54px 1fr; column-gap: 10px; }
-  .step .num { grid-row: 1 / 3; font: 600 48px/1 "Jost"; color: var(--sea); }
-  .step .t { font: 600 28px/1.2 "Jost"; }
-  .step p { font: 400 23px/1.3 "Jost"; color: var(--muted); margin-top: 2px; }
+  .lede { font: 400 26px/1.3 "Jost"; color: var(--muted); margin: 0 0 10px; }
+  .steps { display: grid; gap: 26px; margin-top: 14px; }
+  .step { display: grid; grid-template-columns: 64px 1fr; column-gap: 12px; }
+  .step .num { grid-row: 1 / 3; font: 600 56px/1 "Jost"; color: var(--sea); }
+  .step .t { font: 600 32px/1.2 "Jost"; }
+  .step p { font: 400 27px/1.35 "Jost"; color: var(--muted); margin-top: 4px; }
 
   .drinks .cols { position: absolute; left: var(--m); right: var(--m); top: 215px; display: grid; grid-template-columns: repeat(4, 1fr); column-gap: 50px; }
   .drinks h3 { font: 600 32px/1 "Jost"; letter-spacing: .14em; text-transform: uppercase; color: var(--sea); margin-bottom: 18px; padding-bottom: 14px; border-bottom: 2px solid rgba(98,198,236,.35); }
-  .drinks li { list-style: none; font: 500 32px/1.6 "Jost"; color: var(--ink); }
+  .drinks li { list-style: none; font: 500 36px/1.65 "Jost"; color: var(--ink); }
+  .drinks .na { display: block; font: 400 21px/1 "Jost"; letter-spacing: .1em; text-transform: uppercase; color: var(--sea); margin: -8px 0 12px; }
 
   .hours .copy { top: 250px; }
   .hours h1 { font-size: 140px; }
@@ -103,6 +110,8 @@
 
   .location .map { position: absolute; right: 40px; top: 170px; width: 1000px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 22%); mask-image: linear-gradient(90deg, transparent, #000 22%); }
   .location .copy { top: 300px; width: 760px; }
+  .lto .price { margin-top: 22px; font: 600 64px/1 "Jost"; }
+  .lto .fine { margin-top: 34px; font: 400 26px/1.4 "Jost"; color: var(--dim); max-width: 24em; }
   .lto .badge { display: inline-block; font: 600 28px/1 "Jost"; letter-spacing: .18em; text-transform: uppercase; color: var(--bg); background: var(--fire); padding: 14px 22px; border-radius: 8px; margin-bottom: 30px; }
 </style>
 </head>
@@ -141,7 +150,6 @@
         <p class="lede">Grilled with mushrooms, zucchini, onion &amp; bean sprouts. Yum yum sauce, garlic steak sauce &amp; white or fried rice. Gluten-free available.</p>
         <div class="grid grid5"><div><b>Steak<i style="color:#62C6EC;font-style:normal">*</i></b><span>28</span></div><div><b>Scallops</b><span>27</span></div><div><b>Salmon</b><span>23</span></div><div><b>Shrimp</b><span>20</span></div><div><b>Chicken</b><span>20</span></div></div>
         <div class="grid grid3"><div><b>Steak &amp; Scallops*</b><span>35</span></div><div><b>Steak &amp; Shrimp*</b><span>33</span></div><div><b>Chicken &amp; Shrimp</b><span>25</span></div></div>
-        <div class="item"><span class="n">Chicken or Shrimp Katsu</span><span class="lead"></span><span class="p hot">20</span><span class="d">Crispy panko crust, white rice &amp; teriyaki sauce</span></div>
       </div>
       <div class="group">
         <h3 class="hot">Kids <span class="aside">15 each</span></h3>
@@ -160,6 +168,10 @@
         <div class="item"><span class="n">Cucumber Salad</span><span class="lead"></span><span class="p hot">9</span><span class="d">Tuxedo sesame &amp; house dressing</span></div>
         <div class="item"><span class="n">Egg Rolls</span><span class="lead"></span><span class="p hot">8</span><span class="d">Vegetable, in a crisp golden wrapper</span></div>
       </div>
+      <div class="group">
+        <h3 class="hot">Katsu</h3>
+        <div class="item"><span class="n">Chicken or Shrimp</span><span class="lead"></span><span class="p hot">20</span><span class="d">Crispy panko crust, white rice &amp; teriyaki sauce</span></div>
+      </div>
     </div>
   </div>
   <p class="foot"><span>* Served raw or undercooked. Our kitchen uses shellfish, fish, sesame, soy, wheat, egg &amp; dairy. Please tell us about allergies.</span><span data-loc="web"></span></p>
@@ -174,8 +186,8 @@
     <div>
       <div class="group">
         <h3 class="cold">Chef’s Specialty Rolls</h3>
-        <div class="item"><span class="n">Fire &amp; Finn<i>*</i><b>Signature</b></span><span class="lead"></span><span class="p cold">20</span><span class="d">Tempura shrimp, cucumber &amp; eel inside. Tuna, avocado &amp; tempura flakes outside. Eel sauce &amp; spicy mayo.</span></div>
-        <div class="item"><span class="n">Spicy Lava Drops</span><span class="lead"></span><span class="p cold">19</span><span class="d">Spicy krab, cream cheese &amp; jalapeño, deep fried. Eel sauce &amp; spicy mayo.</span></div>
+        <div class="item"><span class="n">Fire &amp; Finn<i>*</i><b>Signature</b></span><span class="lead"></span><span class="p cold">20</span><span class="d">Tempura shrimp, cucumber &amp; eel. Topped with tuna, avocado, tempura flakes, eel sauce &amp; spicy mayo</span></div>
+        <div class="item"><span class="n">Spicy Lava Drops</span><span class="lead"></span><span class="p cold">19</span><span class="d">Spicy krab, cream cheese &amp; jalapeño, deep fried, eel sauce &amp; spicy mayo</span></div>
         <div class="item"><span class="n">Sunburn</span><span class="lead"></span><span class="p cold">19</span><span class="d">Spicy krab &amp; cream cheese, topped with baked salmon, eel sauce &amp; spicy mayo</span></div>
         <div class="item"><span class="n">Three Tides<i>*</i></span><span class="lead"></span><span class="p cold">18</span><span class="d">Tuna, salmon, yellowtail &amp; cucumber</span></div>
         <div class="item"><span class="n">Typhoon</span><span class="lead"></span><span class="p cold">18</span><span class="d">Tempura shrimp &amp; cream cheese, topped with baked spicy krab</span></div>
@@ -184,33 +196,29 @@
     <div>
       <div class="group">
         <h3 class="cold" style="color:transparent">.</h3>
-        <div class="item"><span class="n">Tide Pool</span><span class="lead"></span><span class="p cold">18</span><span class="d">Spicy krab, cucumber &amp; cream cheese inside. Eel, avocado &amp; tempura flakes outside.</span></div>
-        <div class="item"><span class="n">Kingfisher<i>*</i></span><span class="lead"></span><span class="p cold">18</span><span class="d">Spicy tuna, cucumber &amp; cream cheese inside. Avocado &amp; tempura yellowtail outside.</span></div>
-        <div class="item"><span class="n">Riptide<i>*</i></span><span class="lead"></span><span class="p cold">17</span><span class="d">Spicy tuna, eel &amp; avocado. Tempura flakes, eel sauce &amp; spicy mayo.</span></div>
+        <div class="item"><span class="n">Tide Pool</span><span class="lead"></span><span class="p cold">18</span><span class="d">Spicy krab, cucumber &amp; cream cheese, topped with eel, avocado &amp; tempura flakes</span></div>
+        <div class="item"><span class="n">Kingfisher<i>*</i></span><span class="lead"></span><span class="p cold">18</span><span class="d">Spicy tuna, cucumber &amp; cream cheese, topped with avocado &amp; tempura yellowtail</span></div>
+        <div class="item"><span class="n">Riptide<i>*</i></span><span class="lead"></span><span class="p cold">17</span><span class="d">Spicy tuna, eel &amp; avocado, tempura flakes, eel sauce &amp; spicy mayo</span></div>
         <div class="item"><span class="n">Golden Hour<i>*</i></span><span class="lead"></span><span class="p cold">17</span><span class="d">Yellowtail, avocado, jalapeño &amp; cilantro, topped with spicy mayo</span></div>
-        <div class="item"><span class="n">Tipsy Turtle<i>*</i></span><span class="lead"></span><span class="p cold">17</span><span class="d">Krab, avocado, cucumber &amp; cilantro wrapped in salmon, red onion &amp; a touch of lime</span></div>
+        <div class="item"><span class="n">Tipsy Turtle<i>*</i></span><span class="lead"></span><span class="p cold">17</span><span class="d">Krab, avocado, cucumber &amp; cilantro in salmon, red onion &amp; lime</span></div>
+      </div>
+      <div class="group">
       </div>
     </div>
     <div>
       <div class="group">
-        <h3 class="cold">Classic Rolls</h3>
-        <div class="item"><span class="n">Crazy</span><span class="lead"></span><span class="p cold">16</span></div>
-        <div class="item"><span class="n">Volcano</span><span class="lead"></span><span class="p cold">16</span></div>
-        <div class="item"><span class="n">Ocean<i>*</i></span><span class="lead"></span><span class="p cold">16</span></div>
-        <div class="item"><span class="n">Shrimp Tempura</span><span class="lead"></span><span class="p cold">15</span></div>
-        <div class="item"><span class="n">Spicy Tuna<i>*</i></span><span class="lead"></span><span class="p cold">15</span></div>
-        <div class="item"><span class="n">Spicy Salmon<i>*</i></span><span class="lead"></span><span class="p cold">15</span></div>
-        <div class="item"><span class="n">Japanese Bagel<i>*</i></span><span class="lead"></span><span class="p cold">15</span></div>
-        <div class="item"><span class="n">California</span><span class="lead"></span><span class="p cold">13</span></div>
-      </div>
-      <div class="group">
         <h3 class="cold">Poke Bowl <span class="aside">19</span></h3>
+        <p class="lede">Build your own over sushi rice. Kids size 15.</p>
         <div class="steps">
           <div class="step"><div class="num">1</div><div class="t">Pick a protein</div><p>Tuna*, spicy tuna*, salmon*, spicy salmon*, yellowtail*, eel or kani salad</p></div>
           <div class="step"><div class="num">2</div><div class="t">Pile on toppings</div><p>Pineapple, avocado, cucumber, seaweed salad, edamame &amp; masago*. As many as you like.</p></div>
           <div class="step"><div class="num">3</div><div class="t">Finish with a sauce</div><p>Eel sauce, honey soy, spicy mayo or ponzu</p></div>
         </div>
       </div>
+    </div>
+    <div class="strip">
+      <h3 class="cold">Classic Rolls</h3>
+      <div class="grid grid8 cool"><div><b>Crazy</b><span>16</span></div><div><b>Volcano</b><span>16</span></div><div><b>Ocean<i>*</i></b><span>16</span></div><div><b>Shrimp Tempura</b><span>15</span></div><div><b>Spicy Tuna<i>*</i></b><span>15</span></div><div><b>Spicy Salmon<i>*</i></b><span>15</span></div><div><b>Japanese Bagel<i>*</i></b><span>15</span></div><div><b>California</b><span>13</span></div></div>
     </div>
   </div>
   <p class="foot"><span>* Served raw or undercooked. Our kitchen uses shellfish, fish, sesame, soy, wheat, egg &amp; dairy. Please tell us about allergies.</span><span data-loc="web"></span></p>
@@ -222,9 +230,9 @@
   <img class="logo" src="../../assets/logo-compact.svg" alt="">
   <div class="title"><h2 class="cold">Cold drinks</h2><p class="sub">Grab one from the cooler on your way to the counter</p></div>
   <div class="cols">
-    <div><h3>Beer</h3><ul><li>239 IPA</li><li>Turtle Season IPA</li><li>Kirin Ichiban</li><li>Sapporo</li><li>Stella Artois</li><li>Stella N/A</li><li>Modelo</li><li>Corona</li><li>Landshark</li><li>Budweiser</li><li>Bud Light</li><li>Michelob Ultra</li></ul></div>
-    <div><h3>Seltzer &amp; sake</h3><ul><li>Carbliss</li><li>Nutrl</li><li>Surfside</li><li>Senorita</li><li>Tessake</li></ul></div>
-    <div><h3>Soft drinks</h3><ul><li>Coke</li><li>Diet Coke</li><li>Sprite</li><li>Dr Pepper</li><li>Lemonade</li><li>Olipop</li><li>Poppi</li><li>Minute Maid apple juice</li></ul></div>
+    <div><h3>Beer</h3><ul><li>Budweiser</li><li>Bud Light</li><li>Michelob Ultra</li><li>Corona</li><li>Modelo</li><li>Landshark</li><li>Stella Artois</li><li>Stella Artois 0.0 <span class="na">non-alcoholic</span></li></ul></div>
+    <div><h3>Craft, imports &amp; cans</h3><ul><li>239 IPA</li><li>Turtle Season IPA</li><li>Kirin Ichiban</li><li>Sapporo</li><li>Carbliss</li><li>Nutrl</li><li>Surfside</li><li>Senorita</li><li>Tessake</li></ul></div>
+    <div><h3>Soft drinks</h3><ul><li>Coke</li><li>Diet Coke</li><li>Sprite</li><li>Dr Pepper</li><li>Lemonade</li><li>Olipop</li><li>Poppi</li><li>Apple juice</li></ul></div>
     <div><h3>Water, tea &amp; energy</h3><ul><li>Pellegrino</li><li>Fiji</li><li>Evian</li><li>Liquid Death</li><li>Pure Leaf iced tea</li><li>Arizona iced tea</li><li>Red Bull</li><li>Monster</li></ul></div>
   </div>
   <svg class="wave"><use href="#waveline"/></svg>
@@ -258,13 +266,13 @@
 
 <!-- 5c. PROMO: COOLER -->
 <section class="slide cold-side" id="promo-drinks">
-  <img class="photo" src="photos/cooler.jpg" style="width:700px" alt="">
+  <img class="photo" src="photos/cooler.jpg" style="width:820px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 45%); mask-image: linear-gradient(90deg, transparent, #000 45%)" alt="">
   <div class="glow"></div><div class="grain"></div>
   <img class="logo" src="../../assets/logo-compact.svg" alt="">
   <div class="copy">
     <p class="kicker cold">Grab and go</p>
     <h1>Cold drinks</h1>
-    <p class="sub">Beer, seltzers, sake and soft drinks in the cooler. Grab one on your way to the counter.</p>
+    <p class="sub">Beer, seltzers, sodas, teas and water in the cooler. Grab one on your way to the counter.</p>
   </div>
 </section>
 
@@ -315,9 +323,9 @@
 <section class="slide review" id="review-yelp">
   <div class="glow"></div><div class="grain"></div>
   <img class="logo" src="../../assets/logo-compact.svg" alt="">
-  <div class="qr-copy"><h1><small>How did we do?</small>Rate us on <span class="hot">Yelp</span></h1><p class="sub">Scan the code to leave a review. Every one helps.</p></div>
-  <div class="qr-panel"><img data-qr="yelp" alt=""><div class="ph">Yelp review QR</div></div>
-  <p class="qr-label">Scan to review</p>
+  <div class="qr-copy"><h1><small>Menu, photos &amp; hours</small>Find us on <span class="hot">Yelp</span></h1><p class="sub">Scan to see our Yelp page.</p></div>
+  <div class="qr-panel"><img data-qr="yelp" alt=""><div class="ph">Yelp page QR</div></div>
+  <p class="qr-label">Scan to view</p>
   <svg class="wave"><use href="#waveline"/></svg>
 </section>
 
@@ -337,32 +345,23 @@
 
 <!-- 10. LIMITED-TIME OFFER (template; the copy is a variable, nothing here is a real offer) -->
 <section class="slide lto hot-side" id="lto">
-  <img class="photo" src="photos/hibachi-plate.jpg" style="width:1000px" alt="">
+  <img class="photo" data-loc-src="ltoPhoto" style="width:1000px" alt="">
   <div class="glow"></div><div class="grain"></div>
   <img class="logo" src="../../assets/logo-compact.svg" alt="">
   <div class="copy" style="width:860px">
     <span class="badge" data-loc="ltoBadge"></span>
-    <h1 style="font-size:100px" data-loc="ltoTitle"></h1>
+    <h1 style="font-size:96px" data-loc="ltoTitle"></h1>
+    <p class="price hot" data-loc="ltoPrice"></p>
     <p class="sub" data-loc="ltoText"></p>
+    <p class="fine" data-loc="ltoDates"></p>
   </div>
 </section>
 
+<script src="location.js"></script>
 <script>
-  // ===================== LOCATION BLOCK — the only thing a new restaurant changes =====================
-  const LOCATION = {
-    area: "Sanibel Island",
-    address: "2003 Periwinkle Way",
-    city: "Sanibel, FL 33957",
-    phone: "(239) 579-0783",
-    hours: "11am – 8pm",
-    web: "fireandfinn.com",
-    map: "photos/sanibel-map.png",
-    qr: { order: "", google: "", tripadvisor: "", yelp: "" },
-    ltoBadge: "Limited time", ltoTitle: "Your offer here", ltoText: "Short description of the offer, dates and any conditions.",
-  };
-  // ====================================================================================================
   document.querySelectorAll("[data-loc]").forEach((el) => { el.textContent = LOCATION[el.dataset.loc] || ""; });
   document.querySelectorAll("[data-loc-src]").forEach((el) => { const v = LOCATION[el.dataset.locSrc]; if (v) el.src = v; else el.remove(); });
+  if (!LOCATION.map) { const c = document.querySelector("#location .copy"); if (c) c.style.width = "1100px"; }
   document.querySelectorAll("[data-qr]").forEach((img) => { const v = LOCATION.qr[img.dataset.qr]; if (v) { img.src = v; img.nextElementSibling.remove(); } else { img.remove(); } });
   const want = new URLSearchParams(location.search).get("slide") || "welcome";
   (document.getElementById(want) || document.querySelector(".slide")).classList.add("on");
