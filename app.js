@@ -2,10 +2,10 @@
    Everything a person is likely to change lives in the block below. */
 
 // ===================== SETTINGS =====================
-// Toast online-ordering link. Same Toast location as Island Panda (Restaurant ID 300224);
-// when the location is renamed in Toast after the rebrand, check whether this URL changes.
+// Toast online-ordering link (Restaurant ID 300224, renamed to Fire and Finn on 2026-11-04).
+// The old island-panda-2003-periwinkle-way address was replaced by this one the same day.
 // Leave empty to make every Order button fall back to the phone number.
-const ORDER_URL = "https://order.toasttab.com/online/island-panda-2003-periwinkle-way";
+const ORDER_URL = "https://order.toasttab.com/online/fire-and-finn-2003-periwinkle-way";
 
 const PHONE_TEL = "tel:+12395790783";
 
