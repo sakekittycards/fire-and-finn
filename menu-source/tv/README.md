@@ -42,4 +42,4 @@ No cropped or overflowing text, no hard image rectangles, no ghosting, prices an
 ## Open verification items
 
 - "Gluten-free hibachi available" and the raw (*) markers are copied from the printed v8 menu; the kitchen should confirm them before the boards go live.
-- Drinks list is the current Toast beverage and alcohol list; confirm "Senorita" and "Tessake" are shelved as canned drinks.
+- Drinks list is the current Toast beverage and alcohol list. Tessake is a 6% canned sparkling sake (labelled on the board). "Senorita" is unconfirmed: the name belongs to both a bottled 12.5% margarita and a THC-infused canned margarita line; the owner must confirm which is stocked before it stays on the board, and if it is the THC product it should come off the board entirely.
