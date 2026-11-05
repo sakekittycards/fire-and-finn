@@ -87,6 +87,23 @@
   .step .t { font: 600 32px/1.2 "Jost"; }
   .step p { font: 400 27px/1.35 "Jost"; color: var(--muted); margin-top: 4px; }
 
+  /* full menu: both boards on one screen, four columns */
+  .full .title h2 { color: var(--ink); }
+  .full .board { top: 182px; grid-template-columns: repeat(4, 1fr); grid-template-rows: auto 1fr; column-gap: 44px; }
+  .full .half { grid-column: span 2; font: 600 40px/1 "Jost"; letter-spacing: .06em; text-transform: uppercase; padding-bottom: 12px; border-bottom: 2px solid; margin-bottom: 16px; }
+  .full .half.hot { border-color: rgba(240,120,64,.5); } .full .half.cold { border-color: rgba(98,198,236,.5); }
+  .full h3 { font-size: 26px; letter-spacing: .12em; margin-bottom: 8px; }
+  .full h3 .aside { font-size: 21px; }
+  .full .group + .group { margin-top: 18px; }
+  .full .lede { font-size: 19px; line-height: 1.25; margin-bottom: 6px; }
+  .full .item { padding: 3px 0; gap: 0 10px; }
+  .full .item .n { font-size: 24px; } .full .item .p { font-size: 24px; } .full .item .n b { font-size: 14px; }
+  .full .item .d { font-size: 18px; line-height: 1.25; margin-top: 1px; }
+  .full .item .lead { transform: translateY(-7px); }
+  .full .mini .item { padding: 1px 0; }
+  .full .steps { gap: 10px; margin-top: 6px; }
+  .full .step { grid-template-columns: 40px 1fr; column-gap: 8px; }
+  .full .step .num { font-size: 34px; } .full .step .t { font-size: 23px; } .full .step p { font-size: 18px; line-height: 1.25; margin-top: 2px; }
   .drinks .cols { position: absolute; left: var(--m); right: var(--m); top: 215px; display: grid; grid-template-columns: repeat(4, 1fr); column-gap: 50px; }
   .drinks h3 { font: 600 32px/1 "Jost"; letter-spacing: .14em; text-transform: uppercase; color: var(--sea); margin-bottom: 18px; padding-bottom: 14px; border-bottom: 2px solid rgba(98,198,236,.35); }
   .drinks li { list-style: none; font: 500 36px/1.65 "Jost"; color: var(--ink); }
@@ -222,6 +239,95 @@
     </div>
   </div>
   <p class="foot"><span>* Served raw or undercooked. Our kitchen uses shellfish, fish, sesame, soy, wheat, egg &amp; dairy. Please tell us about allergies.</span><span data-loc="web"></span></p>
+</section>
+
+<!-- 3b. FULL MENU (both boards on one screen) -->
+<section class="slide menu full" id="menu-full">
+  <div class="glow"></div><div class="grain"></div>
+  <img class="logo" src="../../assets/logo-compact.svg" alt="">
+  <div class="title"><h2>The menu</h2><p class="sub">Hibachi, katsu and appetizers on the left. Rolls and poke on the right.</p></div>
+  <div class="board">
+    <div class="half hot">Hot off the grill</div>
+    <div class="half cold">Rolled cold</div>
+    <div>
+      <div class="group">
+        <h3 class="hot">Hibachi</h3>
+        <p class="lede">Grilled with mushrooms, zucchini, onion &amp; bean sprouts. Yum yum sauce, garlic steak sauce &amp; white or fried rice. Gluten-free available.</p>
+        <div class="item"><span class="n">Steak<i>*</i></span><span class="lead"></span><span class="p hot">28</span></div>
+        <div class="item"><span class="n">Scallops</span><span class="lead"></span><span class="p hot">27</span></div>
+        <div class="item"><span class="n">Salmon</span><span class="lead"></span><span class="p hot">23</span></div>
+        <div class="item"><span class="n">Shrimp</span><span class="lead"></span><span class="p hot">20</span></div>
+        <div class="item"><span class="n">Chicken</span><span class="lead"></span><span class="p hot">20</span></div>
+        <div class="item"><span class="n">Steak &amp; Scallops<i>*</i></span><span class="lead"></span><span class="p hot">35</span></div>
+        <div class="item"><span class="n">Steak &amp; Shrimp<i>*</i></span><span class="lead"></span><span class="p hot">33</span></div>
+        <div class="item"><span class="n">Chicken &amp; Shrimp</span><span class="lead"></span><span class="p hot">25</span></div>
+      </div>
+      <div class="group">
+        <h3 class="hot">Katsu</h3>
+        <div class="item"><span class="n">Chicken or Shrimp</span><span class="lead"></span><span class="p hot">20</span><span class="d">Crispy panko crust, white rice &amp; teriyaki sauce</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="group">
+        <h3 class="hot">Appetizers</h3>
+        <div class="item"><span class="n">Fried Gyoza</span><span class="lead"></span><span class="p hot">12</span><span class="d">Chicken &amp; lemongrass dumplings, fried crisp</span></div>
+        <div class="item"><span class="n">Kani Salad</span><span class="lead"></span><span class="p hot">10</span><span class="d">Kani krab tossed in spicy mayo</span></div>
+        <div class="item"><span class="n">Spring Rolls</span><span class="lead"></span><span class="p hot">9</span><span class="d">Vegetable, thin &amp; crispy</span></div>
+        <div class="item"><span class="n">Seaweed Salad</span><span class="lead"></span><span class="p hot">9</span></div>
+        <div class="item"><span class="n">Cucumber Salad</span><span class="lead"></span><span class="p hot">9</span><span class="d">Tuxedo sesame &amp; house dressing</span></div>
+        <div class="item"><span class="n">Egg Rolls</span><span class="lead"></span><span class="p hot">8</span><span class="d">Vegetable, in a crisp golden wrapper</span></div>
+      </div>
+      <div class="group">
+        <h3 class="hot">Kids <span class="aside">15 each</span></h3>
+        <div class="item"><span class="n">Hibachi</span><span class="lead"></span><span class="d">Chicken, shrimp or steak*, white or fried rice</span></div>
+        <div class="item"><span class="n">Poke Bowl*</span><span class="lead"></span><span class="d">Same choices as our poke bowl</span></div>
+        <div class="item"><span class="n">Katsu Nuggets</span><span class="lead"></span><span class="d">White or fried rice</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="group">
+        <h3 class="cold">Specialty Rolls</h3>
+        <div class="item"><span class="n">Fire &amp; Finn<i>*</i><b>Signature</b></span><span class="lead"></span><span class="p cold">20</span><span class="d">Tempura shrimp, cucumber &amp; eel. Topped with tuna, avocado, tempura flakes, eel sauce &amp; spicy mayo</span></div>
+        <div class="item"><span class="n">Spicy Lava Drops</span><span class="lead"></span><span class="p cold">19</span><span class="d">Spicy krab, cream cheese &amp; jalapeño, deep fried, eel sauce &amp; spicy mayo</span></div>
+        <div class="item"><span class="n">Sunburn</span><span class="lead"></span><span class="p cold">19</span><span class="d">Spicy krab &amp; cream cheese, topped with baked salmon, eel sauce &amp; spicy mayo</span></div>
+        <div class="item"><span class="n">Three Tides<i>*</i></span><span class="lead"></span><span class="p cold">18</span><span class="d">Tuna, salmon, yellowtail &amp; cucumber</span></div>
+        <div class="item"><span class="n">Typhoon</span><span class="lead"></span><span class="p cold">18</span><span class="d">Tempura shrimp &amp; cream cheese, topped with baked spicy krab</span></div>
+      </div>
+      <div class="group">
+        <h3 class="cold">Classic Rolls</h3>
+        <div class="mini">
+          <div class="item"><span class="n">Crazy</span><span class="lead"></span><span class="p cold">16</span></div>
+          <div class="item"><span class="n">Volcano</span><span class="lead"></span><span class="p cold">16</span></div>
+          <div class="item"><span class="n">Ocean<i>*</i></span><span class="lead"></span><span class="p cold">16</span></div>
+          <div class="item"><span class="n">Shrimp Tempura</span><span class="lead"></span><span class="p cold">15</span></div>
+          <div class="item"><span class="n">Spicy Tuna<i>*</i></span><span class="lead"></span><span class="p cold">15</span></div>
+          <div class="item"><span class="n">Spicy Salmon<i>*</i></span><span class="lead"></span><span class="p cold">15</span></div>
+          <div class="item"><span class="n">Japanese Bagel<i>*</i></span><span class="lead"></span><span class="p cold">15</span></div>
+          <div class="item"><span class="n">California</span><span class="lead"></span><span class="p cold">13</span></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="group">
+        <h3 class="cold" style="color:transparent">.</h3>
+        <div class="item"><span class="n">Tide Pool</span><span class="lead"></span><span class="p cold">18</span><span class="d">Spicy krab, cucumber &amp; cream cheese, topped with eel, avocado &amp; tempura flakes</span></div>
+        <div class="item"><span class="n">Kingfisher<i>*</i></span><span class="lead"></span><span class="p cold">18</span><span class="d">Spicy tuna, cucumber &amp; cream cheese, topped with avocado &amp; tempura yellowtail</span></div>
+        <div class="item"><span class="n">Riptide<i>*</i></span><span class="lead"></span><span class="p cold">17</span><span class="d">Spicy tuna, eel &amp; avocado, tempura flakes, eel sauce &amp; spicy mayo</span></div>
+        <div class="item"><span class="n">Golden Hour<i>*</i></span><span class="lead"></span><span class="p cold">17</span><span class="d">Yellowtail, avocado, jalapeño &amp; cilantro, topped with spicy mayo</span></div>
+        <div class="item"><span class="n">Tipsy Turtle<i>*</i></span><span class="lead"></span><span class="p cold">17</span><span class="d">Krab, avocado, cucumber &amp; cilantro in salmon, red onion &amp; lime</span></div>
+      </div>
+      <div class="group">
+        <h3 class="cold">Poke Bowl <span class="aside">19 · kids 15</span></h3>
+        <p class="lede">Build your own over sushi rice.</p>
+        <div class="steps">
+          <div class="step"><div class="num">1</div><div class="t">Pick a protein</div><p>Tuna*, spicy tuna*, salmon*, spicy salmon*, yellowtail*, eel or kani salad</p></div>
+          <div class="step"><div class="num">2</div><div class="t">Pile on toppings</div><p>Pineapple, avocado, cucumber, seaweed salad, edamame &amp; masago*. As many as you like.</p></div>
+          <div class="step"><div class="num">3</div><div class="t">Finish with a sauce</div><p>Eel sauce, honey soy, spicy mayo or ponzu</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="foot"><span>* Served raw or undercooked. Our kitchen uses shellfish, fish, sesame, soy, wheat, egg &amp; dairy. Please tell us about allergies.</span><span>fireandfinn.com</span></p>
 </section>
 
 <!-- 4. DRINKS -->

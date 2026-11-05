@@ -8,7 +8,7 @@ Fourteen 1920 × 1080 templates in one file, `slides.html`, rendered to PNG with
 msedge --headless=new --disable-gpu --hide-scrollbars --window-size=1920,1080 --screenshot=welcome.png "file:///C:/.../slides.html?slide=welcome"
 ```
 
-Slide names: `welcome`, `menu-hot`, `menu-cold`, `drinks`, `promo-hibachi`, `promo-poke`, `promo-drinks`, `hours`, `order-online`, `review-google`, `review-tripadvisor`, `review-yelp`, `location`, `lto`. Export every slide as PNG at 1920 × 1080; TVs play the PNGs in a loop (8 to 12 seconds per slide, menu boards longer).
+Slide names: `welcome`, `menu-hot`, `menu-cold`, `drinks`, `promo-hibachi`, `promo-poke`, `promo-drinks`, `hours`, `order-online`, `review-google`, `review-tripadvisor`, `review-yelp`, `location`, `lto`, plus `menu-full` (both menu boards on one screen, for a single-TV setup). Export every slide as PNG at 1920 × 1080; TVs play the PNGs in a loop (8 to 12 seconds per slide, menu boards longer).
 
 ## Nationally controlled (do not edit per location)
 
