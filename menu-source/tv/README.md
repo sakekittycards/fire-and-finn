@@ -39,7 +39,9 @@ Address, city, phone, hours, website, optional map image, QR file paths, and the
 
 No cropped or overflowing text, no hard image rectangles, no ghosting, prices and ingredients match the printed menu, raw markers on the right items, allergen line present on menu boards, QR scans to the right place.
 
-## Open verification items
+## Verified with the owner (2026-11-05)
 
-- "Gluten-free hibachi available" and the raw (*) markers are copied from the printed v8 menu; the kitchen should confirm them before the boards go live.
-- Drinks list is the current Toast beverage and alcohol list. Tessake is a 6% canned sparkling sake (labelled on the board). "Senorita" is unconfirmed: the name belongs to both a bottled 12.5% margarita and a THC-infused canned margarita line; the owner must confirm which is stocked before it stays on the board, and if it is the THC product it should come off the board entirely.
+- Gluten-free hibachi: confirmed; it means gluten-free soy sauce on request.
+- Raw (*) markers on the boards match the kitchen's list.
+- Tessake is a 6% canned sparkling sake and is labelled on the board. "Senorita" in the cooler is a THC-infused canned margarita and is deliberately left off every screen.
+- Still open: QR links (order, Google, Tripadvisor, Yelp) and a clean Sanibel map asset.
