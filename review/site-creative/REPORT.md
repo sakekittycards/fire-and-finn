@@ -103,8 +103,8 @@ designer would leave it. What changed, and what I judged fine as it was.
     beneath the photograph (positioned children paint over an element's own outline), so the ring is now drawn by the
     gradient overlay above the picture; in the scrolling category row the ring was clipped by the row's overflow, so it is
     inset there. Both verified by pressing Tab in headless Edge, not by scripting focus.
-20. **Daylight.** The meta grey (`--dim`, used for the status line, notes, category links at rest) is a step brighter, 7.3:1
-    on the ground instead of 6.5:1. The desktop lead over the photographs has a soft dark shadow.
+20. **Daylight.** The meta grey (`--dim`, used for the status line, notes, category links at rest) is a step brighter, 6.6:1
+    on the ground instead of 6.1:1. The desktop lead over the photographs has a soft dark shadow.
 21. **Entrance a third of a second quicker.** Pictures settle in 1.2s instead of 1.5s and the words follow sooner; the order
     is the same. The medium weight of Jost, used on the first screen for the captions and status, is now preloaded like the
     other two (10KB), so it no longer swaps in late.
@@ -200,6 +200,62 @@ Overflow after this pass: 0 at all three sizes; page heights unchanged. Menu tex
     source is 1024px wide, and upscaling would add bytes without detail, so 3x phones still take the 1024px file,
     which is the largest there is. First screen at 390: 418 KB at 2x, 583 KB at 3x (was 638).
 
+## Fifth pass: the page that answers a search for the old name
+
+`fireandfinn.com/island-panda/` (a folder with its own `index.html`, so the URL has no extension; a real page, no redirect).
+Main (4d8ea80) merged first. One commit.
+
+38. **One screen of story, one of proof, in the site's own system.** Same header, footer and bottom bar as the home page
+    (links go to `/#menu`, `/#rolls` and so on), same grounds and type. The headline is the door poster's three lines:
+    "Island Panda" in the dim grey, "is now" small, "Fire & Finn." in the ink. Beside it the hero idea in one frame: the
+    hibachi plate left, the Fire & Finn roll right, a dark seam between them and the fire-to-sea hairline along the
+    bottom. Below the fold three short columns, What changed (hot), What did not (cold), Where to order (hot).
+39. **Every claim is one the project confirms.** Same kitchen and same address are the poster's approved line; the phone
+    is the same number in both projects' notes; the old site's forward is recorded (island-panda.com has redirected
+    to fireandfinn.com since 2026-11-07). The hours are stated ("Open daily, 11am to 8pm") but **not called the
+    same**: the Island Panda notes record Sun to Thu 11am to 7pm and Fri to Sat 11am to 8pm, so the hours are longer
+    now, and the brief's "same hours" would have been false. Nothing names people, owners or a family.
+40. **The renamed rolls are named, the old names are not.** The menu notes record that seven rolls were renamed for the
+    printed menu (Three Tides, Typhoon, Riptide, Golden Hour, Tide Pool, Kingfisher in the specialty rolls; Crazy in the
+    classic rolls) but not what they were called before, so the page lists the new names and links to the menu rather
+    than guess at a mapping. The Tipsy Turtle is quoted exactly as printed, name, price and description.
+41. **Findable.** Title "Island Panda is now Fire & Finn", a description that opens with the same sentence, a canonical
+    to `/island-panda/`, Open Graph and Twitter tags on the current share card, and JSON-LD: a WebPage about the
+    Restaurant with `alternateName` "Island Panda", address, phone, hours and `hasMenu`. The JSON was parsed. The URL
+    is in `sitemap.xml` (which `robots.txt` already references); the home page's lastmod moved to today.
+42. **Linked from the home page.** Both "Formerly Island Panda" lines (hero meta row, Visit address) are now links to
+    the page, in the same dim grey at the same size, underlined in the hairline tone, white on hover.
+43. **Order buttons are wired.** The page loads `app.js`, so its four Order buttons (header, story, Where to order,
+    bottom bar) take the Toast URL from the one `ORDER_URL` and the open or closed state from the same clock; checked
+    with a fixed 1pm Eastern clock. No console errors at either size; overflow 0 at 390 and 1440; page heights 2,554
+    and 1,795px. Cache-bust `?v=12` on all three pages, since styles.css grew by the page's rules.
+
+Screenshots: `island-panda-390x844.jpg`, `island-panda-1440x900.jpg` and the `-full` pair beside the other after-shots.
+(In the full-page captures the fixed header and bottom bar sit at the scroll position of the capture, not at the top; that
+is the screenshot, not the page.)
+
+### Board fixes on the Island Panda page
+
+44. **Hours are good news, filed under What changed.** Island Panda closed at 7pm Sunday to Thursday; the page had the
+    hours under What did not. Now: "Open later. 11am to 8pm every day, Sundays through Thursdays too."
+45. **The full rename list, from the Toast notes.** Nine lines, one per roll, old name in the dim grey and the new name in
+    ink, no prices, taken only from the pairs the Toast rebrand record holds: Island Panda, Captiva Sunset, Hurricane,
+    Pelican, Periwinkle, RIP Tipsy Turtle, Sand Dollar, Sanibel Causeway and Lighthouse became Fire & Finn, Golden Hour,
+    Typhoon, Kingfisher, Riptide, Tipsy Turtle, Tide Pool, Three Tides and Crazy (new names as the printed menu spells
+    them). Dropped items are not listed; this is a bridge, not a comparison.
+46. **The three h2s are in ink.** Fire and sea mean hot food and cold food on the home page; on this page they would only
+    have coloured headings.
+47. **One brand line.** "Grilled hot and rolled cold" stays in the lead; the copy of it in The name bullet and the footer
+    tagline on this page are cut.
+48. **Where to order says both channels plainly**: "Order online, or call (239) 579-0783. Order ahead for pickup." No
+    readiness promise, since nobody has checked Toast's pickup quote time; no dine-in line, since the notes do not
+    confirm seating.
+49. **Contrast comments corrected.** `--muted` is 11.7:1 and `--dim` 6.6:1 on #0a0a0b (the comments said 12:1 and 7.3:1,
+    and the pass-three note said the old `--dim` was 6.5:1; it was 6.1:1). The figures in this report are corrected too.
+
+Cache-bust `?v=13` on all three pages. Overflow 0 at 390 and 1440; no console errors; heights 2,673 and 1,952px. The two
+screenshots and the full-page pair are retaken. Menu text identical.
+
 ## Considered and rejected
 
 - A hard vertical seam between the two hero photographs: reads as a before/after slider. Soft masks into a dark valley instead.
@@ -242,6 +298,9 @@ Overflow after this pass: 0 at all three sizes; page heights unchanged. Menu tex
 8. **"Formerly Island Panda"** is on the page twice (hero meta row, Visit address), in the meta description and in the
    JSON-LD `alternateName`. `sameAs` with the Google listing is still missing: it needs the public Maps URL of the
    Business Profile (share link from the listing), which is not in the project or its notes.
+10. **The Island Panda page says nothing about hours being the same**, because the notes say they changed (weekdays
+    closed at 7pm before). If the owner wants the old names of the seven renamed rolls on that page, they have to come
+    from the owner or the old printed menu; nothing in the project records them.
 9. **The share card** is cached by Facebook, iMessage and Slack per URL; the `?v=2` on `og:image` makes them refetch, but
    a card already posted keeps the old picture. The Facebook Sharing Debugger can force a rescrape once v11 is live.
 
@@ -254,6 +313,7 @@ Overflow after this pass: 0 at all three sizes; page heights unchanged. Menu tex
 - `404.html`: restyled; `?v=11`.
 - `assets/og.jpg`, `assets/og.png`: the share card, rebuilt from `review/site-creative/og-card.html` with `render-og.py`.
 - `assets/food/fire-and-finn-roll-1200.jpg`: 1200px roll variant for 3x phones.
+- `island-panda/index.html`: the page for the old name; its rules are the last block of `styles.css`. `sitemap.xml` lists it.
 - `assets/logo-compact.svg`: same drawing, 24 KB instead of 87 (svgo, one-decimal precision, zero-pixel diff).
 - `assets/food/hero-hibachi-800.jpg`, `fire-and-finn-roll-800.jpg`: 800px hero variants for 2x phones and 1x desktops.
 - `README.md`: file list updated.
