@@ -416,3 +416,46 @@ footer::before { content: ""; position: absolute; left: 0; right: 0; top: 0; hei
 .err h1 .hot { color: var(--fire); }
 .err h1 .cold { color: var(--sea); }
 .err .lead { max-width: 26em; margin: 0 0 26px; color: var(--muted); font-size: 1.1rem; }
+
+/* ---------- /island-panda/: one screen of story, one of proof, in the site's own system ---------- */
+.story { position: relative; padding: calc(var(--header) + 40px) 0 48px; }
+.story-grid { display: grid; gap: 36px; align-items: center; }
+.story h1 { margin: 0 0 20px; color: var(--ink); font: 400 clamp(2.5rem, 7.5vw, 4.8rem)/1.02 var(--display); letter-spacing: -.01em; }
+.story h1 span { display: block; }   /* three lines, like the door poster: the old name, the turn, the new name */
+.story h1 .was { color: var(--dim); }
+.story h1 .now { font-size: .62em; line-height: 1.5; color: var(--muted); }
+.story h1 .brand-line { white-space: nowrap; }
+.story .lead { max-width: 28em; margin: 0 0 26px; color: var(--muted); font-size: clamp(1.05rem, 1.3vw, 1.2rem); text-wrap: pretty; }
+.story .lead b { color: var(--ink); font-weight: 500; }
+.story .cta .btn { flex: 1 1 100%; }
+@media (min-width: 560px) { .story .cta .btn { flex: 0 1 auto; min-width: 190px; } }
+/* the hero idea in one frame: hot left, cold right, the seam between them */
+.story-photos { position: relative; display: grid; grid-template-columns: 1fr 1fr; border-radius: 4px; overflow: hidden; aspect-ratio: 4 / 3; background: #0f0d0c; }
+.story-photos img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.story-photos .hot-img { object-position: 30% 55%; }
+.story-photos .cold-img { object-position: 70% 50%; }
+.story-photos::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgba(10, 10, 11, 0) 32%, rgba(10, 10, 11, .88) 50%, rgba(10, 10, 11, 0) 68%); }
+.story-photos::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; z-index: 1; background: linear-gradient(90deg, var(--fire) 0 50%, var(--sea) 50% 100%); opacity: .85; }
+@media (min-width: 900px) {
+  .story { min-height: 100svh; display: grid; align-items: center; padding-top: calc(var(--header) + 48px); }
+  .story-grid { grid-template-columns: 1.05fr 1fr; gap: 56px; }
+  .story-photos { aspect-ratio: 5 / 4; }
+}
+.proof { padding: 56px 0 8px; border-top: 1px solid var(--line); }
+.proof-grid { display: grid; gap: 40px; }
+@media (min-width: 760px) { .proof { padding-top: 72px; } .proof-grid { grid-template-columns: repeat(3, 1fr); gap: 40px 48px; } }
+.proof h2 { margin: 0 0 16px; color: var(--accent); font: 400 1.5rem/1.2 var(--display); }
+.proof ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; color: var(--muted); }
+.proof li b { color: var(--ink); font-weight: 500; }
+.proof li a { text-underline-offset: 4px; text-decoration-color: var(--line-strong); transition: color .2s var(--ease), text-decoration-color .2s var(--ease); }
+.proof li a:hover { color: var(--ink); text-decoration-color: currentColor; }
+.proof .quote { margin: 10px 0 0; padding-left: 14px; border-left: 2px solid var(--accent-line); }
+.proof .q-name { color: var(--ink); font-weight: 500; }
+.proof .q-price { color: var(--dim); margin-left: 6px; }
+.proof .cta { margin: 16px 0 0; }
+.proof .cta .btn { flex: 1 1 100%; }
+@media (min-width: 560px) { .proof .cta .btn { flex: 0 1 auto; } }
+.proof .note { margin: 18px 0 0; color: var(--dim); font-size: .95rem; }
+/* the two "Formerly Island Panda" lines on the home page link to it, in the same muted voice */
+.status a, .visit .formerly a { text-underline-offset: 4px; text-decoration-color: var(--line-strong); transition: color .2s var(--ease), text-decoration-color .2s var(--ease); }
+.status a:hover, .visit .formerly a:hover { color: var(--ink); text-decoration-color: currentColor; }
