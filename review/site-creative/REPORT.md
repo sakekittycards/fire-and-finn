@@ -60,6 +60,23 @@ of the menu, so the two-temperature idea is explained without a section of copy.
 
 11. Cache-busting bumped to `?v=8` on the stylesheet and script in `index.html` and `404.html`.
 
+## Second pass (after Nick's "keep going")
+
+12. **Responsive photographs.** Each of the six photos now has 640px and, where the original is larger, 1024px variants
+    (`assets/food/*-640.jpg`, `*-1024.jpg`), wired with `srcset`/`sizes` on every `<img>` and on the two hero preloads.
+    A 1x phone now downloads about 140KB and 56KB for the two hero images instead of 294KB and 184KB; the signature-roll
+    thumbnail loads the 640 file instead of the 1536 one. Retina phones still receive the full-size files, which is the
+    correct choice for their pixel density. Verified by reading `currentSrc` at 390@1x, 390@3x, 768@2x, 1440@1x, 1440@2x.
+13. **Hero hover interplay.** Hovering a side brightens its photograph slightly and dims the other line of the headline,
+    so "Grilled hot." and "Rolled cold." answer the side you are over. A first version lightened the dark mask instead and
+    exposed a vertical edge at the seam (the slider look I had rejected), so it was replaced with the photo brighten.
+14. **The seam inside the menu.** A one-pixel line that runs orange into blue marks where the menu turns from the hot
+    categories to the cold ones, the same device as the footer's rule.
+15. **Accessible names.** The two hero links now have short `aria-label`s ("Hibachi and appetizers, the hot side of the
+    menu") instead of announcing a long photo description plus the label. Buttons press down one pixel on click.
+
+Overflow metrics re-run after this pass: still 0 at all three sizes; menu text still identical.
+
 ## Considered and rejected
 
 - A hard vertical seam between the two hero photographs: reads as a before/after slider. Soft masks into a dark valley instead.
@@ -103,7 +120,8 @@ of the menu, so the two-temperature idea is explained without a section of copy.
 
 ## Files
 
-- `index.html`: new shell; menu groups moved into `.g-side` / `.g-main` columns with their original markup inside.
+- `index.html`: new shell; menu groups moved into `.g-side` / `.g-main` columns with their original markup inside; `srcset` on every photograph.
+- `assets/food/*-640.jpg`, `*-1024.jpg`: resized variants of the six photographs (same pictures, smaller).
 - `styles.css`: rewritten.
 - `app.js`: settings block untouched; reveal logic removed; category-row indicator added; embers now live in the hot half.
 - `404.html`: restyled; `?v=8`.
