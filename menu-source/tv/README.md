@@ -1,6 +1,6 @@
 # Fire & Finn digital signage system (v5)
 
-Seventeen 1920 × 1080 templates in one file, `slides.html`, rendered to PNG with headless Edge. The brand lives in the template; a location lives in `location.js`.
+Eighteen 1920 × 1080 templates in one file, `slides.html`, rendered to PNG with headless Edge. The brand lives in the template; a location lives in `location.js`.
 
 ## Render
 
@@ -8,7 +8,7 @@ Seventeen 1920 × 1080 templates in one file, `slides.html`, rendered to PNG wit
 msedge --headless=new --disable-gpu --hide-scrollbars --virtual-time-budget=4000 --window-size=1920,1080 --screenshot=welcome.png "file:///C:/.../slides.html?slide=welcome"
 ```
 
-Slide names: `welcome`, `menu-hot-1`, `menu-hot-2`, `menu-cold-1`, `menu-cold-2`, `menu-full`, `drinks`, `promo-hibachi`, `promo-poke`, `promo-drinks`, `hours`, `order-online`, `review-google`, `review-tripadvisor`, `review-yelp`, `location`, `lto`. Export every slide as a PNG at 1920 × 1080; the TVs play the PNGs in a loop.
+Slide names: `welcome`, `transition`, `menu-hot-1`, `menu-hot-2`, `menu-cold-1`, `menu-cold-2`, `menu-full`, `drinks`, `promo-hibachi`, `promo-poke`, `promo-drinks`, `hours`, `order-online`, `review-google`, `review-tripadvisor`, `review-yelp`, `location`, `lto`. Export every slide as a PNG at 1920 × 1080; the TVs play the PNGs in a loop.
 
 ## The system in one paragraph
 
@@ -21,6 +21,7 @@ Three silhouettes and one signature. **Boards** are dark and meant to be read fo
 | # | File | Template |
 |---|---|---|
 | 01 | `01-welcome` | `welcome` |
+| 01b | `01b-island-panda-is-now` | `transition` (first weeks only) |
 | 02 | `02-hot-hibachi-kids` | `menu-hot-1` |
 | 03 | `03-cold-specialty-rolls` | `menu-cold-1` |
 | 04 | `04-hibachi-photo` | `promo-hibachi` |
@@ -35,6 +36,15 @@ Three silhouettes and one signature. **Boards** are dark and meant to be read fo
 Distance boards hold 15 to 20 seconds each, everything else 8 to 10. `order-online`, the three review slides and `lto` are built but held back: they return only once the QR links are verified (then one review slide per cycle, rotating; never two in a row) and once a real offer exists. Deliver the loop as `Send now v5` (plain) and `Send now v5 - TV tuned` beside the versioned folders, each with a zip, so the player gets numbered PNGs and nothing to manage.
 
 **Counter TV.** A screen people stand near runs `menu-full` alone, 40 seconds or more. It ships in its own `Counter TV` folder, plain and tuned, and never goes in the dining room.
+
+## Transition pieces (rename, first weeks only)
+
+The permit for the permanent sign takes weeks, and regulars who search Island Panda land on the new site but see nothing at the door. Two pieces close that gap, both saying exactly one thing: **Island Panda is now Fire & Finn. Same kitchen. Same address. New name.** No other claim: the business and the address are the same, nothing names people, no QR until links are verified.
+
+- **Door and window poster**: `menu-source/print/transition-poster.html`, exported as `transition-poster-11x17.pdf` and `transition-poster-8.5x11.pdf` (headline, logo, line, address, hours, web) and `transition-poster-big-11x17.pdf` / `transition-poster-big-8.5x11.pdf` (the parking-lot version: headline and logo only). Dark ground, fire | sea baseline, logo untouched. Print on a **laser printer or at a print shop, not inkjet**: inkjet cannot lay down this much black evenly and the fire and sea go muddy. Re-export with `msedge --headless=new --disable-gpu --no-pdf-header-footer --virtual-time-budget=4000 --print-to-pdf=out.pdf "transition-poster.html?size=tabloid"` (`size=letter`, add `&big=1` for the parking-lot version). Hours and address come from `location.js`.
+- **TV slide `transition`**: the same message as the `01b-island-panda-is-now` file in the Send now folders, right after `01-welcome`.
+
+**Retire both the day the permanent sign goes up.** Take the poster down, delete `01b-island-panda-is-now` from the player, and leave `transition` in the template for the next location that renames.
 
 ## Nationally controlled (do not edit per location)
 
@@ -88,4 +98,4 @@ ffmpeg -i welcome.png -vf "eq=contrast=1.10:brightness=-0.025,curves=r='0/0 0.5/
 
 ## History
 
-`slides-v1.html` is the first pass, kept for reference. v2 added the location config and the franchise rules. v3 (2026-11-07) replaced the wave strip and twin glows with the baseline, split the utility slides into dark and cream halves, removed eyebrow labels and bullet lists, and rebuilt `menu-full` so nothing drops under 22 px. v4 (2026-11-08) was the distance-and-TV pass: the baseline grew from 12 to 48 px so it survives overscan, the footer and boards moved up with it, prices went to ink, the hot board's type grew to fill its room, the cream pane dropped to `#E6E2D9`, grain to 4 %, the welcome slide became typographic (it had duplicated the hibachi photo), every appetite slide was cut to one idea, the hours slide lost its web line, the three review slides got three different reasons and a one-per-cycle loop rule, and a TV-tuned export joined the deliverable. v5 (2026-11-08), on the advisory board's ruling that the boards were near-field: the two boards became four distance boards with names and prices at 44 px and descriptions demoted to 28 px, `menu-full` was kept and labelled as the close-range single-TV board, and the welcome slide adopted the website's line "Grilled hot. Rolled cold." The v5 export corrected the distance claim (44 px is a 7 to 8 ft size, not 10 to 15) and fixed the dining-room loop at eleven numbered slides with the QR and offer slides held back.
+`slides-v1.html` is the first pass, kept for reference. v2 added the location config and the franchise rules. v3 (2026-11-07) replaced the wave strip and twin glows with the baseline, split the utility slides into dark and cream halves, removed eyebrow labels and bullet lists, and rebuilt `menu-full` so nothing drops under 22 px. v4 (2026-11-08) was the distance-and-TV pass: the baseline grew from 12 to 48 px so it survives overscan, the footer and boards moved up with it, prices went to ink, the hot board's type grew to fill its room, the cream pane dropped to `#E6E2D9`, grain to 4 %, the welcome slide became typographic (it had duplicated the hibachi photo), every appetite slide was cut to one idea, the hours slide lost its web line, the three review slides got three different reasons and a one-per-cycle loop rule, and a TV-tuned export joined the deliverable. v5 (2026-11-08), on the advisory board's ruling that the boards were near-field: the two boards became four distance boards with names and prices at 44 px and descriptions demoted to 28 px, `menu-full` was kept and labelled as the close-range single-TV board, and the welcome slide adopted the website's line "Grilled hot. Rolled cold." The v5 export corrected the distance claim (44 px is a 7 to 8 ft size, not 10 to 15) and fixed the dining-room loop at eleven numbered slides with the QR and offer slides held back. The same day added the transition pieces: a door and window poster in `menu-source/print/` (11 × 17 and 8.5 × 11, plus a headline-only parking-lot version) and the `transition` slide as 01b in the loop, both to be retired when the permanent sign goes up.

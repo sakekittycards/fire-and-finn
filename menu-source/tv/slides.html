@@ -15,6 +15,8 @@
               tables). 10 ft would need 58 px, 15 ft 87 px, each meaning fewer items per board. menu-full is the
               close-range single-TV board; drinks is names only at 40 px.
     appetite  dark, photo on the right, one big sentence (welcome, promo-*, lto)
+    transition typographic brand slide for the first weeks after the rename (01b in the loop); retire it the day
+              the permanent sign goes up
     utility   dark left half, cream pane on the right half (hours, order-online, review-*, location)
     baseline  the 48 px band on the bottom edge of every slide: fire on hot slides, sea on cold
               slides, fire|sea split at x 960 on brand and utility slides. It lights the slide from below.
@@ -165,6 +167,12 @@
   .drinks li { list-style: none; font: 500 40px/1.75 "Jost"; color: var(--ink); }
   .drinks .na { display: block; font: 400 22px/1 "Jost"; letter-spacing: .1em; text-transform: uppercase; color: var(--sea); margin: -14px 0 14px; }
 
+  /* transition: the rename, said once, no claim beyond kitchen and address */
+  .transition h1 { font-size: 150px; }
+  .transition .line { margin-top: 44px; font: 600 48px/1.2 "Jost"; color: var(--ink); }
+  .transition .meta { margin-top: 40px; font: 400 36px/1.5 "Jost"; color: var(--muted); }
+  .transition .meta strong { color: var(--ink); font-weight: 500; }
+
   /* appetite */
   .lto .price { margin-top: 24px; font: 600 72px/1 "Jost"; }
   .lto .fine { margin-top: 34px; font: 400 26px/1.4 "Jost"; color: var(--dim); max-width: 24em; }
@@ -181,6 +189,18 @@
   <div class="copy" style="width:1780px">
     <h1 style="font-size:220px;line-height:1"><span class="hot">Grilled hot.</span><br><span class="cold">Rolled cold.</span></h1>
     <p class="tag" style="font-size:36px">Hibachi <span>•</span> Sushi <span>•</span> Poke</p>
+  </div>
+  <div class="base"></div>
+</section>
+
+<!-- 1b. TRANSITION (first weeks after the rename; the 01b slot in the loop; retire with the permanent sign) -->
+<section class="slide transition" id="transition">
+  <div class="glow"></div><div class="grain"></div>
+  <img class="logo" src="../../assets/logo-compact.svg" alt="">
+  <div class="copy" style="width:1780px">
+    <h1>Island Panda is now<br>Fire &amp; Finn.</h1>
+    <p class="line">Same kitchen. Same address. New name.</p>
+    <p class="meta"><strong data-loc="address"></strong>, <span data-loc="city"></span><br>Open daily <strong data-loc="hours"></strong><br><strong data-loc="web"></strong></p>
   </div>
   <div class="base"></div>
 </section>
