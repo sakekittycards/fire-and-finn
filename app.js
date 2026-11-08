@@ -211,4 +211,9 @@ const HOURS = { open: 11, close: 20 };
       social.appendChild(a);
     });
   }
+
+  // Once Google has drawn the map, the fallback panel sits beneath it; take it out of the tab order so focus never lands on something hidden.
+  const mapFrame = document.querySelector(".map iframe");
+  const mapFallback = document.querySelector(".map-fallback");
+  if (mapFrame && mapFallback) mapFrame.addEventListener("load", () => { mapFallback.setAttribute("inert", ""); mapFallback.setAttribute("aria-hidden", "true"); });
 })();

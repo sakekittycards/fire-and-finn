@@ -125,6 +125,28 @@ Judged fine as is, after looking hard:
 Overflow metrics after this pass: 0 at all three sizes; page heights 9,055 / 7,111 / 6,631px (were 9,494 / 8,545 / 6,631).
 Menu text identical: 88 of 88 items, headings, notes and the advisory.
 
+## Board changes (after Nick's advisors read the third pass)
+
+Conditional ship: three copy changes and two checks, one commit on top of the third pass.
+
+23. **"Hibachi & starters"** is the hot side's hero label (was "appetizers"; three of the six appetizers are salads).
+    The menu section header stays "Appetizers" as printed.
+24. **The menu intro** now reads "the cold side rolls sushi and builds bowls." (was "rolls and builds to order",
+    which sounded like a claim). Same sense, nothing promised.
+25. **"Formerly Island Panda"** twice, so a returning customer learns in one glance that it is the same kitchen: in the
+    hero meta row after the address, at the same muted size, and under the address in Visit as a dim line at the
+    label size. Nowhere else; title, description and structured data unchanged per the board's "no other copy changes".
+26. **Tab pass at 1440**, pressing Tab until focus wrapped: 34 stops. Skip link, brand, the four nav links, header Order;
+    hero hot side, hero cold side, hero Order and See the menu; menu PDF and Order; the six category anchors; Order band
+    Order and Call; Visit address, phone, Get Directions, Call Us, the map; footer links, address and phone. Nothing
+    trapped, nothing skipped (the menu itself has no interactive elements). One fix came out of it: the map's fallback
+    link sat beneath the loaded iframe and took focus invisibly; the fallback is now made inert when the iframe loads.
+27. **The 390 map**, shot after the embed painted: road names, the house number, the pin, Google's controls and the
+    attribution all read through the dark filter, so the filter stays.
+28. Cache-bust `?v=11` on both pages, since styles and app.js changed.
+
+Overflow after this pass: 0 at all three sizes; page heights 9,140 / 7,140 / 6,656px. Menu text identical: 88 of 88 items and the advisory.
+
 ## Considered and rejected
 
 - A hard vertical seam between the two hero photographs: reads as a before/after slider. Soft masks into a dark valley instead.
@@ -154,20 +176,18 @@ Menu text identical: 88 of 88 items, headings, notes and the advisory.
 1. **Hero photographs are the AI stand-ins.** They now carry the whole first screen. When real photography arrives, the hot
    slot wants a portrait-ish plate shot with dark surroundings on its right; the cold slot wants a landscape roll or
    plate with dark surroundings on its left. Both are preloaded; real exports should be around 1200px and under 150KB each.
-2. **"Hibachi & appetizers" as the hot side's label.** Three of the six appetizers are salads. "Hibachi & starters" or
-   just "Hibachi" would also work; the owner should pick.
-3. **"the cold side rolls and builds to order"** in the menu intro. Rolled to order was already on the site; "builds to
-   order" assumes poke bowls are assembled when ordered. Confirm or cut to "the cold side rolls and builds."
-4. **The Spicy Lava Drops caption** on the specialty-rolls photograph names the dish in the picture. The file was generated
+2. **The Spicy Lava Drops caption** on the specialty-rolls photograph names the dish in the picture. The file was generated
    as that dish; the owner should agree it looks like theirs.
-5. **The map** loads from Google when online and is shown dark through a CSS filter; check it on a real phone, and if Google changes the embed's palette the filter may need retuning.
-6. **Hours in Visit are written out** ("Every day, 11am to 8pm"); the live open/closed line is in the hero and the Order band.
-7. **Window heights under about 640px on desktop** keep the hero at 640px, so a very short laptop window scrolls slightly to
+3. **The map** loads from Google when online and is shown dark through a CSS filter; check it on a real phone, and if Google changes the embed's palette the filter may need retuning.
+4. **Hours in Visit are written out** ("Every day, 11am to 8pm"); the live open/closed line is in the hero and the Order band.
+5. **Window heights under about 640px on desktop** keep the hero at 640px, so a very short laptop window scrolls slightly to
    see the side labels. Acceptable, but worth a look on a 13-inch screen.
-9. **No Order button inside the phone hero.** The bottom bar is the order button on phones; if the owner wants one in the
+6. **The Toast link opens in a new tab**, as before.
+7. **No Order button inside the phone hero.** The bottom bar is the order button on phones; if the owner wants one in the
    hero as well, delete the `@media (max-width: 759px) { .hero .cta { display: none; } }` rule and the cold picture drops
    below the fold again on an 844px-tall phone.
-8. **The Toast link opens in a new tab**, as before.
+8. **"Formerly Island Panda"** is on the page twice (hero meta row, Visit address) and nowhere machine-readable. If search
+   should also connect the two names, `alternateName` in the JSON-LD is the place; the board asked for no other copy changes.
 
 ## Files
 
@@ -175,5 +195,5 @@ Menu text identical: 88 of 88 items, headings, notes and the advisory.
 - `assets/food/*-640.jpg`, `*-1024.jpg`: resized variants of the six photographs (same pictures, smaller).
 - `styles.css`: rewritten.
 - `app.js`: settings block untouched; reveal logic removed; category-row indicator added; embers now live in the hot half.
-- `404.html`: restyled; `?v=10`.
+- `404.html`: restyled; `?v=11`.
 - `README.md`: file list updated.
