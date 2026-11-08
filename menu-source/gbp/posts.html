@@ -10,8 +10,10 @@
   feed's crop and rounded corners never touch it; only photographs and the baseline reach the edges.
   One image per ?post=name:
     rename   Island Panda is now Fire & Finn. Same kitchen. Same address. New name.   (typographic)
-    hero     Grilled hot. Rolled cold. over the split hero: hot plate left, roll right  (two photographs)
-    order    Order ahead for pickup. Skip the line, it's ready when you get here.      (roll photograph)
+    hero     Grilled hot. Rolled cold.: the 4:3 version of the site's share card (review/site-creative/og-card.html).
+             Hot plate left, roll right, each faded fully into the ground before the centre, the line in Tenor Sans
+             in the dark gap between them, exactly as the site and the card set it.
+    order    Order ahead for pickup. fireandfinn.com or the phone.                      (roll photograph)
   The order link lives in the post's button, never in the image. No QR codes. Post text is in posts.md.
   Render: msedge --headless=new --disable-gpu --hide-scrollbars --virtual-time-budget=4000 --window-size=1200,900
           --screenshot=rename.png "file:///.../posts.html?post=rename"
@@ -20,6 +22,7 @@
   @font-face { font-family: "Jost"; font-weight: 400; src: url("../../assets/fonts/Jost-400.woff2") format("woff2"); }
   @font-face { font-family: "Jost"; font-weight: 500; src: url("../../assets/fonts/Jost-500.woff2") format("woff2"); }
   @font-face { font-family: "Jost"; font-weight: 600; src: url("../../assets/fonts/Jost-600.woff2") format("woff2"); }
+  @font-face { font-family: "Tenor Sans"; font-weight: 400; src: url("../../assets/fonts/TenorSans-Regular.woff2") format("woff2"); }
   :root { --bg:#0B0C0E; --ink:#F2F0EB; --muted:#CFCAC2; --dim:#A39D95; --fire:#F07840; --sea:#62C6EC; --sx:120px; --sy:90px; --base:36px; }
   * { box-sizing: border-box; margin: 0; }
   html, body { width: 1200px; height: 900px; overflow: hidden; background: var(--bg); color: var(--ink); font-family: "Jost", sans-serif; }
@@ -36,12 +39,19 @@
   .meta { margin-top: 30px; font: 400 30px/1.45 "Jost"; color: var(--muted); }
   .meta b { font-weight: 500; color: var(--ink); }
 
-  /* hero: two photographs, one seam, the line over a dark scrim */
-  .hero .ph { position: absolute; top: 0; width: 600px; height: 900px; object-fit: cover; }
-  .hero .ph.l { left: 0; object-position: 55% 30%; } .hero .ph.r { left: 600px; object-position: 45% 30%; }
-  .hero .scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,12,14,.66) 0%, rgba(11,12,14,.14) 30%, rgba(11,12,14,.30) 52%, rgba(11,12,14,.90) 78%, rgba(11,12,14,.96) 100%); }
-  .hero .copy { justify-content: flex-end; top: auto; bottom: calc(var(--sy) + 6px); }
-  .hero h1 { font-size: 104px; }
+  /* hero: the share card at 4:3. Each photograph is fully dark before the centre, so the line sits in real darkness */
+  .hero .half { position: absolute; top: 0; bottom: 0; width: 41%; overflow: hidden; }
+  .hero .half img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero .half::after { content: ""; position: absolute; inset: 0; }
+  .hero .h-hot { left: 0; } .hero .h-hot img { object-position: 16% 55%; }
+  .hero .h-hot::after { background: linear-gradient(90deg, rgba(11,12,14,.1) 0, rgba(11,12,14,0) 22%, rgba(11,12,14,.45) 46%, rgba(11,12,14,.9) 66%, #0B0C0E 80%),
+                                     linear-gradient(180deg, rgba(11,12,14,.6) 0, rgba(11,12,14,0) 30%, rgba(11,12,14,0) 70%, rgba(11,12,14,.55) 100%); }
+  .hero .h-cold { right: 0; } .hero .h-cold img { object-position: 100% 50%; }
+  .hero .h-cold::after { background: linear-gradient(270deg, rgba(11,12,14,.1) 0, rgba(11,12,14,0) 22%, rgba(11,12,14,.45) 46%, rgba(11,12,14,.9) 66%, #0B0C0E 80%),
+                                      linear-gradient(180deg, rgba(11,12,14,.5) 0, rgba(11,12,14,0) 30%, rgba(11,12,14,0) 70%, rgba(11,12,14,.55) 100%); }
+  .hero .seam { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); text-align: center; white-space: nowrap; }
+  .hero .seam h1 { font: 400 92px/.96 "Tenor Sans", serif; letter-spacing: -.01em; text-shadow: 0 2px 28px rgba(11,12,14,.9); }
+  .hero .seam h1 span { display: block; }
 
   /* order: dark left, the roll on the right feathered into the ground */
   .order .ph { position: absolute; right: 0; top: 0; width: 600px; height: 900px; object-fit: cover; object-position: 40% 50%;
@@ -65,13 +75,10 @@
 </section>
 
 <section class="post hero" id="hero">
-  <img class="ph l" src="../../assets/food/hero-hibachi.jpg" alt="">
-  <img class="ph r" src="../../assets/food/fire-and-finn-roll.jpg" alt="">
-  <div class="scrim"></div>
+  <div class="half h-hot"><img src="../../assets/food/hero-hibachi.jpg" alt=""></div>
+  <div class="half h-cold"><img src="../../assets/food/fire-and-finn-roll.jpg" alt=""></div>
   <img class="logo" src="../../assets/logo-compact.svg" alt="">
-  <div class="copy">
-    <h1><span class="hot">Grilled hot.</span><br><span class="cold">Rolled cold.</span></h1>
-  </div>
+  <div class="seam"><h1><span class="hot">Grilled hot.</span><span class="cold">Rolled cold.</span></h1></div>
   <div class="base"></div>
 </section>
 
@@ -81,7 +88,7 @@
   <img class="logo" src="../../assets/logo-compact.svg" alt="">
   <div class="copy">
     <h1>Order ahead for pickup.</h1>
-    <p class="sub">Skip the line,<br>it’s ready when you get here.</p>
+    <p class="sub"><span class="cold" style="font-weight:600">fireandfinn.com</span><br>or call <span style="color:var(--ink);font-weight:500" data-loc="phone"></span></p>
   </div>
   <div class="base"></div>
 </section>
