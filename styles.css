@@ -10,8 +10,8 @@
 
 :root {
   --bg: #0a0a0b;
-  --bg-hot: #120b07;       /* the ground under the hot side of the menu */
-  --bg-cold: #070b10;      /* and under the cold side */
+  --bg-hot: #150c07;       /* the ground under the hot side of the menu */
+  --bg-cold: #070c12;      /* and under the cold side */
   --ink: #f3f0ea;          /* names, headings */
   --muted: #cbc6be;        /* descriptions (12:1 on the ground) */
   --dim: #948e86;          /* notes, meta (6.5:1) */
@@ -219,7 +219,8 @@ h1, h2, h3 { text-wrap: balance; }
   background: rgba(10, 10, 11, .88); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
   border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
 }
-.menu-nav .wrap { position: relative; display: flex; align-items: stretch; gap: 0 22px; height: var(--nav-h); overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.menu-nav .wrap { position: relative; display: flex; align-items: stretch; gap: 0 22px; height: var(--nav-h); overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 40px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 40px), transparent); }
+@media (min-width: 900px) { .menu-nav .wrap { -webkit-mask-image: none; mask-image: none; } }
 .menu-nav .wrap::-webkit-scrollbar { display: none; }
 .menu-nav .temp { flex: 0 0 auto; align-self: center; padding-right: 2px; font: 400 .9rem/1 var(--display); }
 .menu-nav .temp.hot { color: var(--fire); }

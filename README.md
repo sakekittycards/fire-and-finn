@@ -1,14 +1,15 @@
 # fireandfinn.com
 
-Static site for Fire & Finn, Hibachi · Sushi, 2003 Periwinkle Way, Sanibel, FL. Same setup as the Island Panda site: plain HTML, CSS and a little JavaScript, hosted on GitHub Pages.
+Static site for Fire & Finn, Hibachi · Sushi · Poke, 2003 Periwinkle Way, Sanibel, FL. Same setup as the Island Panda site: plain HTML, CSS and a little JavaScript, hosted on GitHub Pages.
 
 ## Files
-- `index.html`: the whole site: hero, the Fire / Finn split, Chef's Picks, the full menu with its category pills, the order band, visit.
+- `index.html`: the whole site: the split hero (hot side, cold side), the full menu with its hot/cold category row, the order band, visit.
 - `styles.css`: brand system. Orange is the hot side (hibachi), blue is the cold side (sushi & poke). Mobile first.
-- `app.js`: settings at the top (ordering link, phone, social links, hours), the open/closed line, the mobile nav, the menu-category highlighting, the ember animation and the section entrances.
-- Photos: none yet. Each Chef's Picks card has a `PHOTO SLOT` comment; drop an `<img class="photo">` into `.card-media` and it replaces the brand mark.
+- `app.js`: settings at the top (ordering link, phone, social links, hours), the open/closed line, the phone nav, the menu-category line, the embers and the slow drift on the big photos.
+- `assets/food/`: the six photographs. Two carry the hero, three open the hibachi, specialty-roll and poke categories, one runs behind the order band.
 - `menu.pdf`: the printed menu, linked from the Menu section. Replace it whenever the menu changes.
 - `assets/`: logo, flame and wave marks cut from the logo, favicon, share image, fonts (Tenor Sans and Jost, SIL Open Font License).
+- `review/site-creative/`: before and after screenshots from the creative pass, with the report.
 - `CNAME`: the custom domain for GitHub Pages.
 
 ## Things you will change
