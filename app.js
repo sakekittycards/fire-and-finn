@@ -37,7 +37,7 @@ const HOURS = { open: 11, close: 20 };
   });
 
   // Open / closed line in the hero, from the Eastern-time clock.
-  // Every element that shows the status gets the same words; the Order buttons get a green dot while the kitchen is open.
+  // Every element that shows the status gets the same words; the Order buttons get a green light while the kitchen is open.
   const status = document.getElementById("status");
   try {
     const parts = new Intl.DateTimeFormat("en-US", {
@@ -53,7 +53,7 @@ const HOURS = { open: 11, close: 20 };
     document.querySelectorAll("#status-text, [data-status-text]").forEach((el) => { el.textContent = msg; });
   } catch (e) { /* keep the default "Open daily 11am–8pm" text */ }
 
-  // Mobile navigation.
+  // Phone navigation.
   const header = document.getElementById("site-header");
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.getElementById("site-nav");
@@ -71,7 +71,7 @@ const HOURS = { open: 11, close: 20 };
     });
   }
 
-  // The header is clear over the hero and turns solid once the page moves.
+  // The header is clear over the hero and takes its backing once the page moves.
   if (header) {
     const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 24);
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -90,8 +90,8 @@ const HOURS = { open: 11, close: 20 };
         const r = el.parentElement.getBoundingClientRect();
         if (r.bottom < -100 || r.top > vh + 100) return;
         const p = (r.top + r.height / 2 - vh / 2) / vh;          // -0.5 above centre … 0.5 below
-        const amp = Number(el.dataset.parallax) || 18;
-        el.style.transform = `translate3d(0, ${(-p * amp).toFixed(1)}px, 0) scale(1.08)`;
+        const amp = Number(el.dataset.parallax) || 14;
+        el.style.transform = `translate3d(0, ${(-p * amp).toFixed(1)}px, 0) scale(1.07)`;
       });
     };
     const ask = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
@@ -100,62 +100,62 @@ const HOURS = { open: 11, close: 20 };
     update();
   }
 
-  // A few embers rising behind the hero copy (the waterline is SVG, animated in CSS).
+  // A few embers rising off the hot side of the hero.
   if (!reduce) {
     document.querySelectorAll(".embers").forEach((embers) => {
-      for (let i = 0; i < 8; i++) {   // a few, slow, small: noticed second, not first
+      for (let i = 0; i < 6; i++) {   // few, slow, small: noticed second, not first
         const s = document.createElement("i");
-        const dur = 10 + Math.random() * 8;
+        const dur = 11 + Math.random() * 8;
         s.style.cssText =
-          `left:${(4 + Math.random() * 88).toFixed(1)}%;--h:${(10 + Math.random() * 16).toFixed(0)}px;` +
+          `left:${(6 + Math.random() * 80).toFixed(1)}%;--h:${(10 + Math.random() * 16).toFixed(0)}px;` +
           `--d:${dur.toFixed(1)}s;--delay:${(-Math.random() * dur).toFixed(1)}s;--sway:${(Math.random() * 60 - 30).toFixed(0)}px`;
         embers.appendChild(s);
       }
     });
   }
 
-  // Gentle section entrances. Fail-safe: whatever happens, everything is visible within two seconds.
-  const revealEls = document.querySelectorAll(".reveal");
-  const showAll = () => revealEls.forEach((el) => el.classList.add("in"));
-  if ("IntersectionObserver" in window && !reduce) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
-    }, { rootMargin: "0px 0px -5% 0px", threshold: 0 });
-    revealEls.forEach((el) => io.observe(el));
-    setTimeout(showAll, 1800);
-  } else {
-    showAll();
-  }
-
-  // Menu category navigation: highlight the category on screen, keep its pill in view.
+  // Menu category row: the line slides under the category on screen and the row keeps it in view.
   const links = Array.from(document.querySelectorAll(".menu-nav a"));
   const groups = links.map((a) => document.querySelector(a.getAttribute("href"))).filter(Boolean);
-  if (links.length && groups.length && "IntersectionObserver" in window) {
-    const navWrap = document.querySelector(".menu-nav .wrap");
-    const menuNav = document.querySelector(".menu-nav");
+  const navWrap = document.querySelector(".menu-nav .wrap");
+  const menuNav = document.querySelector(".menu-nav");
+  const ind = document.querySelector(".menu-nav .ind");
+  if (links.length && groups.length && navWrap && menuNav) {
+    const placeLine = () => {
+      const active = navWrap.querySelector("a.active");
+      if (!ind) return;
+      if (!active) { ind.style.width = "0"; return; }
+      ind.style.width = active.offsetWidth - (active === links[links.length - 1] ? parseFloat(getComputedStyle(active).paddingRight) : 0) + "px";
+      ind.style.transform = `translateX(${active.offsetLeft}px)`;
+    };
     const setActive = (id) => {
       links.forEach((a) => {
         const on = a.getAttribute("href") === "#" + id;
         a.classList.toggle("active", on);
         if (on) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
       });
-      const g = document.getElementById(id);   // the pill takes the section's colour: orange for the hot side, blue for the cold
+      const g = document.getElementById(id);   // the line takes the section's colour: orange for the hot side, blue for the cold
       menuNav.classList.toggle("hot", !!g && g.classList.contains("hot"));
       menuNav.classList.toggle("cold", !!g && g.classList.contains("cold"));
+      placeLine();
       const active = navWrap.querySelector("a.active");
       if (active) {
         const left = active.offsetLeft - (navWrap.clientWidth - active.offsetWidth) / 2;
         navWrap.scrollTo({ left: Math.max(0, left), behavior: reduce ? "auto" : "smooth" });
       }
     };
-    const spy = new IntersectionObserver((entries) => {
-      const visible = entries.filter((e) => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-      if (visible[0]) setActive(visible[0].target.id);
-    }, { rootMargin: "-30% 0px -55% 0px", threshold: [0, 0.2, 0.5, 1] });
-    groups.forEach((g) => spy.observe(g));
+    if ("IntersectionObserver" in window) {
+      const spy = new IntersectionObserver((entries) => {
+        const visible = entries.filter((e) => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]) setActive(visible[0].target.id);
+      }, { rootMargin: "-30% 0px -55% 0px", threshold: [0, 0.2, 0.5, 1] });
+      groups.forEach((g) => spy.observe(g));
+    }
+    window.addEventListener("resize", placeLine);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(placeLine);
   }
 
-  // Prices read as dollars to screen readers; the active category pill is marked current.
+  // Prices read as dollars to screen readers.
   document.querySelectorAll(".price, .proteins .p").forEach((el) => {
     const n = el.textContent.trim();
     if (/^\d+$/.test(n)) el.setAttribute("aria-label", "$" + n);

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Fire &amp; Finn — Hibachi, Sushi &amp; Poke on Sanibel Island</title>
   <meta name="description" content="Fast-casual hibachi, specialty rolls and build-your-own poke bowls at 2003 Periwinkle Way, Sanibel, FL. Open daily 11am to 8pm. Order online for pickup.">
-  <meta name="theme-color" content="#080808">
+  <meta name="theme-color" content="#0a0a0b">
   <link rel="canonical" href="https://fireandfinn.com/">
 
   <meta property="og:type" content="restaurant.restaurant">
@@ -28,7 +28,8 @@
   <link rel="preload" href="assets/fonts/Jost-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/Jost-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" href="assets/food/hero-hibachi.jpg" fetchpriority="high">
-  <link rel="stylesheet" href="styles.css?v=7">
+  <link rel="preload" as="image" href="assets/food/fire-and-finn-roll.jpg" fetchpriority="high">
+  <link rel="stylesheet" href="styles.css?v=8">
   <script>document.documentElement.classList.add("js");</script>
 
   <script type="application/ld+json">
@@ -84,145 +85,67 @@
 
 <main id="top">
 
-  <!-- ===== Hero ===== -->
+  <!-- ===== Hero: the hot side and the cold side, the words in the seam between them ===== -->
   <section class="hero" aria-labelledby="hero-title">
-    <div class="hero-bg" aria-hidden="true"><div class="embers"></div></div>
-    <div class="hero-grid">
-      <div class="hero-copy">
-        <h1 id="hero-title"><span class="hot">Grilled hot.</span> <span class="cold">Rolled cold.</span></h1>
-        <p class="lead">Hibachi seared on the flat-top, sushi rolled to order and poke bowls you build yourself, on Sanibel Island.</p>
-        <div class="cta">
-          <a class="btn btn-fire lg" data-order data-live="Order Online" data-call="Call to Order" href="tel:+12395790783">Call to Order</a>
-          <a class="btn btn-water lg" href="#menu">See the menu</a>
-        </div>
-        <p class="status" id="status">
-          <span><span class="dot"></span><span id="status-text">Open daily 11am–8pm</span></span>
-          <span>2003 Periwinkle Way, Sanibel</span>
-        </p>
+    <a class="half hot" href="#hibachi">
+      <img src="assets/food/hero-hibachi.jpg" alt="Steak and scallops hibachi over fried rice with mushrooms, zucchini, onion and bean sprouts, yum yum sauce and garlic steak sauce on the side" width="1024" height="1536" fetchpriority="high" decoding="async">
+      <span class="embers" aria-hidden="true"></span>
+      <span class="half-label"><span class="half-k">The hot side</span><span class="half-t">Hibachi &amp; appetizers</span></span>
+    </a>
+    <a class="half cold" href="#rolls">
+      <img src="assets/food/fire-and-finn-roll.jpg" alt="The Fire &amp; Finn roll: tempura shrimp, cucumber and eel inside, tuna, avocado and tempura flakes on top, eel sauce and spicy mayo" width="1536" height="1024" fetchpriority="high" decoding="async">
+      <span class="half-label"><span class="half-k">The cold side</span><span class="half-t">Sushi rolls &amp; poke</span></span>
+    </a>
+    <div class="hero-copy">
+      <h1 id="hero-title"><span class="hot">Grilled hot.</span> <span class="cold">Rolled cold.</span></h1>
+      <p class="lead">Hibachi seared on the flat-top. Sushi rolled to order. Poke bowls you build yourself.</p>
+      <div class="cta">
+        <a class="btn btn-fire lg" data-order data-live="Order Online" data-call="Call to Order" href="tel:+12395790783">Call to Order</a>
+        <a class="btn btn-ghost lg" href="#menu">See the menu</a>
       </div>
-      <div class="hero-art reveal">
-        <figure class="art-main"><img src="assets/food/hero-hibachi.jpg" alt="Steak and scallops hibachi over fried rice with mushrooms, zucchini, onion and bean sprouts, yum yum sauce and garlic steak sauce on the side" width="1024" height="1536" fetchpriority="high"></figure>
-        <figure class="art-small"><img src="assets/food/sushi-craft.jpg" alt="A chef rolling a tempura shrimp roll on a bamboo mat" width="1536" height="1024"></figure>
-      </div>
+      <p class="status" id="status">
+        <span><span class="dot"></span><span id="status-text">Open daily 11am–8pm</span></span>
+        <span>2003 Periwinkle Way, Sanibel</span>
+      </p>
     </div>
-    <svg class="waterline" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-      <defs>
-        <linearGradient id="wl-a" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#36A9CF" stop-opacity=".22"/><stop offset="1" stop-color="#36A9CF" stop-opacity="0"/></linearGradient>
-        <linearGradient id="wl-b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#62C6EC" stop-opacity=".14"/><stop offset="1" stop-color="#62C6EC" stop-opacity="0"/></linearGradient>
-      </defs>
-      <g class="wl wl-1"><path d="M0 52 C240 20 480 20 720 52 C960 84 1200 84 1440 52 C1680 20 1920 20 2160 52 C2400 84 2640 84 2880 52 L2880 120 L0 120 Z" fill="url(#wl-a)"/></g>
-      <g class="wl wl-2"><path d="M0 70 C240 44 480 44 720 70 C960 96 1200 96 1440 70 C1680 44 1920 44 2160 70 C2400 96 2640 96 2880 70 L2880 120 L0 120 Z" fill="url(#wl-b)"/></g>
-    </svg>
-  </section>
-
-  <!-- ===== Three showcases ===== -->
-  <section class="experiences" id="experiences" aria-labelledby="exp-title">
-    <div class="wrap">
-      <h2 class="sec-title" id="exp-title">Three ways to eat here</h2>
-      <p class="sec-lead">One kitchen, two temperatures. The hibachi side runs hot; the sushi and poke side stays cold.</p>
-    </div>
-
-    <article class="exp fire reveal" id="exp-hibachi">
-      <div class="exp-grid">
-        <div class="exp-media heat has-photo">
-          <img class="exp-photo" data-parallax="18" src="assets/food/hibachi-plate.jpg" alt="Steak and scallops hibachi with grilled vegetables and fried rice, steam rising, the grill glowing behind" width="1024" height="1536" loading="lazy" decoding="async">
-          <div class="grill">
-            <p class="grill-title">On the grill</p>
-            <ul class="board" aria-label="Hibachi proteins and prices">
-            <li><span class="n">Steak<span class="raw">*</span></span><span class="p">28</span></li>
-            <li><span class="n">Scallops</span><span class="p">27</span></li>
-            <li><span class="n">Salmon</span><span class="p">23</span></li>
-            <li><span class="n">Shrimp</span><span class="p">20</span></li>
-            <li><span class="n">Chicken</span><span class="p">20</span></li>
-            </ul>
-            <ul class="board combos" aria-label="Hibachi combos and prices">
-              <li><span class="n">Steak &amp; Scallops<span class="raw">*</span></span><span class="p">35</span></li>
-              <li><span class="n">Steak &amp; Shrimp<span class="raw">*</span></span><span class="p">33</span></li>
-              <li><span class="n">Chicken &amp; Shrimp</span><span class="p">25</span></li>
-            </ul>
-          </div>
-        </div>
-        <div class="exp-copy">
-          <h3>Hibachi</h3>
-          <p class="exp-kicker">The fire</p>
-          <p>Chicken, shrimp, salmon, scallops or steak seared on the flat-top with mushrooms, zucchini, onion and bean sprouts. Yum yum and garlic steak sauce on the side, white or fried rice underneath. Combos from 25 when you can’t decide.</p>
-          <a class="btn btn-fire" href="#hibachi">See the hibachi menu</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="exp craft reveal" id="exp-sushi">
-      <div class="exp-grid">
-        <div class="exp-copy">
-          <h3>Sushi</h3>
-          <p class="exp-kicker">The craft</p>
-          <p>Nine specialty rolls and eight classics, rolled to order. Start with the Fire &amp; Finn, then work your way through the rest.</p>
-          <ul class="exp-picks">
-            <li><span>Spicy Lava Drops</span><span class="price">19</span></li>
-            <li><span>Three Tides<span class="raw">*</span></span><span class="price">18</span></li>
-            <li><span>Tipsy Turtle<span class="raw">*</span></span><span class="price">17</span></li>
-          </ul>
-          <a class="btn btn-water" href="#rolls">See the rolls</a>
-        </div>
-        <div class="exp-media">
-          <img class="exp-photo" data-parallax="18" src="assets/food/fire-and-finn-roll.jpg" alt="The Fire &amp; Finn roll: tempura shrimp, cucumber and eel inside, tuna, avocado and tempura flakes on top, eel sauce and spicy mayo" width="1536" height="1024" loading="lazy" decoding="async">
-          <div class="sig">
-            <span class="sig-k">Chef’s signature</span>
-            <span class="sig-n"><span>Fire &amp; Finn Roll<span class="raw">*</span></span><span class="price">20</span></span>
-            <span class="sig-d">Tempura shrimp, cucumber &amp; eel inside. Tuna, avocado &amp; tempura flakes outside. Eel sauce &amp; spicy mayo on top.</span>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <article class="exp fresh reveal" id="exp-poke">
-      <div class="exp-grid">
-        <div class="exp-media">
-          <img class="exp-photo" data-parallax="18" src="assets/food/poke-bowl.jpg" alt="Poke bowl over sushi rice with tuna, pineapple, cucumber, avocado, seaweed salad, edamame and masago" width="1024" height="1024" loading="lazy" decoding="async">
-        </div>
-        <div class="exp-copy">
-          <h3>Poke</h3>
-          <p class="exp-kicker">The freshness</p>
-          <p>Build it over sushi rice in three steps. Nineteen for the bowl, fifteen for the kids’ size, and as many toppings as you like.</p>
-          <ol class="steps-mini">
-            <li><span class="num">1</span><span class="t">Protein</span><span class="d">Tuna<span class="raw">*</span>, spicy tuna<span class="raw">*</span>, salmon<span class="raw">*</span>, spicy salmon<span class="raw">*</span>, yellowtail<span class="raw">*</span>, eel or kani salad</span></li>
-            <li><span class="num">2</span><span class="t">Toppings</span><span class="d">Pineapple, avocado, cucumber, seaweed salad, edamame &amp; masago<span class="raw">*</span></span></li>
-            <li><span class="num">3</span><span class="t">Sauce</span><span class="d">Eel sauce, honey soy, spicy mayo or ponzu</span></li>
-          </ol>
-          <a class="btn btn-water" href="#poke">Build a bowl</a>
-        </div>
-      </div>
-    </article>
   </section>
 
   <!-- ===== Menu ===== -->
-  <section class="sec menu" id="menu">
-    <div class="wrap">
-      <div class="menu-head">
-        <h2 class="sec-title">Menu</h2>
-        <div class="menu-tools">
-          <span class="legend">Items marked <span class="raw">*</span> are served raw or undercooked</span>
-          <a class="menu-pdf" href="menu.pdf">Download PDF</a>
-          <a class="btn btn-fire small" data-order data-live="Order Online" data-call="Call to Order" href="tel:+12395790783">Call to Order</a>
-        </div>
+  <section class="menu" id="menu" aria-labelledby="menu-title">
+    <div class="wrap menu-head">
+      <div>
+        <h2 id="menu-title">Menu</h2>
+        <p class="menu-intro">One kitchen, two temperatures. The hot side runs the grill; the cold side rolls and builds to order.</p>
+      </div>
+      <div class="menu-tools">
+        <span class="legend">Items marked <span class="raw">*</span> are served raw or undercooked</span>
+        <a class="menu-pdf" href="menu.pdf">Download the PDF</a>
+        <a class="btn btn-fire small" data-order data-live="Order Online" data-call="Call to Order" href="tel:+12395790783">Call to Order</a>
       </div>
     </div>
 
     <nav class="menu-nav" aria-label="Menu categories">
       <div class="wrap">
+        <span class="temp hot" aria-hidden="true">Hot</span>
         <a href="#appetizers">Appetizers</a>
         <a href="#hibachi">Hibachi</a>
         <a href="#kids">Kids</a>
+        <span class="temp cold" aria-hidden="true">Cold</span>
         <a href="#rolls">Specialty Rolls</a>
         <a href="#classic">Classic Rolls</a>
         <a href="#poke">Poke</a>
+        <i class="ind" aria-hidden="true"></i>
       </div>
     </nav>
 
-    <div class="wrap">
+    <div class="temps hot">
+      <div class="wrap">
       <div class="group hot" id="appetizers">
+        <div class="g-side">
         <h3>Appetizers</h3>
-        <div class="cols">
+        </div>
+        <div class="g-main">
+          <div class="cols">
           <div>
             <div class="dish"><div class="dish-head"><span class="name">Fried Gyoza</span><span class="price">12</span></div>
               <p class="desc">Chicken &amp; lemongrass dumplings, fried crisp</p></div>
@@ -239,13 +162,18 @@
               <p class="desc">Tuxedo sesame &amp; house dressing</p></div>
           </div>
         </div>
+        </div>
       </div>
 
       <div class="group hot" id="hibachi">
+        <div class="g-side">
         <h3>Hibachi</h3>
         <p class="lede">Grilled with mushrooms, zucchini, onion &amp; bean sprouts. Served with yum yum sauce, garlic steak sauce &amp; your choice of white or fried rice.</p>
         <p class="pill">Gluten-free hibachi available</p>
-        <p class="rowlabel">Single protein</p>
+          <figure class="g-photo"><img data-parallax="14" src="assets/food/hibachi-plate.jpg" alt="Steak and scallops hibachi with grilled vegetables and fried rice, steam rising, the grill glowing behind" width="1024" height="1536" loading="lazy" decoding="async"></figure>
+        </div>
+        <div class="g-main">
+          <p class="rowlabel">Single protein</p>
         <ul class="proteins">
           <li><span class="n">Steak<span class="raw">*</span></span><span class="p">28</span></li>
           <li><span class="n">Scallops</span><span class="p">27</span></li>
@@ -263,20 +191,33 @@
           <div class="dish-head"><span class="name">Chicken or Shrimp Katsu</span><span class="price">20</span></div>
           <p class="desc">Chicken breast or shrimp in a crispy panko crust, served with white rice &amp; teriyaki sauce</p>
         </div>
+        </div>
       </div>
 
       <div class="group hot" id="kids">
+        <div class="g-side">
         <h3>Kids Menu<span class="aside">15 each</span></h3>
-        <div class="cols three">
+        </div>
+        <div class="g-main">
+          <div class="cols three">
           <div class="dish"><div class="dish-head"><span class="name">Hibachi</span></div><p class="desc">Chicken, shrimp or steak<span class="raw">*</span>, with white or fried rice</p></div>
           <div class="dish"><div class="dish-head"><span class="name">Poke Bowl<span class="raw">*</span></span></div><p class="desc">Build your own with the same choices as our Poke Bowl</p></div>
           <div class="dish"><div class="dish-head"><span class="name">Katsu Nuggets</span></div><p class="desc">With white or fried rice</p></div>
         </div>
+        </div>
       </div>
+      </div>
+    </div>
 
+    <div class="temps cold">
+      <div class="wrap">
       <div class="group cold" id="rolls">
+        <div class="g-side">
         <h3>Chef’s Specialty Rolls</h3>
-        <article class="feature">
+          <figure class="g-photo"><img data-parallax="14" src="assets/food/spicy-lava-drops.jpg" alt="Spicy Lava Drops: deep-fried rolls of spicy krab, cream cheese and jalapeño, drizzled with eel sauce and spicy mayo" width="1536" height="1024" loading="lazy" decoding="async"><figcaption>Spicy Lava Drops</figcaption></figure>
+        </div>
+        <div class="g-main">
+          <article class="feature">
           <img class="feature-photo" src="assets/food/fire-and-finn-roll.jpg" alt="" width="1536" height="1024" loading="lazy" decoding="async">
           <div class="feature-body">
           <div class="dish-head">
@@ -323,11 +264,15 @@
               <p class="desc">Krab, avocado, cucumber &amp; cilantro wrapped in salmon, finished with sliced red onion &amp; a touch of lime juice</p></div>
           </div>
         </div>
+        </div>
       </div>
 
       <div class="group cold" id="classic">
+        <div class="g-side">
         <h3>Classic Rolls</h3>
-        <div class="cols">
+        </div>
+        <div class="g-main">
+          <div class="cols">
           <div>
             <div class="dish"><div class="dish-head"><span class="name">Crazy</span><span class="price">16</span></div>
               <p class="desc">Eel, cream cheese &amp; krab, deep fried</p>
@@ -352,11 +297,16 @@
               <p class="desc">Krab, avocado &amp; cucumber</p></div>
           </div>
         </div>
+        </div>
       </div>
 
       <div class="group cold" id="poke">
+        <div class="g-side">
         <h3>Poke Bowl</h3>
-        <div class="poke-head"><span class="name">Build your own bowl over sushi rice</span><span class="price">19</span></div>
+          <figure class="g-photo square"><img data-parallax="14" src="assets/food/poke-bowl.jpg" alt="Poke bowl over sushi rice with tuna, pineapple, cucumber, avocado, seaweed salad, edamame and masago" width="1024" height="1024" loading="lazy" decoding="async"></figure>
+        </div>
+        <div class="g-main">
+          <div class="poke-head"><span class="name">Build your own bowl over sushi rice</span><span class="price">19</span></div>
         <div class="steps">
           <div class="step">
             <div class="step-head"><span class="num">1</span><span class="t">Choose your protein</span></div>
@@ -372,49 +322,49 @@
             <p>Eel sauce, honey soy, spicy mayo or ponzu</p>
           </div>
         </div>
+        </div>
       </div>
+      </div>
+    </div>
 
+    <div class="wrap">
       <p class="advisory"><span class="raw">*</span>Served raw or undercooked, or contains (or may contain) raw or undercooked ingredients. Consuming raw or undercooked meats, poultry, seafood, shellfish, or eggs may increase your risk of foodborne illness, especially if you have certain medical conditions. Our kitchen uses shellfish, fish, sesame, soy, wheat, egg and dairy, and no peanuts or tree nuts. Please tell us about any food allergies.</p>
     </div>
   </section>
 
   <!-- ===== Order ===== -->
-  <section class="order-band" id="order" aria-labelledby="order-title">
-    <img class="band-photo" data-parallax="28" src="assets/food/spicy-lava-drops.jpg" alt="" width="1536" height="1024" loading="lazy" aria-hidden="true">
-    <div class="wrap">
-      <div class="order-card reveal">
-        <h2 id="order-title">Ready when you are.</h2>
-        <p>Order ahead for pickup at 2003 Periwinkle Way and it’s waiting when you walk in.</p>
-        <div class="cta">
-          <a class="btn btn-fire lg" data-order data-live="Order Online" data-call="Call to Order" href="tel:+12395790783">Call to Order</a>
-          <a class="btn btn-ghost lg" href="tel:+12395790783">Call (239) 579-0783</a>
-        </div>
-        <p class="order-meta"><span data-status-text>Open daily, 11am to 8pm</span><span>2003 Periwinkle Way, Sanibel</span></p>
+  <section class="order" id="order" aria-labelledby="order-title">
+    <img class="band-photo" data-parallax="24" src="assets/food/sushi-craft.jpg" alt="" width="1536" height="1024" loading="lazy" decoding="async" aria-hidden="true">
+    <div class="wrap order-copy">
+      <h2 id="order-title">Ready when you are.</h2>
+      <p>Order ahead for pickup at 2003 Periwinkle Way and it’s waiting when you walk in.</p>
+      <div class="cta left">
+        <a class="btn btn-fire lg" data-order data-live="Order Online" data-call="Call to Order" href="tel:+12395790783">Call to Order</a>
+        <a class="btn btn-ghost lg" href="tel:+12395790783">Call (239) 579-0783</a>
       </div>
+      <p class="order-meta"><span data-status-text>Open daily, 11am to 8pm</span></p>
     </div>
   </section>
 
   <!-- ===== Visit ===== -->
-  <section class="sec visit" id="visit" aria-labelledby="visit-title">
-    <div class="wrap">
-      <h2 class="sec-title" id="visit-title">Visit</h2>
-      <div class="visit-grid">
-        <div class="visit-card reveal">
-          <p class="visit-lead">In Tahitian Gardens on Periwinkle Way, the main road through Sanibel.</p>
-          <dl>
-            <dt>Hours</dt><dd>Open daily, 11am to 8pm</dd>
-            <dt>Address</dt><dd><a href="https://www.google.com/maps/dir/?api=1&amp;destination=2003+Periwinkle+Way,+Sanibel,+FL+33957" target="_blank" rel="noopener">2003 Periwinkle Way<br>Sanibel, FL 33957</a></dd>
-            <dt>Phone</dt><dd><a href="tel:+12395790783">(239) 579-0783</a></dd>
-          </dl>
-          <div class="cta left">
-            <a class="btn btn-fire" href="https://www.google.com/maps/dir/?api=1&amp;destination=2003+Periwinkle+Way,+Sanibel,+FL+33957" target="_blank" rel="noopener">Get Directions</a>
-            <a class="btn btn-water" href="tel:+12395790783">Call Us</a>
-          </div>
+  <section class="visit" id="visit" aria-labelledby="visit-title">
+    <div class="wrap visit-grid">
+      <div class="visit-copy">
+        <h2 id="visit-title">Visit</h2>
+        <p class="visit-lead">In Tahitian Gardens on Periwinkle Way, the main road through Sanibel.</p>
+        <dl>
+          <dt>Hours</dt><dd>Every day, 11am to 8pm</dd>
+          <dt>Address</dt><dd><a href="https://www.google.com/maps/dir/?api=1&amp;destination=2003+Periwinkle+Way,+Sanibel,+FL+33957" target="_blank" rel="noopener">2003 Periwinkle Way<br>Sanibel, FL 33957</a></dd>
+          <dt>Phone</dt><dd><a href="tel:+12395790783">(239) 579-0783</a></dd>
+        </dl>
+        <div class="cta left">
+          <a class="btn btn-fire" href="https://www.google.com/maps/dir/?api=1&amp;destination=2003+Periwinkle+Way,+Sanibel,+FL+33957" target="_blank" rel="noopener">Get Directions</a>
+          <a class="btn btn-ghost" href="tel:+12395790783">Call Us</a>
         </div>
-        <div class="map reveal">
-          <div class="map-fallback"><span class="pin" aria-hidden="true"></span><strong>2003 Periwinkle Way, Sanibel</strong><a href="https://www.google.com/maps/dir/?api=1&amp;destination=2003+Periwinkle+Way,+Sanibel,+FL+33957" target="_blank" rel="noopener">Open in Google Maps</a></div>
-          <iframe title="Map to Fire &amp; Finn at 2003 Periwinkle Way, Sanibel" src="https://www.google.com/maps?q=2003+Periwinkle+Way,+Sanibel,+FL+33957&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
-        </div>
+      </div>
+      <div class="map">
+        <div class="map-fallback"><span class="pin" aria-hidden="true"></span><strong>2003 Periwinkle Way, Sanibel</strong><a href="https://www.google.com/maps/dir/?api=1&amp;destination=2003+Periwinkle+Way,+Sanibel,+FL+33957" target="_blank" rel="noopener">Open in Google Maps</a></div>
+        <iframe title="Map to Fire &amp; Finn at 2003 Periwinkle Way, Sanibel" src="https://www.google.com/maps?q=2003+Periwinkle+Way,+Sanibel,+FL+33957&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
       </div>
     </div>
   </section>
@@ -424,8 +374,7 @@
   <div class="wrap foot">
     <div class="foot-brand">
       <img src="assets/logo-compact.svg" alt="Fire &amp; Finn" width="1495" height="606" loading="lazy" decoding="async">
-      <p class="foot-tag">Hibachi <span>•</span> Sushi <span>•</span> Poke</p>
-      <p>Grilled hot and rolled cold on Sanibel Island.</p>
+      <p>Hibachi, sushi and poke. Grilled hot, rolled cold.</p>
     </div>
     <nav class="foot-links" aria-label="Footer">
       <a href="#menu">Menu</a>
@@ -450,6 +399,6 @@
   <a class="btn btn-ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=2003+Periwinkle+Way,+Sanibel,+FL+33957" target="_blank" rel="noopener">Directions</a>
 </nav>
 
-<script src="app.js?v=7"></script>
+<script src="app.js?v=8"></script>
 </body>
 </html>
