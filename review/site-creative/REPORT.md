@@ -58,7 +58,7 @@ of the menu, so the two-temperature idea is explained without a section of copy.
 
 10. **404** restyled to the same system (logo, two-colour headline, two buttons, a warm rule above and a cool rule below).
 
-11. Cache-busting bumped to `?v=8` on the stylesheet and script in `index.html` and `404.html`.
+11. Cache-busting bumped to `?v=8` on the stylesheet and script in `index.html` and `404.html` (now `?v=10`, see 22).
 
 ## Second pass (after Nick's "keep going")
 
@@ -76,6 +76,54 @@ of the menu, so the two-temperature idea is explained without a section of copy.
     menu") instead of announcing a long photo description plus the label. Buttons press down one pixel on click.
 
 Overflow metrics re-run after this pass: still 0 at all three sizes; menu text still identical.
+
+## Third pass (the critical one, against the best restaurant sites)
+
+Method: the page at 390, 768 and 1440, section by section, asking of each screen whether a Noma, Momofuku or Sweetgreen
+designer would leave it. What changed, and what I judged fine as it was.
+
+16. **The phone hero is the split again, not a photo with a headline under it.** At 390 the cold picture sat below the fold,
+    so the first screen was a hibachi photo, a headline and two buttons: the one idea never landed. Now both pictures are on
+    the first screen (each 26% of the viewport, the hot one above, the cold one below) with the headline, lead and status in
+    the dark seam between them, and each picture keeps its caption at its bottom-left. The hero's own Order and See the menu
+    buttons are gone on phones only: the fixed bottom bar already carries Order and Menu a thumb away, and repeating them
+    200px above the bar was what cost the cold side its place on screen. Tablets (760 to 899px) keep the buttons in a row and
+    also show both pictures; wide screens are unchanged. I tried a centered seam with the captions at the outer edges first;
+    centered captions landed on the food and disappeared, so the whole phone hero went back to one left axis.
+17. **Tablet menu openers are title-beside-photo.** Between 760 and 999px the category photographs were full-width 4:3 pictures
+    (about 710 by 530px) between the notes and the prices: a screen of photo before every price list. They now sit in a
+    two-column opener, title and notes left, photograph right, with the prices directly below. The page at 768 is 1,400px
+    shorter. On phones the pictures are 3:2 instead of 4:3 (the poke bowl 4:3 instead of square) for the same reason.
+    `sizes` on those images now tells the browser the picture is 45vw at tablet widths, so it picks the 640px file.
+18. **The map is dark.** Visit ended in a bright white Google rectangle on a near-black page. The embed is now filtered
+    (invert, hue-rotate 180, saturate .6) so roads are light lines on a dark ground and water stays blue; the pin, labels and
+    Google attribution remain legible. The fallback panel behind it was already dark.
+19. **Focus and keyboard.** Tabbing through the first screen goes skip link, logo, nav, Order, hot side, cold side, Order,
+    See the menu, PDF, Order, categories: the reading order. Two rings were broken: on a hero side the inset outline painted
+    beneath the photograph (positioned children paint over an element's own outline), so the ring is now drawn by the
+    gradient overlay above the picture; in the scrolling category row the ring was clipped by the row's overflow, so it is
+    inset there. Both verified by pressing Tab in headless Edge, not by scripting focus.
+20. **Daylight.** The meta grey (`--dim`, used for the status line, notes, category links at rest) is a step brighter, 7.3:1
+    on the ground instead of 6.5:1. The desktop lead over the photographs has a soft dark shadow.
+21. **Entrance a third of a second quicker.** Pictures settle in 1.2s instead of 1.5s and the words follow sooner; the order
+    is the same. The medium weight of Jost, used on the first screen for the captions and status, is now preloaded like the
+    other two (10KB), so it no longer swaps in late.
+22. Cache-busting is `?v=10` on both pages (main had moved `index.html` to v9 and left `404.html` at v8).
+
+Judged fine as is, after looking hard:
+- The desktop hero. The headline sits in the dark valley, the captions in the corners, the hover dims the other line.
+- The empty sticky column beside Appetizers, Kids and Classic Rolls on wide screens: the category title in a left margin
+  with the items beside it is the oldest menu layout there is, and it holds the left axis for every group. Filling it
+  would be decoration.
+- The header: clear over the hero, backed once the page moves; the category row and its sliding line, which crosses the
+  Hot/Cold divider and changes colour as it does. Verified in motion (`transform` and `width` update, colour class flips).
+- Type scale and measure: Tenor Sans titles at 2.6 to 4.4rem, Jost body at 17/18px, leads 24 to 38em, descriptions 36em.
+- The Order band. Full-bleed photo, left-aligned type, two buttons, the live hours line. It is the hero's quieter sibling.
+- Embers (six, slow, on the hot side only) and the drift on the menu photographs: both off under reduced motion, both tied
+  to the idea rather than added to it. The grain overlay was removed in the first pass and has not come back.
+
+Overflow metrics after this pass: 0 at all three sizes; page heights 9,055 / 7,111 / 6,631px (were 9,494 / 8,545 / 6,631).
+Menu text identical: 88 of 88 items, headings, notes and the advisory.
 
 ## Considered and rejected
 
@@ -112,10 +160,13 @@ Overflow metrics re-run after this pass: still 0 at all three sizes; menu text s
    order" assumes poke bowls are assembled when ordered. Confirm or cut to "the cold side rolls and builds."
 4. **The Spicy Lava Drops caption** on the specialty-rolls photograph names the dish in the picture. The file was generated
    as that dish; the owner should agree it looks like theirs.
-5. **The map** loads from Google when online; the review shots show the built-in fallback because the capture ran offline.
+5. **The map** loads from Google when online and is shown dark through a CSS filter; check it on a real phone, and if Google changes the embed's palette the filter may need retuning.
 6. **Hours in Visit are written out** ("Every day, 11am to 8pm"); the live open/closed line is in the hero and the Order band.
 7. **Window heights under about 640px on desktop** keep the hero at 640px, so a very short laptop window scrolls slightly to
    see the side labels. Acceptable, but worth a look on a 13-inch screen.
+9. **No Order button inside the phone hero.** The bottom bar is the order button on phones; if the owner wants one in the
+   hero as well, delete the `@media (max-width: 759px) { .hero .cta { display: none; } }` rule and the cold picture drops
+   below the fold again on an 844px-tall phone.
 8. **The Toast link opens in a new tab**, as before.
 
 ## Files
@@ -124,5 +175,5 @@ Overflow metrics re-run after this pass: still 0 at all three sizes; menu text s
 - `assets/food/*-640.jpg`, `*-1024.jpg`: resized variants of the six photographs (same pictures, smaller).
 - `styles.css`: rewritten.
 - `app.js`: settings block untouched; reveal logic removed; category-row indicator added; embers now live in the hot half.
-- `404.html`: restyled; `?v=8`.
+- `404.html`: restyled; `?v=10`.
 - `README.md`: file list updated.
