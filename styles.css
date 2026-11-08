@@ -13,8 +13,8 @@
   --bg-hot: #150c07;       /* the ground under the hot side of the menu */
   --bg-cold: #070c12;      /* and under the cold side */
   --ink: #f3f0ea;          /* names, headings */
-  --muted: #cbc6be;        /* descriptions (12:1 on the ground) */
-  --dim: #9a948c;          /* notes, meta (7.3:1) */
+  --muted: #cbc6be;        /* descriptions (11.7:1 on the ground) */
+  --dim: #9a948c;          /* notes, meta (6.6:1) */
   --fire: #f07840;
   --sea: #62c6ec;
   --water: #36a9cf;
@@ -444,7 +444,9 @@ footer::before { content: ""; position: absolute; left: 0; right: 0; top: 0; hei
 .proof { padding: 56px 0 8px; border-top: 1px solid var(--line); }
 .proof-grid { display: grid; gap: 40px; }
 @media (min-width: 760px) { .proof { padding-top: 72px; } .proof-grid { grid-template-columns: repeat(3, 1fr); gap: 40px 48px; } }
-.proof h2 { margin: 0 0 16px; color: var(--accent); font: 400 1.5rem/1.2 var(--display); }
+.proof h2 { margin: 0 0 16px; color: var(--ink); font: 400 1.5rem/1.2 var(--display); }   /* ink, not fire or sea: on this page the colours would only decorate */
+.proof .renames { margin: 8px 0 0; gap: 4px; }
+.proof .renames .old { color: var(--dim); }
 .proof ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; color: var(--muted); }
 .proof li b { color: var(--ink); font-weight: 500; }
 .proof li a { text-underline-offset: 4px; text-decoration-color: var(--line-strong); transition: color .2s var(--ease), text-decoration-color .2s var(--ease); }
