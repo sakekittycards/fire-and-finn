@@ -61,6 +61,7 @@ h1, h2, h3 { text-wrap: balance; }
   font: 600 1rem var(--body); letter-spacing: .01em; text-decoration: none; cursor: pointer; white-space: nowrap;
   transition: background-color .2s var(--ease), border-color .2s var(--ease), color .2s var(--ease), box-shadow .2s var(--ease);
 }
+.btn:active { transform: translateY(1px); }
 .btn-fire { background: var(--fire); color: #170a04; }
 .btn-fire:hover { background: #ff9058; box-shadow: 0 10px 30px -12px rgba(240, 120, 64, .8); }
 .btn-ghost { border-color: var(--line-strong); color: var(--ink); background: rgba(255, 255, 255, .03); }
@@ -116,11 +117,13 @@ h1, h2, h3 { text-wrap: balance; }
    flames over the name, waves under it). Wide screens: the two sides stand left and right and the seam runs down the middle. */
 .hero { position: relative; display: grid; grid-template-rows: auto auto auto; background: var(--bg); }
 .half { position: relative; display: block; overflow: hidden; height: 34svh; min-height: 240px; max-height: 400px; color: var(--ink); text-decoration: none; background: #0f0d0c; }
-.half img { width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1.02); transition: transform 1.4s var(--ease); }
+.half img { width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1.02); transition: transform 1.4s var(--ease), filter .7s var(--ease); }
 .half.hot img { object-position: 50% 60%; }
 .half.cold img { object-position: 62% 50%; }
-.half:hover img { transform: scale(1.05); }
+.half:hover img { transform: scale(1.05); filter: brightness(1.1) saturate(1.04); }
 .half::after { content: ""; position: absolute; inset: 0; pointer-events: none; }
+.hero h1 span { transition: opacity .5s var(--ease); }
+.half.hot:hover ~ .hero-copy h1 .cold, .half.cold:hover ~ .hero-copy h1 .hot { opacity: .55; }
 .half.hot::after  { background: linear-gradient(180deg, rgba(10, 10, 11, .55) 0, rgba(10, 10, 11, 0) 34%, rgba(10, 10, 11, 0) 50%, rgba(10, 10, 11, .9) 88%, var(--bg) 100%); }
 .half.cold::after { background: linear-gradient(0deg, rgba(10, 10, 11, .8) 0, rgba(10, 10, 11, .1) 38%, rgba(10, 10, 11, 0) 56%, rgba(10, 10, 11, .9) 92%, var(--bg) 100%); }
 .hero-copy { order: 2; position: relative; z-index: 2; padding: 22px var(--gutter) 26px; }
@@ -196,7 +199,8 @@ h1, h2, h3 { text-wrap: balance; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .embers { display: none; }
-  .btn, .nav a::after, .half img, .half-t, .menu-nav .ind { transition: none; }
+  .btn, .nav a::after, .half img, .half-t, .hero h1 span, .menu-nav .ind { transition: none; }
+  .btn:active { transform: none; }
   .js .half img, .js .half-label, .js .hero-copy > *, .top.open .nav { animation: none; }
   .half img, .half:hover img { transform: none; }
 }
@@ -240,6 +244,7 @@ h1, h2, h3 { text-wrap: balance; }
 .temps.hot::before  { left: 0; background: radial-gradient(closest-side at 40% 50%, rgba(240, 120, 64, .09), rgba(240, 120, 64, 0)); }
 .temps.cold::before { right: 0; background: radial-gradient(closest-side at 60% 50%, rgba(54, 169, 207, .09), rgba(54, 169, 207, 0)); }
 .temps .wrap { position: relative; }
+.temps.cold::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: linear-gradient(90deg, rgba(240, 120, 64, 0), var(--fire) 30%, var(--sea) 70%, rgba(98, 198, 236, 0)); opacity: .55; }
 
 .group { padding: clamp(40px, 5vw, 72px) 0 clamp(36px, 4.5vw, 64px); border-top: 1px solid var(--line); scroll-margin-top: calc(var(--header) + var(--nav-h)); }
 .temps .wrap > .group:first-child { border-top: 0; }

@@ -27,8 +27,8 @@
   <link rel="preload" href="assets/fonts/TenorSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/Jost-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/Jost-600.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" as="image" href="assets/food/hero-hibachi.jpg" fetchpriority="high">
-  <link rel="preload" as="image" href="assets/food/fire-and-finn-roll.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/food/hero-hibachi.jpg" imagesrcset="assets/food/hero-hibachi-640.jpg 640w, assets/food/hero-hibachi.jpg 1024w" imagesizes="(min-width: 900px) 50vw, 100vw" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/food/fire-and-finn-roll.jpg" imagesrcset="assets/food/fire-and-finn-roll-640.jpg 640w, assets/food/fire-and-finn-roll-1024.jpg 1024w, assets/food/fire-and-finn-roll.jpg 1536w" imagesizes="(min-width: 900px) 50vw, 100vw" fetchpriority="high">
   <link rel="stylesheet" href="styles.css?v=8">
   <script>document.documentElement.classList.add("js");</script>
 
@@ -87,13 +87,13 @@
 
   <!-- ===== Hero: the hot side and the cold side, the words in the seam between them ===== -->
   <section class="hero" aria-labelledby="hero-title">
-    <a class="half hot" href="#hibachi">
-      <img src="assets/food/hero-hibachi.jpg" alt="Steak and scallops hibachi over fried rice with mushrooms, zucchini, onion and bean sprouts, yum yum sauce and garlic steak sauce on the side" width="1024" height="1536" fetchpriority="high" decoding="async">
+    <a class="half hot" href="#hibachi" aria-label="Hibachi and appetizers, the hot side of the menu">
+      <img src="assets/food/hero-hibachi.jpg" srcset="assets/food/hero-hibachi-640.jpg 640w, assets/food/hero-hibachi.jpg 1024w" sizes="(min-width: 900px) 50vw, 100vw" alt="Steak and scallops hibachi over fried rice with mushrooms, zucchini, onion and bean sprouts, yum yum sauce and garlic steak sauce on the side" width="1024" height="1536" fetchpriority="high" decoding="async">
       <span class="embers" aria-hidden="true"></span>
       <span class="half-label"><span class="half-k">The hot side</span><span class="half-t">Hibachi &amp; appetizers</span></span>
     </a>
-    <a class="half cold" href="#rolls">
-      <img src="assets/food/fire-and-finn-roll.jpg" alt="The Fire &amp; Finn roll: tempura shrimp, cucumber and eel inside, tuna, avocado and tempura flakes on top, eel sauce and spicy mayo" width="1536" height="1024" fetchpriority="high" decoding="async">
+    <a class="half cold" href="#rolls" aria-label="Sushi rolls and poke, the cold side of the menu">
+      <img src="assets/food/fire-and-finn-roll.jpg" srcset="assets/food/fire-and-finn-roll-640.jpg 640w, assets/food/fire-and-finn-roll-1024.jpg 1024w, assets/food/fire-and-finn-roll.jpg 1536w" sizes="(min-width: 900px) 50vw, 100vw" alt="The Fire &amp; Finn roll: tempura shrimp, cucumber and eel inside, tuna, avocado and tempura flakes on top, eel sauce and spicy mayo" width="1536" height="1024" fetchpriority="high" decoding="async">
       <span class="half-label"><span class="half-k">The cold side</span><span class="half-t">Sushi rolls &amp; poke</span></span>
     </a>
     <div class="hero-copy">
@@ -170,7 +170,7 @@
         <h3>Hibachi</h3>
         <p class="lede">Grilled with mushrooms, zucchini, onion &amp; bean sprouts. Served with yum yum sauce, garlic steak sauce &amp; your choice of white or fried rice.</p>
         <p class="pill">Gluten-free hibachi available</p>
-          <figure class="g-photo"><img data-parallax="14" src="assets/food/hibachi-plate.jpg" alt="Steak and scallops hibachi with grilled vegetables and fried rice, steam rising, the grill glowing behind" width="1024" height="1536" loading="lazy" decoding="async"></figure>
+          <figure class="g-photo"><img data-parallax="14" src="assets/food/hibachi-plate.jpg" srcset="assets/food/hibachi-plate-640.jpg 640w, assets/food/hibachi-plate.jpg 1024w" sizes="(min-width: 1000px) 30vw, (min-width: 760px) 90vw, 100vw" alt="Steak and scallops hibachi with grilled vegetables and fried rice, steam rising, the grill glowing behind" width="1024" height="1536" loading="lazy" decoding="async"></figure>
         </div>
         <div class="g-main">
           <p class="rowlabel">Single protein</p>
@@ -214,11 +214,11 @@
       <div class="group cold" id="rolls">
         <div class="g-side">
         <h3>Chef’s Specialty Rolls</h3>
-          <figure class="g-photo"><img data-parallax="14" src="assets/food/spicy-lava-drops.jpg" alt="Spicy Lava Drops: deep-fried rolls of spicy krab, cream cheese and jalapeño, drizzled with eel sauce and spicy mayo" width="1536" height="1024" loading="lazy" decoding="async"><figcaption>Spicy Lava Drops</figcaption></figure>
+          <figure class="g-photo"><img data-parallax="14" src="assets/food/spicy-lava-drops.jpg" srcset="assets/food/spicy-lava-drops-640.jpg 640w, assets/food/spicy-lava-drops-1024.jpg 1024w, assets/food/spicy-lava-drops.jpg 1536w" sizes="(min-width: 1000px) 30vw, (min-width: 760px) 90vw, 100vw" alt="Spicy Lava Drops: deep-fried rolls of spicy krab, cream cheese and jalapeño, drizzled with eel sauce and spicy mayo" width="1536" height="1024" loading="lazy" decoding="async"><figcaption>Spicy Lava Drops</figcaption></figure>
         </div>
         <div class="g-main">
           <article class="feature">
-          <img class="feature-photo" src="assets/food/fire-and-finn-roll.jpg" alt="" width="1536" height="1024" loading="lazy" decoding="async">
+          <img class="feature-photo" src="assets/food/fire-and-finn-roll-640.jpg" srcset="assets/food/fire-and-finn-roll-640.jpg 640w, assets/food/fire-and-finn-roll-1024.jpg 1024w" sizes="(min-width: 560px) 132px, 100vw" alt="" width="1536" height="1024" loading="lazy" decoding="async">
           <div class="feature-body">
           <div class="dish-head">
             <span class="name">Fire &amp; Finn<span class="raw">*</span><span class="kicker">Chef’s Signature</span></span>
@@ -303,7 +303,7 @@
       <div class="group cold" id="poke">
         <div class="g-side">
         <h3>Poke Bowl</h3>
-          <figure class="g-photo square"><img data-parallax="14" src="assets/food/poke-bowl.jpg" alt="Poke bowl over sushi rice with tuna, pineapple, cucumber, avocado, seaweed salad, edamame and masago" width="1024" height="1024" loading="lazy" decoding="async"></figure>
+          <figure class="g-photo square"><img data-parallax="14" src="assets/food/poke-bowl.jpg" srcset="assets/food/poke-bowl-640.jpg 640w, assets/food/poke-bowl.jpg 1024w" sizes="(min-width: 1000px) 30vw, (min-width: 760px) 90vw, 100vw" alt="Poke bowl over sushi rice with tuna, pineapple, cucumber, avocado, seaweed salad, edamame and masago" width="1024" height="1024" loading="lazy" decoding="async"></figure>
         </div>
         <div class="g-main">
           <div class="poke-head"><span class="name">Build your own bowl over sushi rice</span><span class="price">19</span></div>
@@ -334,7 +334,7 @@
 
   <!-- ===== Order ===== -->
   <section class="order" id="order" aria-labelledby="order-title">
-    <img class="band-photo" data-parallax="24" src="assets/food/sushi-craft.jpg" alt="" width="1536" height="1024" loading="lazy" decoding="async" aria-hidden="true">
+    <img class="band-photo" data-parallax="24" src="assets/food/sushi-craft.jpg" srcset="assets/food/sushi-craft-640.jpg 640w, assets/food/sushi-craft-1024.jpg 1024w, assets/food/sushi-craft.jpg 1536w" sizes="100vw" alt="" width="1536" height="1024" loading="lazy" decoding="async" aria-hidden="true">
     <div class="wrap order-copy">
       <h2 id="order-title">Ready when you are.</h2>
       <p>Order ahead for pickup at 2003 Periwinkle Way and it’s waiting when you walk in.</p>
