@@ -10,8 +10,10 @@
 
   Three silhouettes, one signature:
     boards    dark, long dwell. Four distance boards (menu-hot-1, menu-hot-2, menu-cold-1, menu-cold-2)
-              carry names and prices at 44 px for a table 10 to 15 ft away; menu-full is the close-range
-              single-TV board; drinks is names only at 40 px.
+              carry names and prices at 44 px. Jost's cap height is .70 em, so that is a 31 px cap, about 19 mm
+              on a 55 inch 1080p set, which the inch-of-cap-height-per-10-ft rule puts at 7 to 8 ft (queue and near
+              tables). 10 ft would need 58 px, 15 ft 87 px, each meaning fewer items per board. menu-full is the
+              close-range single-TV board; drinks is names only at 40 px.
     appetite  dark, photo on the right, one big sentence (welcome, promo-*, lto)
     utility   dark left half, cream pane on the right half (hours, order-online, review-*, location)
     baseline  the 48 px band on the bottom edge of every slide: fire on hot slides, sea on cold
@@ -102,7 +104,7 @@
   .board { position: absolute; left: var(--m); right: var(--m); top: 205px; bottom: calc(var(--base) + 76px); display: grid; column-gap: 70px; }
   .span2 { grid-column: 1 / 3; }
 
-  /* distance boards: names and prices at 44 px (about 1 inch of cap height on a 55 inch TV, readable from 12 to 15 ft),
+  /* distance boards: names and prices at 44 px (a 31 px cap, about 19 mm on a 55 inch 1080p TV: comfortable at 7 to 8 ft; 10 ft needs 58 px, 15 ft 87 px),
      descriptions demoted to 28 px muted. Two columns, rows packed from the top. */
   .big .board { grid-template-columns: 1fr 1fr; align-content: start; bottom: calc(var(--base) + 64px); }
   .big .board.stack { display: block; }
@@ -291,7 +293,7 @@
   <div class="base"></div>
 </section>
 
-<!-- 4. FULL MENU: the close-range single-TV board (both menus on one screen, names and prices only, 27 px). Not for a table 15 ft away. -->
+<!-- 4. FULL MENU: the close-range single-TV board (both menus on one screen, names and prices only, 27 px). Not for a dining room. -->
 <section class="slide menu full" id="menu-full">
   <div class="glow"></div><div class="grain"></div>
   <img class="logo" src="../../assets/logo-compact.svg" alt="">
