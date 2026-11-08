@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Fire & Finn — Google Business Profile post images</title>
+<!--
+  GOOGLE BUSINESS PROFILE POST IMAGES, 1200 x 900 (Google shows posts at 4:3 and rounds the corners).
+  Same system as menu-source/tv/slides.html: dark ground, Jost, fire | sea baseline, the logo at top left,
+  never redrawn or recoloured. Every word sits inside the central 80 % (x 120 to 1080, y 90 to 810) so the
+  feed's crop and rounded corners never touch it; only photographs and the baseline reach the edges.
+  One image per ?post=name:
+    rename   Island Panda is now Fire & Finn. Same kitchen. Same address. New name.   (typographic)
+    hero     Grilled hot. Rolled cold. over the split hero: hot plate left, roll right  (two photographs)
+    order    Order ahead for pickup. Skip the line, it's ready when you get here.      (roll photograph)
+  The order link lives in the post's button, never in the image. No QR codes. Post text is in posts.md.
+  Render: msedge --headless=new --disable-gpu --hide-scrollbars --virtual-time-budget=4000 --window-size=1200,900
+          --screenshot=rename.png "file:///.../posts.html?post=rename"
+-->
+<style>
+  @font-face { font-family: "Jost"; font-weight: 400; src: url("../../assets/fonts/Jost-400.woff2") format("woff2"); }
+  @font-face { font-family: "Jost"; font-weight: 500; src: url("../../assets/fonts/Jost-500.woff2") format("woff2"); }
+  @font-face { font-family: "Jost"; font-weight: 600; src: url("../../assets/fonts/Jost-600.woff2") format("woff2"); }
+  :root { --bg:#0B0C0E; --ink:#F2F0EB; --muted:#CFCAC2; --dim:#A39D95; --fire:#F07840; --sea:#62C6EC; --sx:120px; --sy:90px; --base:36px; }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1200px; height: 900px; overflow: hidden; background: var(--bg); color: var(--ink); font-family: "Jost", sans-serif; }
+  .post { position: relative; width: 1200px; height: 900px; display: none; overflow: hidden; background: var(--bg); }
+  .post.on { display: block; }
+  .base { position: absolute; left: 0; right: 0; bottom: 0; height: var(--base); background: linear-gradient(90deg, var(--fire) 0 50%, var(--sea) 50% 100%); }
+  .glow { position: absolute; left: 0; right: 0; top: 0; bottom: var(--base); pointer-events: none;
+    background: radial-gradient(48% 50% at 14% 103%, rgba(240,120,64,.30), rgba(240,120,64,0) 70%), radial-gradient(48% 50% at 86% 103%, rgba(98,198,236,.24), rgba(98,198,236,0) 70%); }
+  .logo { position: absolute; left: var(--sx); top: var(--sy); width: 240px; }
+  .hot { color: var(--fire); } .cold { color: var(--sea); }
+  .copy { position: absolute; left: var(--sx); right: var(--sx); top: 230px; bottom: var(--sy); display: flex; flex-direction: column; justify-content: center; }
+  h1 { font: 600 104px/1 "Jost"; letter-spacing: -.01em; }
+  .line { margin-top: 36px; font: 600 42px/1.2 "Jost"; color: var(--ink); }
+  .meta { margin-top: 30px; font: 400 30px/1.45 "Jost"; color: var(--muted); }
+  .meta b { font-weight: 500; color: var(--ink); }
+
+  /* hero: two photographs, one seam, the line over a dark scrim */
+  .hero .ph { position: absolute; top: 0; width: 600px; height: 900px; object-fit: cover; }
+  .hero .ph.l { left: 0; object-position: 55% 30%; } .hero .ph.r { left: 600px; object-position: 45% 30%; }
+  .hero .scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,12,14,.66) 0%, rgba(11,12,14,.14) 30%, rgba(11,12,14,.30) 52%, rgba(11,12,14,.90) 78%, rgba(11,12,14,.96) 100%); }
+  .hero .copy { justify-content: flex-end; top: auto; bottom: calc(var(--sy) + 6px); }
+  .hero h1 { font-size: 104px; }
+
+  /* order: dark left, the roll on the right feathered into the ground */
+  .order .ph { position: absolute; right: 0; top: 0; width: 600px; height: 900px; object-fit: cover; object-position: 40% 50%;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 48%); mask-image: linear-gradient(90deg, transparent, #000 48%); }
+  .order .copy { right: auto; width: 540px; }
+  .order h1 { font-size: 88px; }
+  .order .sub { margin-top: 30px; font: 400 36px/1.35 "Jost"; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<section class="post" id="rename">
+  <div class="glow"></div>
+  <img class="logo" src="../../assets/logo-compact.svg" alt="">
+  <div class="copy">
+    <h1>Island Panda is now<br>Fire &amp; Finn.</h1>
+    <p class="line">Same kitchen. Same address. New name.</p>
+    <p class="meta"><b data-loc="address"></b>, <span data-loc="city"></span><br>Open daily <b data-loc="hours"></b></p>
+  </div>
+  <div class="base"></div>
+</section>
+
+<section class="post hero" id="hero">
+  <img class="ph l" src="../../assets/food/hero-hibachi.jpg" alt="">
+  <img class="ph r" src="../../assets/food/fire-and-finn-roll.jpg" alt="">
+  <div class="scrim"></div>
+  <img class="logo" src="../../assets/logo-compact.svg" alt="">
+  <div class="copy">
+    <h1><span class="hot">Grilled hot.</span><br><span class="cold">Rolled cold.</span></h1>
+  </div>
+  <div class="base"></div>
+</section>
+
+<section class="post order" id="order">
+  <img class="ph" src="../../assets/food/fire-and-finn-roll.jpg" alt="">
+  <div class="glow"></div>
+  <img class="logo" src="../../assets/logo-compact.svg" alt="">
+  <div class="copy">
+    <h1>Order ahead for pickup.</h1>
+    <p class="sub">Skip the line,<br>it’s ready when you get here.</p>
+  </div>
+  <div class="base"></div>
+</section>
+
+<script src="../tv/location.js"></script>
+<script>
+  document.querySelectorAll("[data-loc]").forEach((el) => { el.textContent = LOCATION[el.dataset.loc] || ""; });
+  const want = new URLSearchParams(location.search).get("post") || "rename";
+  (document.getElementById(want) || document.querySelector(".post")).classList.add("on");
+</script>
+</body>
+</html>
