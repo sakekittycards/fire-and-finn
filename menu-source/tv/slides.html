@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>Fire & Finn — digital signage templates</title>
 <!--
-  FIRE & FINN DIGITAL SIGNAGE SYSTEM  v3  (1920 x 1080, one slide per ?slide=name)
+  FIRE & FINN DIGITAL SIGNAGE SYSTEM  v4  (1920 x 1080, one slide per ?slide=name)
   The brand lives in this file. Everything a location edits lives in location.js.
   Render: msedge --headless=new --window-size=1920,1080 --screenshot=out.png "slides.html?slide=welcome"
 
@@ -12,8 +12,9 @@
     boards    dark, dense, long dwell (menu-hot, menu-cold, menu-full, drinks)
     appetite  dark, photo on the right, one big sentence (welcome, promo-*, lto)
     utility   dark left half, cream pane on the right half (hours, order-online, review-*, location)
-    baseline  the 12 px bar on the bottom edge of every slide: fire on hot slides, sea on cold
+    baseline  the 48 px band on the bottom edge of every slide: fire on hot slides, sea on cold
               slides, fire|sea split at x 960 on brand and utility slides. It lights the slide from below.
+              48 px so that a TV overscanning 3 % (32 px) still shows it; nothing else lives in the outer 3 %.
   Type: Jost 600 for every headline. Tracked caps are wayfinding only (board titles, section
   headers, QR labels). Anything with a voice is sentence case. Outfit 400 for the tagline only.
   Floors: nothing under 22 px on a board, nothing under 18 px anywhere.
@@ -23,21 +24,21 @@
   @font-face { font-family: "Jost"; font-weight: 500; src: url("../../assets/fonts/Jost-500.woff2") format("woff2"); }
   @font-face { font-family: "Jost"; font-weight: 600; src: url("../../assets/fonts/Jost-600.woff2") format("woff2"); }
   @font-face { font-family: "Outfit"; font-weight: 400; src: url("../../assets/fonts/Outfit-400.woff2") format("woff2"); }
-  :root { --bg:#0B0C0E; --paper:#F2F0EB; --coal:#15161A; --ink:#F2F0EB; --muted:#CFCAC2; --dim:#A39D95; --fire:#F07840; --sea:#62C6EC; --m:70px; }
+  :root { --bg:#0B0C0E; --paper:#E6E2D9; --coal:#15161A; --ink:#F2F0EB; --muted:#CFCAC2; --dim:#A39D95; --fire:#F07840; --sea:#62C6EC; --m:70px; --base:48px; }
   * { box-sizing: border-box; margin: 0; }
   html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--bg); color: var(--ink); font-family: "Jost", sans-serif; }
   .slide { position: relative; width: 1920px; height: 1080px; display: none; overflow: hidden; background: var(--bg); }
   .slide.on { display: block; }
 
   /* ---- signature: baseline + the light it throws ---- */
-  .base { position: absolute; left: 0; right: 0; bottom: 0; height: 12px; background: linear-gradient(90deg, var(--fire) 0 50%, var(--sea) 50% 100%); }
+  .base { position: absolute; left: 0; right: 0; bottom: 0; height: var(--base); background: linear-gradient(90deg, var(--fire) 0 50%, var(--sea) 50% 100%); }
   .hot-side .base { background: var(--fire); }
   .cold-side .base { background: var(--sea); }
-  .glow { position: absolute; inset: 0; pointer-events: none;
+  .glow { position: absolute; inset: 0 0 var(--base) 0; pointer-events: none;
     background: radial-gradient(48% 62% at 14% 103%, rgba(240,120,64,.30), rgba(240,120,64,0) 70%), radial-gradient(48% 62% at 86% 103%, rgba(98,198,236,.24), rgba(98,198,236,0) 70%); }
   .hot-side .glow { background: radial-gradient(85% 62% at 40% 104%, rgba(240,120,64,.30), rgba(240,120,64,0) 70%); }
   .cold-side .glow { background: radial-gradient(85% 62% at 60% 104%, rgba(98,198,236,.26), rgba(98,198,236,0) 70%); }
-  .grain { position: absolute; inset: 0; opacity: .06; pointer-events: none;
+  .grain { position: absolute; inset: 0; opacity: .04; pointer-events: none;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
   .logo { position: absolute; left: var(--m); top: 44px; width: 300px; }
   .hot { color: var(--fire); } .cold { color: var(--sea); }
@@ -50,7 +51,7 @@
   .tag span { color: var(--sea); margin: 0 .2em; }
 
   /* ---- appetite + utility: the copy column ---- */
-  .copy { position: absolute; left: var(--m); top: 0; bottom: 12px; width: 820px; display: flex; flex-direction: column; justify-content: center; padding-top: 110px; }
+  .copy { position: absolute; left: var(--m); top: 0; bottom: var(--base); width: 820px; display: flex; flex-direction: column; justify-content: center; padding-top: 110px; }
   .copy .sub { margin-top: 34px; max-width: 17em; }
   .copy .body { margin-top: 40px; font: 400 36px/1.4 "Jost"; color: var(--ink); max-width: 20em; }
   .copy .tag { margin-top: 64px; }
@@ -71,7 +72,7 @@
   .copy .step p { font-size: 30px; }
 
   /* ---- utility: the cream pane ---- */
-  .pane { position: absolute; left: 960px; top: 0; width: 960px; height: 1068px; background: var(--paper); color: var(--coal); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .pane { position: absolute; left: 960px; top: 0; width: 960px; height: calc(1080px - var(--base)); background: var(--paper); color: var(--coal); display: flex; flex-direction: column; align-items: center; justify-content: center; }
   .pane .qr { width: 620px; height: 620px; }
   .pane .qr img { width: 100%; height: 100%; display: block; }
   .pane .qr .ph { width: 100%; height: 100%; border: 3px dashed #B9B3A9; border-radius: 16px; display: grid; place-items: center; color: #8A847C; font: 500 32px/1.3 "Jost"; text-align: center; padding: 40px; }
@@ -95,9 +96,11 @@
   /* ---- boards ---- */
   .title { position: absolute; left: 420px; top: 52px; }
   .title .sub { font-size: 30px; margin-top: 8px; }
-  .foot { position: absolute; left: var(--m); right: var(--m); bottom: 36px; font-size: 22px; color: var(--dim); display: flex; justify-content: space-between; }
-  .board { position: absolute; left: var(--m); right: var(--m); top: 205px; bottom: 92px; display: grid; column-gap: 70px; }
+  .foot { position: absolute; left: var(--m); right: var(--m); bottom: calc(var(--base) + 26px); font-size: 22px; color: var(--dim); display: flex; justify-content: space-between; }
+  .board { position: absolute; left: var(--m); right: var(--m); top: 205px; bottom: calc(var(--base) + 76px); display: grid; column-gap: 70px; }
   .two .board { grid-template-columns: 1fr 1fr; }
+  .two .item { padding: 9px 0; } .two .item .n { font-size: 36px; } .two .item .d { font-size: 28px; } .two .lede { font-size: 28px; }
+  .two .grid b { font-size: 30px; } .two .grid span { font-size: 38px; } .two .grid div { padding: 16px 8px 14px; } .two .group + .group { margin-top: 44px; }
   .three .board { grid-template-columns: 1.1fr 1.1fr .8fr; grid-template-rows: auto 1fr auto; column-gap: 56px; }
   .three .item { padding: 5px 0; }
   .span2 { grid-column: 1 / 3; }
@@ -114,15 +117,15 @@
   .item .n b { font: 600 22px/1 "Jost"; letter-spacing: .14em; text-transform: uppercase; color: var(--sea); margin-left: 12px; vertical-align: 3px; }
   .item .lead { flex: 1; border-bottom: 2px dotted rgba(240,120,64,.4); transform: translateY(-9px); min-width: 24px; }
   .cold-side .item .lead { border-bottom-color: rgba(98,198,236,.4); }
-  .item .p { font: 600 32px/1.2 "Jost"; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .item .p { font: 600 32px/1.2 "Jost"; color: var(--ink); white-space: nowrap; font-variant-numeric: tabular-nums; }
   .item .d { display: block; width: 100%; font: 400 26px/1.3 "Jost"; color: var(--muted); margin-top: 2px; }
   .grid { display: grid; gap: 2px; border: 2px solid rgba(240,120,64,.45); border-radius: 12px; overflow: hidden; background: rgba(240,120,64,.35); margin: 8px 0 16px; }
   .grid5 { grid-template-columns: repeat(5, 1fr); } .grid3 { grid-template-columns: repeat(3, 1fr); } .grid8 { grid-template-columns: repeat(8, 1fr); }
   .grid div { background: #120C09; padding: 14px 8px 12px; text-align: center; }
   .grid b { display: block; font: 600 28px/1.2 "Jost"; color: var(--ink); }
-  .grid span { color: var(--fire); font: 600 30px/1.3 "Jost"; }
+  .grid span { color: var(--ink); font: 600 34px/1.3 "Jost"; }
   .grid.cool { border-color: rgba(98,198,236,.45); background: rgba(98,198,236,.3); }
-  .grid.cool div { background: #091114; padding: 10px 6px 8px; } .grid.cool b { font-size: 25px; } .grid.cool span { color: var(--sea); font-size: 26px; } .grid.cool i { color: var(--sea); font-style: normal; }
+  .grid.cool div { background: #091114; padding: 10px 6px 8px; } .grid.cool b { font-size: 25px; } .grid.cool span { font-size: 30px; } .grid.cool i { color: var(--sea); font-style: normal; }
   .lede { font: 400 26px/1.3 "Jost"; color: var(--muted); margin: 0 0 10px; }
 
   /* full menu: both boards on one screen. Names and prices only, so nothing drops under 22 px. */
@@ -157,15 +160,13 @@
 </head>
 <body>
 
-<!-- 1. WELCOME (master brand) -->
+<!-- 1. WELCOME (master brand): the key to the colour code. Sea line, fire line, split baseline. -->
 <section class="slide" id="welcome">
-  <img class="photo" src="../../assets/food/hero-hibachi.jpg" style="width:820px;object-position:50% 60%" alt="">
   <div class="glow"></div><div class="grain"></div>
   <img class="logo" src="../../assets/logo-compact.svg" alt="">
-  <div class="copy" style="width:980px">
-    <h1 style="font-size:112px;line-height:1.02"><span class="cold">Fresh from the sea.</span><br><span class="hot">Hot off the grill.</span></h1>
-    <p class="sub">Hibachi seared to order. Sushi rolled fresh. Poke bowls built your way.</p>
-    <p class="tag">Hibachi <span>•</span> Sushi <span>•</span> Poke</p>
+  <div class="copy" style="width:1780px">
+    <h1 style="font-size:168px;line-height:1"><span class="cold">Fresh from the sea.</span><br><span class="hot">Hot off the grill.</span></h1>
+    <p class="tag" style="font-size:36px">Hibachi <span>•</span> Sushi <span>•</span> Poke</p>
   </div>
   <div class="base"></div>
 </section>
@@ -356,7 +357,7 @@
   <div class="copy">
     <h1 style="font-size:180px">Hibachi</h1>
     <p class="sub">Seared to order on the flat-top.</p>
-    <p class="body">Chicken, shrimp, salmon, scallops or steak. Mushrooms, zucchini, onion &amp; bean sprouts. White or fried rice.</p>
+    <p class="body">Chicken, shrimp, salmon, scallops or steak.</p>
   </div>
   <div class="base"></div>
 </section>
@@ -371,7 +372,7 @@
     <p class="sub">Poke over sushi rice, made your way.</p>
     <div class="steps">
       <div class="step"><div class="num">1</div><div class="t">Pick a protein</div></div>
-      <div class="step"><div class="num">2</div><div class="t">Pile on toppings</div><p>As many as you like.</p></div>
+      <div class="step"><div class="num">2</div><div class="t">Pile on toppings</div></div>
       <div class="step"><div class="num">3</div><div class="t">Finish with a sauce</div></div>
     </div>
   </div>
@@ -384,8 +385,8 @@
   <div class="glow"></div><div class="grain"></div>
   <img class="logo" src="../../assets/logo-compact.svg" alt="">
   <div class="copy">
-    <h1>Cold drinks</h1>
-    <p class="sub">Beer, seltzers, sake, sodas and water in the cooler. Grab one on your way to the counter.</p>
+    <h1>The cooler</h1>
+    <p class="sub">Beer, seltzers, sake, sodas and water. Grab one on your way to the counter.</p>
   </div>
   <div class="base"></div>
 </section>
@@ -397,7 +398,7 @@
   <img class="logo" src="../../assets/logo-compact.svg" alt="">
   <div class="copy">
     <h1>Open daily</h1>
-    <p class="meta"><strong data-loc="address"></strong>, <span data-loc="city"></span><br><strong data-loc="phone"></strong><br>Order ahead at <strong data-loc="web"></strong></p>
+    <p class="meta"><strong data-loc="address"></strong>, <span data-loc="city"></span><br><strong data-loc="phone"></strong></p>
   </div>
   <div class="base"></div>
 </section>
@@ -420,14 +421,14 @@
   <div class="pane"><div class="qr"><img data-qr="google" alt=""><div class="ph">Google review QR</div></div><p class="qr-label">Scan to review</p></div>
   <div class="glow"></div><div class="grain"></div>
   <img class="logo" src="../../assets/logo-compact.svg" alt="">
-  <div class="copy"><h1>Rate us on Google</h1><p class="sub">How did we do? Scan to leave a review. Every one helps.</p></div>
+  <div class="copy"><h1>Rate us on Google</h1><p class="sub">How did we do? Scan to leave a review.</p></div>
   <div class="base"></div>
 </section>
 <section class="slide util review" id="review-tripadvisor">
   <div class="pane"><div class="qr"><img data-qr="tripadvisor" alt=""><div class="ph">Tripadvisor review QR</div></div><p class="qr-label">Scan to review</p></div>
   <div class="glow"></div><div class="grain"></div>
   <img class="logo" src="../../assets/logo-compact.svg" alt="">
-  <div class="copy"><h1>Rate us on Tripadvisor</h1><p class="sub">How did we do? Scan to leave a review. Every one helps.</p></div>
+  <div class="copy"><h1>Rate us on Tripadvisor</h1><p class="sub">Tell other travelers how it went. Scan to leave a review.</p></div>
   <div class="base"></div>
 </section>
 <section class="slide util review" id="review-yelp">
