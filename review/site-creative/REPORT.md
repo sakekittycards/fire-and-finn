@@ -186,6 +186,20 @@ two mentions is the brief and the right amount.
 
 Overflow after this pass: 0 at all three sizes; page heights unchanged. Menu text identical: 88 of 88 items and the advisory.
 
+### Board fixes on the fourth pass
+
+35. **The description leads with the old name.** Google clips at about 155 characters on a laptop and 120 on a phone, and
+    "Formerly Island Panda." began at character 153. It is now the first phrase; "Order online for pickup." was dropped
+    to keep the whole line at 150 characters. `og:description` opens the same way.
+36. **The card is the logo, two plates and the line.** The 24px subline is gone (unreadable at a 420px preview and a
+    fourth phrasing of the descriptor). "cold." had ended exactly on the roll's left edge; the photo halves are now 41%
+    of the card each and the headline 88px, so both photographs are fully dark about 200px before the centre and the
+    line ends in black on both sides, measured on the render. og.jpg 103 KB, og.png 164 KB; both alts rewritten to match.
+37. **3x phones get a 1200px roll.** `fire-and-finn-roll-1200.jpg` (130 KB) joins the srcset and the preload, so a 390px
+    phone at 3x fetches it instead of the 1536px file (184 KB). The hibachi hero cannot have a 1200px variant: its
+    source is 1024px wide, and upscaling would add bytes without detail, so 3x phones still take the 1024px file,
+    which is the largest there is. First screen at 390: 418 KB at 2x, 583 KB at 3x (was 638).
+
 ## Considered and rejected
 
 - A hard vertical seam between the two hero photographs: reads as a before/after slider. Soft masks into a dark valley instead.
@@ -239,6 +253,7 @@ Overflow after this pass: 0 at all three sizes; page heights unchanged. Menu tex
 - `app.js`: settings block untouched; reveal logic removed; category-row indicator added; embers now live in the hot half.
 - `404.html`: restyled; `?v=11`.
 - `assets/og.jpg`, `assets/og.png`: the share card, rebuilt from `review/site-creative/og-card.html` with `render-og.py`.
+- `assets/food/fire-and-finn-roll-1200.jpg`: 1200px roll variant for 3x phones.
 - `assets/logo-compact.svg`: same drawing, 24 KB instead of 87 (svgo, one-decimal precision, zero-pixel diff).
 - `assets/food/hero-hibachi-800.jpg`, `fire-and-finn-roll-800.jpg`: 800px hero variants for 2x phones and 1x desktops.
 - `README.md`: file list updated.
