@@ -9,7 +9,7 @@ Static site for Fire & Finn, Hibachi · Sushi · Poke, 2003 Periwinkle Way, Sani
 - `assets/food/`: the six photographs. Two carry the hero, three open the hibachi, specialty-roll and poke categories, one runs behind the order band.
 - `menu.pdf`: the printed menu, linked from the Menu section. Replace it whenever the menu changes.
 - `assets/`: logo, flame and wave marks cut from the logo, favicon, share image, fonts (Tenor Sans and Jost, SIL Open Font License).
-- `review/site-creative/`: before and after screenshots from the creative pass, with the report.
+- `review/site-creative/`: before and after screenshots from the creative pass, with the report; `og-card.html` + `render-og.py` are the source of `assets/og.jpg` (serve the site over http, then `python review/site-creative/render-og.py http://127.0.0.1:8795`).
 - `CNAME`: the custom domain for GitHub Pages.
 
 ## Things you will change

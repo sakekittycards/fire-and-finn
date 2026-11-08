@@ -147,6 +147,45 @@ Conditional ship: three copy changes and two checks, one commit on top of the th
 
 Overflow after this pass: 0 at all three sizes; page heights 9,140 / 7,140 / 6,656px. Menu text identical: 88 of 88 items and the advisory.
 
+## Fourth pass (findable and shareable, and a lighter first screen)
+
+Main merged first (583389d, live as v11; only the TV signage folder had moved). One commit on top.
+
+29. **Structured data knows the old name.** `alternateName` is now `["Island Panda", "Fire & Finn Hibachi · Sushi · Poke"]`;
+    `hasMenu` already pointed at `https://fireandfinn.com/#menu` and stays; a `potentialAction` OrderAction carries the
+    Toast URL (the same string as `ORDER_URL` in app.js) with pickup as the delivery method; telephone and the hours
+    specification are unchanged. The JSON was parsed after the edit. `sameAs` was **not** added: the project memory
+    holds the Business Profile location id but not a public Maps listing URL, and a guessed URL is worse than none.
+30. **Meta description** ends "Formerly Island Panda." so the search snippet bridges the two names; the title stays
+    brand-first.
+31. **The share card is the hero idea.** `assets/og.jpg` and `og.png` (1200x630) are rendered from
+    `review/site-creative/og-card.html` by `render-og.py` in headless Edge: the steak-and-scallops plate left, the
+    Fire & Finn roll right, each fading fully into the ground so the seam is real darkness, "Grilled hot. / Rolled cold."
+    in Tenor Sans in the seam with a one-line Jost sub ("Hibachi, sushi and poke on Sanibel"), the logo top left. Same
+    photographs and fonts as the site. The first render let the roll run behind the headline; the halves now fade out
+    by 80% of their width and the photographs are pushed outward. 137 KB JPEG, 215 KB PNG. `og:image`, `twitter:image`
+    and the JSON-LD `image` carry `?v=2` so scrapers that cached the old card fetch this one; `og:image:alt` and a new
+    `twitter:image:alt` describe it.
+32. **The logo SVG is 24 KB, from 87 KB.** `assets/logo-compact.svg` is six traced paths (three flame strokes, two
+    wave strokes, one outlined wordmark; no live text, no embedded image) with 11,759 three-decimal coordinates and
+    five gradients. svgo 4.1 with multipass and one-decimal precision (the viewBox is 1,495 units wide, so a tenth of
+    a unit is a fortieth of a pixel at 300px) brought it to 24 KB; renders of the old and new file at 300px and
+    1,200px on a 2x canvas differ in zero pixels. Two decimals would have given 45 KB for the same zero-pixel result.
+33. **The first screen weighs less.** Measured over http with the lazy menu photograph excluded: 390px at 2x went from
+    about 565 KB to 418 KB, and 1440px from 565 KB to 418 KB. Not from the JPEG encoder, which was already at about
+    quality 80 (re-encoding every food file saved 0 to 4%, so none were touched), but from the srcset: a phone at 2x
+    needs a 780px hero and was being served the 1024px file. New 800px variants of the two hero photographs
+    (`hero-hibachi-800.jpg` 187 KB, `fire-and-finn-roll-800.jpg` 72 KB) sit in the srcsets and the preloads, so
+    phones at 2x and desktops at 1x pick them; 3x phones still get the 1024px files. The logo cut is the other 63 KB.
+34. No change to `styles.css` or `app.js` this pass, so the cache-bust stays at `?v=11`. The two new JPEGs are new
+    file names; the SVG and the card replace files in place and look the same or are only read by scrapers.
+
+Looked at again and left alone: the hero at all three sizes, the three-line meta row on phones (status, address,
+Formerly), the menu rhythm, the Order band, Visit and the footer. The footer does not repeat "Formerly Island Panda";
+two mentions is the brief and the right amount.
+
+Overflow after this pass: 0 at all three sizes; page heights unchanged. Menu text identical: 88 of 88 items and the advisory.
+
 ## Considered and rejected
 
 - A hard vertical seam between the two hero photographs: reads as a before/after slider. Soft masks into a dark valley instead.
@@ -186,8 +225,11 @@ Overflow after this pass: 0 at all three sizes; page heights 9,140 / 7,140 / 6,6
 7. **No Order button inside the phone hero.** The bottom bar is the order button on phones; if the owner wants one in the
    hero as well, delete the `@media (max-width: 759px) { .hero .cta { display: none; } }` rule and the cold picture drops
    below the fold again on an 844px-tall phone.
-8. **"Formerly Island Panda"** is on the page twice (hero meta row, Visit address) and nowhere machine-readable. If search
-   should also connect the two names, `alternateName` in the JSON-LD is the place; the board asked for no other copy changes.
+8. **"Formerly Island Panda"** is on the page twice (hero meta row, Visit address), in the meta description and in the
+   JSON-LD `alternateName`. `sameAs` with the Google listing is still missing: it needs the public Maps URL of the
+   Business Profile (share link from the listing), which is not in the project or its notes.
+9. **The share card** is cached by Facebook, iMessage and Slack per URL; the `?v=2` on `og:image` makes them refetch, but
+   a card already posted keeps the old picture. The Facebook Sharing Debugger can force a rescrape once v11 is live.
 
 ## Files
 
@@ -196,4 +238,7 @@ Overflow after this pass: 0 at all three sizes; page heights 9,140 / 7,140 / 6,6
 - `styles.css`: rewritten.
 - `app.js`: settings block untouched; reveal logic removed; category-row indicator added; embers now live in the hot half.
 - `404.html`: restyled; `?v=11`.
+- `assets/og.jpg`, `assets/og.png`: the share card, rebuilt from `review/site-creative/og-card.html` with `render-og.py`.
+- `assets/logo-compact.svg`: same drawing, 24 KB instead of 87 (svgo, one-decimal precision, zero-pixel diff).
+- `assets/food/hero-hibachi-800.jpg`, `fire-and-finn-roll-800.jpg`: 800px hero variants for 2x phones and 1x desktops.
 - `README.md`: file list updated.

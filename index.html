@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Fire &amp; Finn — Hibachi, Sushi &amp; Poke on Sanibel Island</title>
-  <meta name="description" content="Fast-casual hibachi, specialty rolls and build-your-own poke bowls at 2003 Periwinkle Way, Sanibel, FL. Open daily 11am to 8pm. Order online for pickup.">
+  <meta name="description" content="Fast-casual hibachi, specialty rolls and build-your-own poke bowls at 2003 Periwinkle Way, Sanibel, FL. Open daily 11am to 8pm. Order online for pickup. Formerly Island Panda.">
   <meta name="theme-color" content="#0a0a0b">
   <link rel="canonical" href="https://fireandfinn.com/">
 
@@ -13,12 +13,13 @@
   <meta property="og:title" content="Fire &amp; Finn — Hibachi · Sushi · Poke">
   <meta property="og:description" content="Grilled hot. Rolled cold. Hibachi, specialty rolls and build-your-own poke on Sanibel Island.">
   <meta property="og:url" content="https://fireandfinn.com/">
-  <meta property="og:image" content="https://fireandfinn.com/assets/og.jpg">
+  <meta property="og:image" content="https://fireandfinn.com/assets/og.jpg?v=2">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Steak and scallops hibachi plate beside the Fire &amp; Finn logo">
+  <meta property="og:image:alt" content="A steak and scallops hibachi plate on the left, the Fire &amp; Finn roll on the right, Grilled hot. Rolled cold. between them, the Fire &amp; Finn logo top left">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://fireandfinn.com/assets/og.jpg">
+  <meta name="twitter:image" content="https://fireandfinn.com/assets/og.jpg?v=2">
+  <meta name="twitter:image:alt" content="A steak and scallops hibachi plate on the left, the Fire &amp; Finn roll on the right, Grilled hot. Rolled cold. between them, the Fire &amp; Finn logo top left">
 
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
   <link rel="icon" type="image/png" sizes="128x128" href="assets/favicon.png">
@@ -28,8 +29,8 @@
   <link rel="preload" href="assets/fonts/Jost-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/Jost-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/Jost-500.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" as="image" href="assets/food/hero-hibachi.jpg" imagesrcset="assets/food/hero-hibachi-640.jpg 640w, assets/food/hero-hibachi.jpg 1024w" imagesizes="(min-width: 900px) 50vw, 100vw" fetchpriority="high">
-  <link rel="preload" as="image" href="assets/food/fire-and-finn-roll.jpg" imagesrcset="assets/food/fire-and-finn-roll-640.jpg 640w, assets/food/fire-and-finn-roll-1024.jpg 1024w, assets/food/fire-and-finn-roll.jpg 1536w" imagesizes="(min-width: 900px) 50vw, 100vw" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/food/hero-hibachi.jpg" imagesrcset="assets/food/hero-hibachi-640.jpg 640w, assets/food/hero-hibachi-800.jpg 800w, assets/food/hero-hibachi.jpg 1024w" imagesizes="(min-width: 900px) 50vw, 100vw" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/food/fire-and-finn-roll.jpg" imagesrcset="assets/food/fire-and-finn-roll-640.jpg 640w, assets/food/fire-and-finn-roll-800.jpg 800w, assets/food/fire-and-finn-roll-1024.jpg 1024w, assets/food/fire-and-finn-roll.jpg 1536w" imagesizes="(min-width: 900px) 50vw, 100vw" fetchpriority="high">
   <link rel="stylesheet" href="styles.css?v=11">
   <script>document.documentElement.classList.add("js");</script>
 
@@ -38,9 +39,9 @@
     "@context": "https://schema.org",
     "@type": "Restaurant",
     "name": "Fire & Finn",
-    "alternateName": "Fire & Finn Hibachi · Sushi · Poke",
+    "alternateName": ["Island Panda", "Fire & Finn Hibachi · Sushi · Poke"],
     "url": "https://fireandfinn.com/",
-    "image": "https://fireandfinn.com/assets/og.jpg",
+    "image": "https://fireandfinn.com/assets/og.jpg?v=2",
     "logo": "https://fireandfinn.com/assets/logo.png",
     "telephone": "+1-239-579-0783",
     "servesCuisine": ["Japanese", "Hibachi", "Sushi", "Poke"],
@@ -59,7 +60,16 @@
         "opens": "11:00", "closes": "20:00" }
     ],
     "hasMenu": "https://fireandfinn.com/#menu",
-    "menu": "https://fireandfinn.com/menu.pdf"
+    "menu": "https://fireandfinn.com/menu.pdf",
+    "potentialAction": {
+      "@type": "OrderAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://order.toasttab.com/online/fire-and-finn-2003-periwinkle-way",
+        "actionPlatform": ["http://schema.org/DesktopWebPlatform", "http://schema.org/MobileWebPlatform"]
+      },
+      "deliveryMethod": "http://purl.org/goodrelations/v1#DeliveryModePickUp"
+    }
   }
   </script>
 </head>
@@ -89,12 +99,12 @@
   <!-- ===== Hero: the hot side and the cold side, the words in the seam between them ===== -->
   <section class="hero" aria-labelledby="hero-title">
     <a class="half hot" href="#hibachi" aria-label="Hibachi and appetizers, the hot side of the menu">
-      <img src="assets/food/hero-hibachi.jpg" srcset="assets/food/hero-hibachi-640.jpg 640w, assets/food/hero-hibachi.jpg 1024w" sizes="(min-width: 900px) 50vw, 100vw" alt="Steak and scallops hibachi over fried rice with mushrooms, zucchini, onion and bean sprouts, yum yum sauce and garlic steak sauce on the side" width="1024" height="1536" fetchpriority="high" decoding="async">
+      <img src="assets/food/hero-hibachi.jpg" srcset="assets/food/hero-hibachi-640.jpg 640w, assets/food/hero-hibachi-800.jpg 800w, assets/food/hero-hibachi.jpg 1024w" sizes="(min-width: 900px) 50vw, 100vw" alt="Steak and scallops hibachi over fried rice with mushrooms, zucchini, onion and bean sprouts, yum yum sauce and garlic steak sauce on the side" width="1024" height="1536" fetchpriority="high" decoding="async">
       <span class="embers" aria-hidden="true"></span>
       <span class="half-label"><span class="half-k">The hot side</span><span class="half-t">Hibachi &amp; starters</span></span>
     </a>
     <a class="half cold" href="#rolls" aria-label="Sushi rolls and poke, the cold side of the menu">
-      <img src="assets/food/fire-and-finn-roll.jpg" srcset="assets/food/fire-and-finn-roll-640.jpg 640w, assets/food/fire-and-finn-roll-1024.jpg 1024w, assets/food/fire-and-finn-roll.jpg 1536w" sizes="(min-width: 900px) 50vw, 100vw" alt="The Fire &amp; Finn roll: tempura shrimp, cucumber and eel inside, tuna, avocado and tempura flakes on top, eel sauce and spicy mayo" width="1536" height="1024" fetchpriority="high" decoding="async">
+      <img src="assets/food/fire-and-finn-roll.jpg" srcset="assets/food/fire-and-finn-roll-640.jpg 640w, assets/food/fire-and-finn-roll-800.jpg 800w, assets/food/fire-and-finn-roll-1024.jpg 1024w, assets/food/fire-and-finn-roll.jpg 1536w" sizes="(min-width: 900px) 50vw, 100vw" alt="The Fire &amp; Finn roll: tempura shrimp, cucumber and eel inside, tuna, avocado and tempura flakes on top, eel sauce and spicy mayo" width="1536" height="1024" fetchpriority="high" decoding="async">
       <span class="half-label"><span class="half-k">The cold side</span><span class="half-t">Sushi rolls &amp; poke</span></span>
     </a>
     <div class="hero-copy">
@@ -220,7 +230,7 @@
         </div>
         <div class="g-main">
           <article class="feature">
-          <img class="feature-photo" src="assets/food/fire-and-finn-roll-640.jpg" srcset="assets/food/fire-and-finn-roll-640.jpg 640w, assets/food/fire-and-finn-roll-1024.jpg 1024w" sizes="(min-width: 560px) 132px, 100vw" alt="" width="1536" height="1024" loading="lazy" decoding="async">
+          <img class="feature-photo" src="assets/food/fire-and-finn-roll-640.jpg" srcset="assets/food/fire-and-finn-roll-640.jpg 640w, assets/food/fire-and-finn-roll-800.jpg 800w, assets/food/fire-and-finn-roll-1024.jpg 1024w" sizes="(min-width: 560px) 132px, 100vw" alt="" width="1536" height="1024" loading="lazy" decoding="async">
           <div class="feature-body">
           <div class="dish-head">
             <span class="name">Fire &amp; Finn<span class="raw">*</span><span class="kicker">Chef’s Signature</span></span>

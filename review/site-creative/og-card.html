@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Fire &amp; Finn share card source</title>
+<!--
+  Source for assets/og.jpg and assets/og.png (1200x630). The site's hero idea as a card: the hot plate left, the
+  Fire & Finn roll right, the seam between them carrying the headline, the logo top left. Same photographs and type
+  as the site. Rendered with headless Edge by review/site-creative/render-og.py, served over http so the woff2 load.
+-->
+<style>
+  @font-face { font-family: "Tenor Sans"; src: url("../../assets/fonts/TenorSans-Regular.woff2") format("woff2"); font-weight: 400; }
+  @font-face { font-family: "Jost"; src: url("../../assets/fonts/Jost-500.woff2") format("woff2"); font-weight: 500; }
+  html, body { margin: 0; background: #0a0a0b; }
+  .card { position: relative; width: 1200px; height: 630px; overflow: hidden; background: #0a0a0b; color: #f3efe8; font-family: Jost, sans-serif; }
+  .half { position: absolute; top: 0; bottom: 0; width: 50%; overflow: hidden; }
+  .half img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .half::after { content: ""; position: absolute; inset: 0; }
+  /* The seam is real darkness, not a shadow behind type: each photograph fades fully to the ground before the headline begins */
+  .hot { left: 0; }
+  .hot img { object-position: 22% 55%; }
+  .hot::after { background: linear-gradient(90deg, rgba(10,10,11,.1) 0, rgba(10,10,11,0) 22%, rgba(10,10,11,.45) 46%, rgba(10,10,11,.9) 66%, #0a0a0b 80%),
+                            linear-gradient(180deg, rgba(10,10,11,.6) 0, rgba(10,10,11,0) 30%, rgba(10,10,11,0) 70%, rgba(10,10,11,.55) 100%); }
+  .cold { right: 0; }
+  .cold img { object-position: 82% 50%; }
+  .cold::after { background: linear-gradient(270deg, rgba(10,10,11,.1) 0, rgba(10,10,11,0) 22%, rgba(10,10,11,.45) 46%, rgba(10,10,11,.9) 66%, #0a0a0b 80%),
+                             linear-gradient(180deg, rgba(10,10,11,.5) 0, rgba(10,10,11,0) 30%, rgba(10,10,11,0) 70%, rgba(10,10,11,.55) 100%); }
+  .logo { position: absolute; left: 44px; top: 34px; width: 232px; height: auto; z-index: 2; }
+  .seam { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 2; text-align: center; white-space: nowrap; }
+  h1 { margin: 0; font: 400 96px/.96 "Tenor Sans", serif; letter-spacing: -.01em; text-shadow: 0 2px 28px rgba(10,10,11,.9); }
+  h1 span { display: block; }
+  .hot-line { color: #f07840; }
+  .cold-line { color: #62c6ec; }
+  .sub { margin: 26px 0 0; font: 500 24px/1.3 Jost, sans-serif; letter-spacing: .02em; color: #d9d2c7; text-shadow: 0 1px 14px rgba(10,10,11,.95); }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="half hot"><img src="../../assets/food/hero-hibachi.jpg" alt=""></div>
+  <div class="half cold"><img src="../../assets/food/fire-and-finn-roll.jpg" alt=""></div>
+  <img class="logo" src="../../assets/logo-compact.svg" alt="">
+  <div class="seam">
+    <h1><span class="hot-line">Grilled hot.</span><span class="cold-line">Rolled cold.</span></h1>
+    <p class="sub">Hibachi, sushi and poke on Sanibel</p>
+  </div>
+</div>
+</body>
+</html>
