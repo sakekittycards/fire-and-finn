@@ -169,33 +169,33 @@ const HOURS = { open: 11, close: 20 };
       const title = name ? Array.from(name).filter((n) => n.nodeType === 3).map((n) => n.textContent).join("").trim() : "";
       const items = [];
       const add = (nameText, price, desc) => {
-        const item = { "@type": "MenuItem", "name": nameText.replace(/\*$/, "").trim() };
-        if (desc) item.description = desc;
+        const item = { "@type": "MenuItem", "name": nameText.replace(/\*/g, "").trim() };
+        if (desc) item.description = desc.replace(/\*/g, "");
         if (price) item.offers = { "@type": "Offer", "price": price, "priceCurrency": "USD" };
         items.push(item);
       };
+      const groupPrice = ((g.querySelector("h3 .aside") || {}).textContent || "").match(/\d+/);   // "15 each" on the kids heading
       g.querySelectorAll(".dish, .feature").forEach((d) => {
         const n = d.querySelector(".name"); if (!n) return;
         const nameText = Array.from(n.childNodes).filter((x) => x.nodeType === 3 || !x.classList || (!x.classList.contains("raw") && !x.classList.contains("kicker"))).map((x) => x.textContent).join("");
         const p = d.querySelector(".price");
-        const desc = Array.from(d.querySelectorAll(".desc, .parts p")).map((e) => e.textContent.replace(/\s+/g, " ").trim()).join(" ");
-        add(nameText, p ? p.textContent.trim() : (g.id === "kids" ? "15" : ""), desc);
+        const desc = Array.from(d.querySelectorAll(".desc, .parts p")).map((e) => e.textContent.replace(/\s+/g, " ").trim()).join("; ");
+        add(nameText, p ? p.textContent.trim() : (groupPrice ? groupPrice[0] : ""), desc);
       });
       g.querySelectorAll(".proteins li").forEach((li) => {
-        const base = li.closest(".combos") ? "Hibachi combo" : "Hibachi";
-        add(base + ": " + li.querySelector(".n").textContent.replace(/\*/g, "").trim(), li.querySelector(".p").textContent.trim(), "");
+        add(li.querySelector(".n").textContent.trim(), li.querySelector(".p").textContent.trim(), "");   // the printed name; the section says Hibachi
       });
       const poke = g.querySelector(".poke-head");
-      if (poke) add("Poke Bowl, build your own", poke.querySelector(".price").textContent.trim(),
+      if (poke) add(poke.querySelector(".name").textContent.trim(), poke.querySelector(".price").textContent.trim(),
         Array.from(g.querySelectorAll(".step")).map((s) => {
           const t = s.querySelector(".t"); const body = Array.from(s.querySelectorAll("p")).map((p) => p.textContent.replace(/\s+/g, " ").trim()).join(" ");
           return (t ? t.textContent.trim() + ": " : "") + body;
-        }).join(" "));
+        }).join("; "));
       if (items.length) sections.push({ "@type": "MenuSection", "name": title, "hasMenuItem": items });
     });
     if (sections.length) {
       const s = document.createElement("script"); s.type = "application/ld+json";
-      s.textContent = JSON.stringify({ "@context": "https://schema.org", "@type": "Menu", "name": "Fire & Finn menu", "url": "https://fireandfinn.com/#menu", "hasMenuSection": sections });
+      s.textContent = JSON.stringify({ "@context": "https://schema.org", "@type": "Menu", "@id": "https://fireandfinn.com/#menu-data", "name": "Fire & Finn menu", "inLanguage": "en", "url": "https://fireandfinn.com/#menu", "hasMenuSection": sections });
       document.head.appendChild(s);
     }
   } catch (e) { /* structured data is a bonus, never a blocker */ }
