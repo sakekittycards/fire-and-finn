@@ -17,7 +17,7 @@ failed. Nothing here is a claim on the site; it is plumbing and listings.
 After the push, from the site session:
 
 ```bash
-"$HOME/.claude/skills/seo/bin/claude-seo" run indexnow_submit.py --host fireandfinn.com --key 4c84c2dba7209a240503fec65a579b43 --key-location https://fireandfinn.com/4c84c2dba7209a240503fec65a579b43.txt https://fireandfinn.com/ https://fireandfinn.com/island-panda/
+"$HOME/.claude/skills/seo/bin/claude-seo" run indexnow_submit.py --host fireandfinn.com --key 4c84c2dba7209a240503fec65a579b43 --key-location https://fireandfinn.com/4c84c2dba7209a240503fec65a579b43.txt --urls https://fireandfinn.com/ https://fireandfinn.com/island-panda/
 ```
 
 and re-run PageSpeed when the API quota allows.
