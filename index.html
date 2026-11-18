@@ -4,12 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Fire &amp; Finn — Hibachi, Sushi &amp; Poke on Sanibel Island</title>
-  <meta name="description" content="Formerly Island Panda. Fast-casual hibachi, specialty rolls and build-your-own poke bowls at 2003 Periwinkle Way, Sanibel, FL. Open daily 11am to 8pm.">
+  <meta name="description" content="Formerly Island Panda. Takeout hibachi, specialty rolls and build-your-own poke bowls at 2003 Periwinkle Way, Sanibel, FL. Open daily 11am to 8pm.">
   <meta name="theme-color" content="#0a0a0b">
   <link rel="canonical" href="https://fireandfinn.com/">
 
   <meta property="og:type" content="restaurant.restaurant">
   <meta property="og:site_name" content="Fire &amp; Finn">
+  <meta property="og:locale" content="en_US">
   <meta property="og:title" content="Fire &amp; Finn — Hibachi · Sushi · Poke">
   <meta property="og:description" content="Formerly Island Panda. Grilled hot. Rolled cold. Hibachi, specialty rolls and build-your-own poke on Sanibel Island.">
   <meta property="og:url" content="https://fireandfinn.com/">
@@ -22,6 +23,7 @@
   <meta name="twitter:image:alt" content="The Fire &amp; Finn logo top left; a steak and scallops hibachi plate on the left, the Fire &amp; Finn roll on the right, and Grilled hot. Rolled cold. in the dark between them">
 
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon-96.png">
   <link rel="icon" type="image/png" sizes="128x128" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
@@ -31,45 +33,69 @@
   <link rel="preload" href="assets/fonts/Jost-500.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" href="assets/food/hero-hibachi.jpg" imagesrcset="assets/food/hero-hibachi-640.jpg 640w, assets/food/hero-hibachi-800.jpg 800w, assets/food/hero-hibachi.jpg 1024w" imagesizes="(min-width: 900px) 50vw, 100vw" fetchpriority="high">
   <link rel="preload" as="image" href="assets/food/fire-and-finn-roll.jpg" imagesrcset="assets/food/fire-and-finn-roll-640.jpg 640w, assets/food/fire-and-finn-roll-800.jpg 800w, assets/food/fire-and-finn-roll-1024.jpg 1024w, assets/food/fire-and-finn-roll-1200.jpg 1200w, assets/food/fire-and-finn-roll.jpg 1536w" imagesizes="(min-width: 900px) 50vw, 100vw" fetchpriority="high">
-  <link rel="stylesheet" href="styles.css?v=13">
+  <link rel="stylesheet" href="styles.css?v=14">
   <script>document.documentElement.classList.add("js");</script>
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Restaurant",
-    "name": "Fire & Finn",
-    "alternateName": ["Island Panda", "Fire & Finn Hibachi · Sushi · Poke"],
-    "url": "https://fireandfinn.com/",
-    "image": "https://fireandfinn.com/assets/og.jpg?v=2",
-    "logo": "https://fireandfinn.com/assets/logo.png",
-    "telephone": "+1-239-579-0783",
-    "servesCuisine": ["Japanese", "Hibachi", "Sushi", "Poke"],
-    "priceRange": "$$",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "2003 Periwinkle Way",
-      "addressLocality": "Sanibel",
-      "addressRegion": "FL",
-      "postalCode": "33957",
-      "addressCountry": "US"
-    },
-    "openingHoursSpecification": [
-      { "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-        "opens": "11:00", "closes": "20:00" }
-    ],
-    "hasMenu": "https://fireandfinn.com/#menu",
-    "menu": "https://fireandfinn.com/menu.pdf",
-    "potentialAction": {
-      "@type": "OrderAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": "https://order.toasttab.com/online/fire-and-finn-2003-periwinkle-way",
-        "actionPlatform": ["http://schema.org/DesktopWebPlatform", "http://schema.org/MobileWebPlatform"]
+    "@graph": [
+      {
+        "@type": "Restaurant",
+        "@id": "https://fireandfinn.com/#restaurant",
+        "name": "Fire & Finn",
+        "alternateName": ["Fire and Finn", "Island Panda"],
+        "description": "Takeout hibachi, specialty rolls and build-your-own poke bowls on Sanibel Island, Florida. Formerly Island Panda: same kitchen, same address, new name.",
+        "url": "https://fireandfinn.com/",
+        "image": { "@type": "ImageObject", "url": "https://fireandfinn.com/assets/og.jpg?v=2", "width": 1200, "height": 630 },
+        "logo": { "@type": "ImageObject", "url": "https://fireandfinn.com/assets/logo.png", "width": 2000, "height": 931 },
+        "telephone": "+1-239-579-0783",
+        "servesCuisine": ["Japanese", "Hibachi", "Sushi", "Poke"],
+        "priceRange": "$$",
+        "acceptsReservations": false,
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "2003 Periwinkle Way",
+          "addressLocality": "Sanibel",
+          "addressRegion": "FL",
+          "postalCode": "33957",
+          "addressCountry": "US"
+        },
+        "geo": { "@type": "GeoCoordinates", "latitude": 26.4385265, "longitude": -82.0666332 },
+        "hasMap": "https://maps.google.com/?cid=258235692591613504",
+        "openingHoursSpecification": [
+          { "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            "opens": "11:00", "closes": "20:00" }
+        ],
+        "hasMenu": "https://fireandfinn.com/#menu",
+        "menu": "https://fireandfinn.com/menu.pdf",
+        "sameAs": [
+          "https://maps.google.com/?cid=258235692591613504",
+          "https://www.tripadvisor.com/Restaurant_Review-g16970438-d34381739-Reviews-Island_Panda-Sanibel_Sanibel_Island_Florida.html",
+          "https://www.yelp.com/biz/island-panda-sanibel-island",
+          "https://maps.apple.com/place?place-id=IBAA8228DA77A897D",
+          "https://www.doordash.com/store/island-panda-sanibel-45540707/"
+        ],
+        "potentialAction": {
+          "@type": "OrderAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://order.toasttab.com/online/fire-and-finn-2003-periwinkle-way",
+            "actionPlatform": ["http://schema.org/DesktopWebPlatform", "http://schema.org/MobileWebPlatform"]
+          },
+          "deliveryMethod": "http://purl.org/goodrelations/v1#DeliveryModePickUp"
+        }
       },
-      "deliveryMethod": "http://purl.org/goodrelations/v1#DeliveryModePickUp"
-    }
+      {
+        "@type": "WebSite",
+        "@id": "https://fireandfinn.com/#website",
+        "name": "Fire & Finn",
+        "alternateName": "Fire and Finn",
+        "url": "https://fireandfinn.com/",
+        "publisher": { "@id": "https://fireandfinn.com/#restaurant" }
+      }
+    ]
   }
   </script>
 </head>
@@ -366,13 +392,14 @@
         <p class="visit-lead">In Tahitian Gardens on Periwinkle Way, the main road through Sanibel.</p>
         <dl>
           <dt>Hours</dt><dd>Every day, 11am to 8pm</dd>
-          <dt>Address</dt><dd><a href="https://www.google.com/maps/dir/?api=1&amp;destination=2003+Periwinkle+Way,+Sanibel,+FL+33957" target="_blank" rel="noopener">2003 Periwinkle Way<br>Sanibel, FL 33957</a><span class="formerly"><a href="/island-panda/">Formerly Island Panda</a></span></dd>
+          <dt>Address</dt><dd><a href="https://www.google.com/maps/dir/?api=1&amp;destination=2003+Periwinkle+Way,+Sanibel,+FL+33957" target="_blank" rel="noopener">2003 Periwinkle Way<br>Sanibel, FL 33957</a></dd>
           <dt>Phone</dt><dd><a href="tel:+12395790783">(239) 579-0783</a></dd>
         </dl>
         <div class="cta left">
           <a class="btn btn-fire" href="https://www.google.com/maps/dir/?api=1&amp;destination=2003+Periwinkle+Way,+Sanibel,+FL+33957" target="_blank" rel="noopener">Get Directions</a>
           <a class="btn btn-ghost" href="tel:+12395790783">Call Us</a>
         </div>
+        <p class="visit-about">Fire &amp; Finn is takeout hibachi, specialty rolls and build-your-own poke bowls on Sanibel Island, in Tahitian Gardens at 2003 Periwinkle Way. <a href="/island-panda/">Formerly Island Panda</a>: same kitchen, same address, new name.</p>
       </div>
       <div class="map">
         <div class="map-fallback"><span class="pin" aria-hidden="true"></span><strong>2003 Periwinkle Way, Sanibel</strong><a href="https://www.google.com/maps/dir/?api=1&amp;destination=2003+Periwinkle+Way,+Sanibel,+FL+33957" target="_blank" rel="noopener">Open in Google Maps</a></div>
@@ -411,6 +438,6 @@
   <a class="btn btn-ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=2003+Periwinkle+Way,+Sanibel,+FL+33957" target="_blank" rel="noopener">Directions</a>
 </nav>
 
-<script src="app.js?v=13"></script>
+<script src="app.js?v=14"></script>
 </body>
 </html>
